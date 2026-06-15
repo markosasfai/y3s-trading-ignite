@@ -152,16 +152,16 @@ function HostCard({
   img: string;
 }) {
   return (
-    <div className="glass flex items-center gap-3 rounded-2xl bg-black/40 p-3.5">
-      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-primary/40">
+    <div className="glass flex items-center gap-4 rounded-2xl bg-card/80 p-4">
+      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full ring-2 ring-primary/50 lg:h-24 lg:w-24">
         <img src={img} alt={name} className="h-full w-full object-cover" />
       </div>
       <div className="min-w-0">
-        <p className="font-display text-xl uppercase leading-none">{name}</p>
-        <p className="mt-1.5 inline-flex items-center gap-1 text-xs uppercase tracking-wider text-primary">
+        <p className="font-display text-2xl uppercase leading-none lg:text-3xl">{name}</p>
+        <p className="mt-2 inline-flex items-center gap-1.5 text-sm font-black uppercase tracking-wide text-primary">
           {icon} {role}
         </p>
-        <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{desc}</p>
+        <p className="mt-1.5 line-clamp-2 text-base leading-snug text-muted-foreground">{desc}</p>
       </div>
     </div>
   );
@@ -169,14 +169,14 @@ function HostCard({
 
 export function CTA({ subline = true }: { subline?: boolean }) {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2.5">
       <SignupDialog>
-        <button className="shimmer-overlay glow-orange group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-6 py-4 text-base font-bold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99] sm:text-lg">
+        <button className="shimmer-overlay glow-orange group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-7 py-5 text-xl font-black uppercase tracking-wide text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99] sm:text-2xl">
           Zaregistrovať sa zadarmo →
         </button>
       </SignupDialog>
       {subline && (
-        <p className="text-center text-xs text-muted-foreground">
+        <p className="text-center text-base font-semibold text-muted-foreground lg:text-lg">
           Obmedzený počet miest · 100% zdarma · bez kamery
         </p>
       )}
