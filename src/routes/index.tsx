@@ -44,16 +44,16 @@ function Index() {
 
         {/* Right: info */}
         <section className="flex min-h-0 flex-col justify-center lg:h-full">
-          <div className="flex min-h-0 flex-col justify-center gap-3.5 lg:gap-3.5">
+          <div className="flex min-h-0 flex-col justify-center gap-3.5 lg:gap-4">
           <div className="space-y-2.5">
             <div className="hidden items-center justify-between gap-4 lg:flex">
-              <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-18 w-auto" />
+              <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-[4.75rem] w-auto" />
               <LivePill />
             </div>
             <p className="font-display text-base uppercase tracking-[0.25em] text-primary lg:text-lg">
               Y3S × Chalan z Burzy uvádzajú
             </p>
-            <h1 className="font-display text-[clamp(3.4rem,5.4vw,6rem)] font-black leading-[0.84] tracking-normal">
+            <h1 className="font-display text-[clamp(3.4rem,5.15vw,5.8rem)] font-black leading-[0.84] tracking-normal">
               <span className="block">ZERO TO</span>
               <span className="block text-gradient-orange">HERO</span>
             </h1>
