@@ -2,15 +2,15 @@ export function Background() {
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       {/* base radial wash */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,oklch(0.30_0.08_45/0.45),transparent_55%),radial-gradient(circle_at_80%_80%,oklch(0.28_0.07_30/0.40),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,oklch(0.20_0.05_45/0.35),transparent_55%),radial-gradient(circle_at_80%_80%,oklch(0.18_0.04_30/0.30),transparent_55%)]" />
       {/* floating blobs */}
-      <div className="blob-float absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-primary/30 blur-[140px]" />
+      <div className="blob-float absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-primary/15 blur-[160px]" />
       <div
-        className="blob-float absolute -bottom-40 -right-32 h-[36rem] w-[36rem] rounded-full bg-primary-glow/25 blur-[140px]"
+        className="blob-float absolute -bottom-40 -right-32 h-[36rem] w-[36rem] rounded-full bg-primary-glow/12 blur-[160px]"
         style={{ animationDelay: "-7s" }}
       />
       <div
-        className="blob-float absolute top-1/3 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-orange-500/20 blur-[160px]"
+        className="blob-float absolute top-1/3 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-orange-500/10 blur-[180px]"
         style={{ animationDelay: "-3.5s" }}
       />
       {/* grid */}
