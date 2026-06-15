@@ -82,22 +82,22 @@ export function RaffleCallout() {
       <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-primary/25 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-primary-glow/15 blur-3xl" />
       <div className="relative flex items-center gap-4">
-        <div className="relative grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground glow-orange lg:h-[4.5rem] lg:w-[4.5rem]">
-          <Gift className="h-8 w-8" />
-          <span className="absolute -top-1 -right-1 grid h-5 w-5 place-items-center rounded-full bg-background text-[9px] font-bold text-primary ring-2 ring-primary">
+        <div className="relative grid h-[4.5rem] w-[4.5rem] shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground glow-orange lg:h-20 lg:w-20">
+          <Gift className="h-9 w-9 lg:h-10 lg:w-10" />
+          <span className="absolute -top-1 -right-1 grid h-6 w-6 place-items-center rounded-full bg-background text-xs font-bold text-primary ring-2 ring-primary">
             !
           </span>
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary">
-            <Trophy className="mr-1 inline h-3 w-3" /> LIVE žrebovanie · darček
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
+            <Trophy className="mr-1 inline h-3.5 w-3.5" /> LIVE žrebovanie · darček
           </p>
-          <p className="mt-1 font-display text-2xl uppercase leading-[0.95] text-foreground lg:text-[1.75rem]">
+          <p className="mt-1 font-display text-[1.65rem] uppercase leading-[0.95] text-foreground lg:text-3xl">
             Vyhraj{" "}
             <span className="text-gradient-orange">$500 000</span>{" "}
             funded účet
           </p>
-          <p className="mt-1 text-xs text-muted-foreground">
+          <p className="mt-1 text-sm text-muted-foreground">
             Iba pre LIVE účastníkov všetky 3 dni. Žiadne nahrávky.
           </p>
         </div>
