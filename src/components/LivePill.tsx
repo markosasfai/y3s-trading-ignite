@@ -5,8 +5,7 @@ export function LivePill() {
         <span className="live-pulse absolute inline-flex h-full w-full rounded-full bg-destructive opacity-80" />
         <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-destructive shadow-[0_0_12px_2px_oklch(0.65_0.22_25)] lg:h-3 lg:w-3" />
       </span>
-      <span className="text-foreground">● LIVE</span>
-      <span className="hidden text-foreground/80 sm:inline">Žive vysielanie</span>
+      <span className="text-foreground">LIVE</span>
     </div>
   );
 }

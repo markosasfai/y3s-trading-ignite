@@ -1,4 +1,4 @@
-import { BadgeDollarSign, VideoOff, Trophy, ShieldCheck, Sparkles, Brain, LineChart, Gift, Calendar } from "lucide-react";
+import { BadgeDollarSign, VideoOff, ShieldCheck, Sparkles, Brain, LineChart, Calendar } from "lucide-react";
 import { LivePill } from "./LivePill";
 import { SignupDialog } from "./SignupDialog";
 import dodoAsset from "@/assets/dodo.png.asset.json";
@@ -35,7 +35,6 @@ export function EventChips() {
       <Chip icon={<Sparkles className="h-5 w-5" />} tone="sky">100% online</Chip>
       <Chip icon={<BadgeDollarSign className="h-5 w-5" />} tone="emerald">100% zdarma</Chip>
       <Chip icon={<VideoOff className="h-5 w-5" />} tone="violet">Bez kamery</Chip>
-      <Chip icon={<Gift className="h-5 w-5" />} tone="amber">Darček pri vstupe</Chip>
     </div>
   );
 }
@@ -64,23 +63,21 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
       {DAYS.map((d) => (
         <div
           key={d.n}
-          className="group relative min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-black/55 p-3.5 backdrop-blur-md transition hover:border-primary/40 lg:p-3"
+          className="group relative min-w-0 overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/10 to-black/60 p-4 backdrop-blur-md transition hover:border-primary/60 hover:shadow-[0_0_30px_-10px_oklch(0.72_0.19_45/0.7)]"
         >
-          <div className="-mx-3.5 -mt-3.5 mb-2.5 flex items-center gap-3 border-b border-white/10 bg-black/60 px-3.5 py-2.5 lg:-mx-3 lg:-mt-3 lg:px-3 lg:py-2">
-            <span className="font-display text-[2.2rem] leading-none tracking-wide text-foreground lg:text-[1.95rem]">
+          <div className="flex items-baseline justify-between gap-2">
+            <span className="font-display text-[2.4rem] leading-none tracking-wide text-gradient-orange">
               DEŇ 0{d.n}
             </span>
-          </div>
-          <div className="min-w-0">
-            <p className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.18em] text-primary">
+            <span className="inline-flex items-center gap-1 text-[0.8rem] font-black uppercase tracking-wider text-primary">
               <Calendar className="h-3.5 w-3.5" /> {d.date}
-            </p>
-            <h3 className="mt-1 text-base font-black leading-tight text-foreground lg:text-[1rem]">
-              {d.title}
-            </h3>
-            <div className="my-1.5 h-px w-10 bg-primary/70" />
-            <p className="text-sm leading-snug text-muted-foreground lg:text-[0.85rem]">{d.desc}</p>
+            </span>
           </div>
+          <div className="my-2.5 h-px w-full bg-gradient-to-r from-primary/60 via-primary/20 to-transparent" />
+          <h3 className="text-lg font-black leading-tight text-foreground">
+            {d.title}
+          </h3>
+          <p className="mt-1.5 text-[0.95rem] leading-snug text-foreground/75">{d.desc}</p>
         </div>
       ))}
     </div>
@@ -102,13 +99,10 @@ export function RaffleCallout() {
           className="h-20 w-20 shrink-0 drop-shadow-[0_8px_24px_oklch(0.72_0.19_45/0.55)] sm:h-24 sm:w-24 lg:h-20 lg:w-20"
         />
         <div className="min-w-0 flex-1">
-          <p className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.18em] text-amber-300 lg:text-sm">
-            <Trophy className="h-4 w-4" /> LIVE žrebovanie
-          </p>
-          <p className="mt-1 font-display text-[1.7rem] uppercase leading-[0.95] text-foreground lg:text-[1.7rem]">
+          <p className="font-display text-[1.9rem] uppercase leading-[0.95] text-foreground lg:text-[1.9rem]">
             Vyhraj <span className="text-gradient-orange">$500 000</span> funded účet
           </p>
-          <p className="mt-1.5 text-sm font-semibold text-foreground/85 lg:text-[0.9rem]">
+          <p className="mt-2 text-sm font-semibold text-foreground/85 lg:text-[0.95rem]">
             Klikni na tlačidlo nižšie a vyplň formulár — inak nebudeš v žrebovaní.
           </p>
         </div>
@@ -119,24 +113,23 @@ export function RaffleCallout() {
 
 export function HostsBlock() {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2.5">
       <p className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground lg:text-sm">
         Tvoji hostia
       </p>
-      {/* Hosts — no container card; hover floats and enlarges */}
-      <div className="relative grid grid-cols-2 gap-4 sm:gap-8">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <HostInline
           name="Dodo"
           role="Trading mechanics"
-          desc="10 rokov v hre. Naučí ťa techniky, taktiky a setupy ako otvárať profitabilné obchody."
-          icon={<LineChart className="h-3.5 w-3.5" />}
+          desc="10 rokov v hre. Techniky, taktiky a setupy pre profitabilné obchody."
+          icon={<LineChart className="h-4 w-4" />}
           img={dodoAsset.url}
         />
         <HostInline
           name="Lukáš"
           role="Psychológia & risk"
-          desc="Psychológia obchodovania, risk management a kedy obchod (ne)otvoriť. Mindset hráča."
-          icon={<Brain className="h-3.5 w-3.5" />}
+          desc="Psychológia, risk management a kedy obchod (ne)otvoriť."
+          icon={<Brain className="h-4 w-4" />}
           img={lukasAsset.url}
         />
       </div>
@@ -158,22 +151,17 @@ function HostInline({
   img: string;
 }) {
   return (
-    <div className="group/host relative flex flex-col items-center text-center transition-all duration-300 hover:z-40">
-      {/* Floating expanded card on hover */}
-      <div className="pointer-events-none relative">
-        <div className="relative h-20 w-20 overflow-hidden rounded-full ring-2 ring-primary/50 transition-all duration-300 group-hover/host:scale-[1.35] group-hover/host:shadow-[0_20px_60px_-10px_oklch(0.72_0.19_45/0.6)] group-hover/host:ring-primary sm:h-24 sm:w-24 lg:h-20 lg:w-20">
-          <img src={img} alt={name} className="h-full w-full object-cover" />
-        </div>
+    <div className="flex items-center gap-3.5 rounded-2xl border border-white/10 bg-black/40 p-3 backdrop-blur-md">
+      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full ring-2 ring-primary/60">
+        <img src={img} alt={name} className="h-full w-full object-cover" />
       </div>
-      <p className="mt-2 font-display text-xl uppercase leading-none transition-all duration-300 group-hover/host:scale-110 sm:text-3xl lg:text-2xl">
-        {name}
-      </p>
-      <p className="mt-1 inline-flex items-center gap-1.5 text-[0.7rem] font-black uppercase tracking-wider text-primary sm:text-sm">
-        {icon} {role}
-      </p>
-      <p className="mt-1.5 max-w-[18ch] text-xs leading-snug text-muted-foreground transition-all duration-300 group-hover/host:max-w-[26ch] group-hover/host:text-sm group-hover/host:text-foreground/95 sm:text-sm lg:text-[0.78rem]">
-        {desc}
-      </p>
+      <div className="min-w-0 flex-1">
+        <p className="font-display text-2xl uppercase leading-none">{name}</p>
+        <p className="mt-1 inline-flex items-center gap-1.5 text-[0.72rem] font-black uppercase tracking-wider text-primary">
+          {icon} {role}
+        </p>
+        <p className="mt-1.5 text-[0.85rem] leading-snug text-foreground/75">{desc}</p>
+      </div>
     </div>
   );
 }

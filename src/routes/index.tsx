@@ -50,15 +50,12 @@ function Index() {
               <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-14 w-auto" />
               <LivePill />
             </div>
-            <p className="font-display text-base uppercase tracking-[0.25em] text-primary lg:text-lg">
-              Y3S × Chalan z Burzy uvádzajú
-            </p>
             <h1 className="font-display text-[clamp(3rem,4.4vw,4.8rem)] font-black leading-[0.84] tracking-normal">
               <span className="block">ZERO TO</span>
               <span className="block text-gradient-orange">HERO</span>
             </h1>
-            <p className="font-display text-xl uppercase tracking-[0.1em] text-foreground/90 sm:text-2xl lg:text-[1.35rem]">
-              Online Challenge · 20.–22. jún 2026 · 19:00
+            <p className="font-display text-2xl uppercase tracking-[0.06em] text-foreground sm:text-3xl lg:text-[2rem]">
+              <span className="text-gradient-orange">20.–22. jún</span> · <span className="text-foreground">19:00</span>
             </p>
           </div>
 
