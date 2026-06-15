@@ -41,7 +41,7 @@ export function EventChips() {
 
 function Chip({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-base font-bold text-foreground/95 lg:text-lg">
+    <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-base font-bold text-foreground/95 lg:text-[1.05rem]">
       <span className="text-primary">{icon}</span>
       {children}
     </span>
@@ -56,8 +56,8 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
           key={d.n}
           className="glass relative min-w-0 overflow-hidden rounded-2xl bg-card/80 p-3.5"
         >
-          <div className="relative mb-3 flex h-16 items-center justify-center rounded-xl bg-gradient-to-br from-primary/30 to-primary-glow/10 ring-1 ring-primary/35 lg:h-[4.35rem]">
-            <span className="font-display text-[2.35rem] uppercase leading-none text-foreground lg:text-[2.8rem]">
+          <div className="relative mb-2 flex h-15 items-center justify-center rounded-xl bg-gradient-to-br from-primary/30 to-primary-glow/10 ring-1 ring-primary/35 lg:h-16">
+            <span className="font-display text-[2.35rem] uppercase leading-none text-foreground lg:text-[2.55rem]">
               <span className="text-primary">Deň</span> {d.n}
             </span>
           </div>
@@ -65,10 +65,10 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
             <div className="text-sm font-black uppercase tracking-[0.16em] text-primary lg:text-[0.95rem]">
               {d.date}
             </div>
-            <h3 className="mt-1 font-display text-[1.65rem] uppercase leading-none lg:text-[1.9rem]">
+            <h3 className="mt-0.5 font-display text-[1.65rem] uppercase leading-none lg:text-[1.75rem]">
               {d.title}
             </h3>
-            <p className="mt-2 line-clamp-2 text-base leading-snug text-muted-foreground">{d.desc}</p>
+            <p className="mt-1 line-clamp-2 text-base leading-snug text-muted-foreground">{d.desc}</p>
           </div>
         </div>
       ))}
