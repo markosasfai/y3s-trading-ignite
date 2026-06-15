@@ -44,7 +44,7 @@ function Index() {
 
         {/* Right: info */}
         <section className="flex min-h-0 flex-col justify-center lg:h-full">
-          <div className="flex min-h-0 flex-col justify-center gap-4 lg:gap-4">
+          <div className="flex min-h-0 flex-col justify-center gap-4 lg:gap-3">
           <div className="space-y-2">
             <div className="hidden items-center justify-between gap-4 lg:flex">
               <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-14 w-auto" />
@@ -53,11 +53,11 @@ function Index() {
             <p className="font-display text-base uppercase tracking-[0.25em] text-primary lg:text-lg">
               Y3S × Chalan z Burzy uvádzajú
             </p>
-            <h1 className="font-display text-[clamp(3.35rem,4.9vw,5.45rem)] font-black leading-[0.84] tracking-normal">
+            <h1 className="font-display text-[clamp(3rem,4.4vw,4.8rem)] font-black leading-[0.84] tracking-normal">
               <span className="block">ZERO TO</span>
               <span className="block text-gradient-orange">HERO</span>
             </h1>
-            <p className="font-display text-xl uppercase tracking-[0.1em] text-foreground/90 sm:text-2xl lg:text-[1.7rem]">
+            <p className="font-display text-xl uppercase tracking-[0.1em] text-foreground/90 sm:text-2xl lg:text-[1.35rem]">
               Online Challenge · 20.–22. jún 2026 · 19:00
             </p>
           </div>
