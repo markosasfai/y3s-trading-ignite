@@ -7,18 +7,21 @@ import lukasAsset from "@/assets/lukas.png.asset.json";
 const DAYS = [
   {
     n: 1,
+    label: "Deň 1",
     date: "20. jún",
     title: "Základy obchodovania",
     desc: "Mindset, riadenie rizika a ako čítať trh od nuly.",
   },
   {
     n: 2,
+    label: "Deň 2",
     date: "21. jún",
     title: "Stratégia v praxi",
     desc: "Live setupy, vstupy a výstupy priamo na obrazovke.",
   },
   {
     n: 3,
+    label: "Deň 3",
     date: "22. jún",
     title: "Tvoj prvý profit",
     desc: "Vlastné obchody pod dohľadom Dodo a Lukáša.",
@@ -27,18 +30,18 @@ const DAYS = [
 
 export function EventChips() {
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <Chip icon={<Sparkles className="h-4 w-4" />}>100% online</Chip>
-      <Chip icon={<BadgeDollarSign className="h-4 w-4" />}>100% zdarma</Chip>
-      <Chip icon={<VideoOff className="h-4 w-4" />}>Bez kamery</Chip>
-      <Chip icon={<Gift className="h-4 w-4" />}>Darček pri vstupe</Chip>
+    <div className="flex flex-wrap items-center gap-2.5">
+      <Chip icon={<Sparkles className="h-5 w-5" />}>100% online</Chip>
+      <Chip icon={<BadgeDollarSign className="h-5 w-5" />}>100% zdarma</Chip>
+      <Chip icon={<VideoOff className="h-5 w-5" />}>Bez kamery</Chip>
+      <Chip icon={<Gift className="h-5 w-5" />}>Darček pri vstupe</Chip>
     </div>
   );
 }
 
 function Chip({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <span className="glass inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/90">
+    <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-base font-bold text-foreground/95 lg:text-[1.05rem]">
       <span className="text-primary">{icon}</span>
       {children}
     </span>
@@ -47,28 +50,25 @@ function Chip({ icon, children }: { icon: React.ReactNode; children: React.React
 
 export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } = {}) {
   return (
-    <div className="space-y-2.5">
+    <div className="grid grid-cols-3 gap-2.5">
       {DAYS.map((d) => (
         <div
           key={d.n}
-          className="glass relative flex items-center gap-4 overflow-hidden rounded-2xl bg-black/40 p-3.5 pr-5 lg:p-4"
+          className="glass relative min-w-0 overflow-hidden rounded-2xl bg-card/80 p-3.5"
         >
-          <div className="relative flex h-[4.5rem] w-[5.5rem] shrink-0 flex-col items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary-glow/10 lg:h-20 lg:w-28">
-            <span className="font-display text-[0.7rem] uppercase tracking-[0.2em] text-primary/90 lg:text-xs">
-              Deň
-            </span>
-            <span className="font-display text-[3rem] leading-[0.85] text-gradient-orange lg:text-[3.5rem]">
-              {d.n}
+          <div className="relative mb-2 flex h-15 items-center justify-center rounded-xl bg-gradient-to-br from-primary/30 to-primary-glow/10 ring-1 ring-primary/35 lg:h-16">
+            <span className="font-display text-[2.35rem] uppercase leading-none text-foreground lg:text-[2.55rem]">
+              <span className="text-primary">Deň</span> {d.n}
             </span>
           </div>
-          <div className="min-w-0 flex-1">
-            <div className="text-xs uppercase tracking-[0.2em] text-primary/90 lg:text-sm">
+          <div className="min-w-0">
+            <div className="text-sm font-black uppercase tracking-[0.16em] text-primary lg:text-[0.95rem]">
               {d.date}
             </div>
-            <h3 className="mt-0.5 font-display text-xl uppercase leading-tight lg:text-2xl">
+            <h3 className="mt-0.5 font-display text-[1.65rem] uppercase leading-none lg:text-[1.75rem]">
               {d.title}
             </h3>
-            <p className="mt-0.5 line-clamp-1 text-sm text-muted-foreground">{d.desc}</p>
+            <p className="mt-1 line-clamp-2 text-base leading-snug text-muted-foreground">{d.desc}</p>
           </div>
         </div>
       ))}
@@ -78,26 +78,26 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
 
 export function RaffleCallout() {
   return (
-    <div className="glass-strong relative overflow-hidden rounded-2xl bg-black/50 p-4 lg:p-5">
+    <div className="glass-strong relative overflow-hidden rounded-2xl bg-card/90 p-3.5 lg:p-4">
       <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-primary/25 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-primary-glow/15 blur-3xl" />
       <div className="relative flex items-center gap-4">
-        <div className="relative grid h-[4.5rem] w-[4.5rem] shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground glow-orange lg:h-20 lg:w-20">
+        <div className="relative grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground glow-orange lg:h-18 lg:w-18">
           <Gift className="h-9 w-9 lg:h-10 lg:w-10" />
-          <span className="absolute -top-1 -right-1 grid h-6 w-6 place-items-center rounded-full bg-background text-xs font-bold text-primary ring-2 ring-primary">
+          <span className="absolute -top-1.5 -right-1.5 grid h-7 w-7 place-items-center rounded-full bg-background text-sm font-black text-primary ring-2 ring-primary">
             !
           </span>
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
-            <Trophy className="mr-1 inline h-3.5 w-3.5" /> LIVE žrebovanie · darček
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-primary lg:text-[0.95rem]">
+            <Trophy className="mr-1.5 inline h-5 w-5" /> LIVE žrebovanie · darček
           </p>
-          <p className="mt-1 font-display text-[1.65rem] uppercase leading-[0.95] text-foreground lg:text-3xl">
+          <p className="mt-0.5 font-display text-[2.05rem] uppercase leading-[0.9] text-foreground lg:text-[2.2rem]">
             Vyhraj{" "}
             <span className="text-gradient-orange">$500 000</span>{" "}
             funded účet
           </p>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-1 text-base font-semibold text-foreground/85 lg:text-[1.05rem]">
             Iba pre LIVE účastníkov všetky 3 dni. Žiadne nahrávky.
           </p>
         </div>
@@ -108,8 +108,8 @@ export function RaffleCallout() {
 
 export function HostsBlock() {
   return (
-    <div className="space-y-2.5">
-      <p className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">
+    <div className="space-y-2">
+      <p className="text-sm font-black uppercase tracking-[0.25em] text-muted-foreground lg:text-base">
         Tvoji hostia
       </p>
       <div className="grid grid-cols-2 gap-2.5">
@@ -128,10 +128,10 @@ export function HostsBlock() {
           img={lukasAsset.url}
         />
       </div>
-      <p className="inline-flex items-start gap-1.5 px-1 text-sm text-foreground/85">
-        <ShieldCheck className="mt-[2px] h-4 w-4 shrink-0 text-primary" />
+      <p className="glass-strong inline-flex items-start gap-3 rounded-2xl bg-card/90 px-4 py-2.5 text-lg font-semibold leading-snug text-foreground lg:text-[1.1rem]">
+        <ShieldCheck className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
         <span>
-          <span className="font-semibold">Garancia:</span> ak budeš dávať pozor, urobíš svoje prvé profitabilné obchody.
+          <span className="font-black text-primary">Garancia:</span> ak budeš dávať pozor, urobíš svoje prvé profitabilné obchody.
         </span>
       </p>
     </div>
@@ -152,16 +152,16 @@ function HostCard({
   img: string;
 }) {
   return (
-    <div className="glass flex items-center gap-3 rounded-2xl bg-black/40 p-3.5">
-      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-primary/40">
+    <div className="glass flex items-center gap-3 rounded-2xl bg-card/80 p-3">
+      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-primary/50 lg:h-18 lg:w-18">
         <img src={img} alt={name} className="h-full w-full object-cover" />
       </div>
       <div className="min-w-0">
-        <p className="font-display text-xl uppercase leading-none">{name}</p>
-        <p className="mt-1.5 inline-flex items-center gap-1 text-xs uppercase tracking-wider text-primary">
+        <p className="font-display text-2xl uppercase leading-none lg:text-[1.8rem]">{name}</p>
+        <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-black uppercase tracking-wide text-primary">
           {icon} {role}
         </p>
-        <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{desc}</p>
+        <p className="mt-0.5 line-clamp-2 text-base leading-snug text-muted-foreground">{desc}</p>
       </div>
     </div>
   );
@@ -171,12 +171,12 @@ export function CTA({ subline = true }: { subline?: boolean }) {
   return (
     <div className="space-y-2">
       <SignupDialog>
-        <button className="shimmer-overlay glow-orange group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-6 py-4 text-base font-bold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99] sm:text-lg">
+        <button className="shimmer-overlay glow-orange group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-7 py-3.5 text-xl font-black uppercase tracking-wide text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99] sm:text-2xl">
           Zaregistrovať sa zadarmo →
         </button>
       </SignupDialog>
       {subline && (
-        <p className="text-center text-xs text-muted-foreground">
+        <p className="text-center text-base font-semibold text-muted-foreground lg:text-lg">
           Obmedzený počet miest · 100% zdarma · bez kamery
         </p>
       )}
