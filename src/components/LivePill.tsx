@@ -1,11 +1,12 @@
 export function LivePill() {
   return (
-    <div className="glass inline-flex items-center gap-3 rounded-full px-5 py-2 text-sm font-black uppercase tracking-[0.14em] text-foreground lg:px-6 lg:py-2.5 lg:text-base">
-      <span className="relative flex h-3 w-3 lg:h-3.5 lg:w-3.5">
-        <span className="live-pulse absolute inline-flex h-full w-full rounded-full bg-destructive/70" />
-        <span className="relative inline-flex h-3 w-3 rounded-full bg-destructive lg:h-3.5 lg:w-3.5" />
+    <div className="live-glow inline-flex items-center gap-2.5 rounded-full border border-destructive/60 bg-destructive/15 px-4 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-destructive-foreground backdrop-blur-md lg:px-5 lg:py-2 lg:text-sm">
+      <span className="relative flex h-2.5 w-2.5 lg:h-3 lg:w-3">
+        <span className="live-pulse absolute inline-flex h-full w-full rounded-full bg-destructive opacity-80" />
+        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-destructive shadow-[0_0_12px_2px_oklch(0.65_0.22_25)] lg:h-3 lg:w-3" />
       </span>
-      Živé vysielanie
+      <span className="text-foreground">● LIVE</span>
+      <span className="hidden text-foreground/80 sm:inline">Žive vysielanie</span>
     </div>
   );
 }
