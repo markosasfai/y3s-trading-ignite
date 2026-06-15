@@ -26,7 +26,7 @@ function Index() {
       <div className="mx-auto flex h-full max-w-[1400px] flex-col gap-6 px-4 py-5 sm:px-6 lg:grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 lg:py-6">
         {/* Header (mobile) */}
         <header className="flex items-center justify-between lg:hidden">
-          <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-7 w-auto" />
+          <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-10 w-auto" />
           <LivePill />
         </header>
 
@@ -46,15 +46,16 @@ function Index() {
         <section className="flex min-h-0 flex-col gap-3 lg:h-full lg:gap-3 lg:py-2">
           {/* Header (desktop) */}
           <div className="hidden items-center justify-between lg:flex">
-            <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-8 w-auto" />
+            <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-14 w-auto" />
             <LivePill />
           </div>
 
+          <div className="flex min-h-0 flex-1 flex-col justify-center gap-3 lg:gap-3.5">
           <div className="space-y-2">
             <p className="font-display text-xs uppercase tracking-[0.3em] text-primary">
               Y3S × Chalan z Burzy uvádzajú
             </p>
-            <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-black leading-[0.92] tracking-tight">
+            <h1 className="font-display text-[clamp(2.25rem,5.2vw,4.5rem)] font-black leading-[0.92] tracking-tight">
               <span className="block">ZERO TO</span>
               <span className="block text-gradient-orange">HERO</span>
             </h1>
@@ -65,26 +66,13 @@ function Index() {
 
           <EventChips />
 
-          <p className="text-sm text-foreground/85 lg:text-base">
-            Za <span className="font-semibold text-foreground">3 dni</span> ťa Dodo a Lukáš naučia zarábať{" "}
-            <span className="text-gradient-orange font-semibold">obchodovaním</span> — naživo, krok po kroku, aj keď úplne začínaš.
-          </p>
-
-          {/* Desktop horizontal timeline */}
-          <div className="hidden lg:block">
-            <DayTimeline orientation="horizontal" />
-          </div>
-          {/* Mobile vertical timeline */}
-          <div className="lg:hidden">
-            <DayTimeline orientation="vertical" />
-          </div>
+          <DayTimeline />
 
           <RaffleCallout />
 
           <HostsBlock />
 
-          <div className="mt-auto pt-1">
-            <CTA />
+          <CTA />
           </div>
         </section>
       </div>
