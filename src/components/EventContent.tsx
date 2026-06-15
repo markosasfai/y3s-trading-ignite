@@ -152,16 +152,16 @@ function HostCard({
   img: string;
 }) {
   return (
-    <div className="glass flex items-center gap-3.5 rounded-2xl bg-card/80 p-3.5">
-      <div className="relative h-18 w-18 shrink-0 overflow-hidden rounded-full ring-2 ring-primary/50 lg:h-20 lg:w-20">
+    <div className="glass flex items-center gap-3 rounded-2xl bg-card/80 p-3">
+      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-primary/50 lg:h-18 lg:w-18">
         <img src={img} alt={name} className="h-full w-full object-cover" />
       </div>
       <div className="min-w-0">
         <p className="font-display text-2xl uppercase leading-none lg:text-[1.8rem]">{name}</p>
-        <p className="mt-1.5 inline-flex items-center gap-1.5 text-sm font-black uppercase tracking-wide text-primary">
+        <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-black uppercase tracking-wide text-primary">
           {icon} {role}
         </p>
-        <p className="mt-1 line-clamp-2 text-base leading-snug text-muted-foreground">{desc}</p>
+        <p className="mt-0.5 line-clamp-2 text-base leading-snug text-muted-foreground">{desc}</p>
       </div>
     </div>
   );
@@ -171,7 +171,7 @@ export function CTA({ subline = true }: { subline?: boolean }) {
   return (
     <div className="space-y-2">
       <SignupDialog>
-        <button className="shimmer-overlay glow-orange group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-7 py-4 text-xl font-black uppercase tracking-wide text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99] sm:text-2xl">
+        <button className="shimmer-overlay glow-orange group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-7 py-3.5 text-xl font-black uppercase tracking-wide text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99] sm:text-2xl">
           Zaregistrovať sa zadarmo →
         </button>
       </SignupDialog>
