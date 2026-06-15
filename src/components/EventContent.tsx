@@ -50,25 +50,25 @@ function Chip({ icon, children }: { icon: React.ReactNode; children: React.React
 
 export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } = {}) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2.5">
       {DAYS.map((d) => (
         <div
           key={d.n}
-          className="glass relative flex items-center gap-4 overflow-hidden rounded-2xl bg-card/80 p-4 pr-5 lg:gap-5 lg:p-4.5"
+          className="glass relative flex items-center gap-4 overflow-hidden rounded-2xl bg-card/80 p-3.5 pr-5 lg:gap-5 lg:p-3.5"
         >
-          <div className="relative flex h-20 w-32 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/30 to-primary-glow/10 ring-1 ring-primary/35 lg:h-24 lg:w-40">
-            <span className="font-display text-[2.35rem] uppercase leading-none text-foreground lg:text-[3rem]">
+          <div className="relative flex h-18 w-30 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/30 to-primary-glow/10 ring-1 ring-primary/35 lg:h-20 lg:w-36">
+            <span className="font-display text-[2.35rem] uppercase leading-none text-foreground lg:text-[2.7rem]">
               <span className="text-primary">Deň</span> {d.n}
             </span>
           </div>
           <div className="min-w-0 flex-1">
-            <div className="text-sm font-black uppercase tracking-[0.18em] text-primary lg:text-base">
+            <div className="text-sm font-black uppercase tracking-[0.16em] text-primary lg:text-[0.95rem]">
               {d.date}
             </div>
-            <h3 className="mt-1 font-display text-2xl uppercase leading-none lg:text-[2rem]">
+            <h3 className="mt-0.5 font-display text-2xl uppercase leading-none lg:text-[1.85rem]">
               {d.title}
             </h3>
-            <p className="mt-1 text-base leading-snug text-muted-foreground lg:text-lg">{d.desc}</p>
+            <p className="mt-1 text-base leading-snug text-muted-foreground lg:text-[1.05rem]">{d.desc}</p>
           </div>
         </div>
       ))}
