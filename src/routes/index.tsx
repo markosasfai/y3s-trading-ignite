@@ -1,29 +1,93 @@
 import { createFileRoute } from "@tanstack/react-router";
+import posterAsset from "@/assets/zero-hero-poster.png.asset.json";
+import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
+import { Background } from "@/components/Background";
+import { CTA, DayTimeline, EventChips, HostsBlock, LivePill, RaffleCallout } from "@/components/EventContent";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Zero to Hero — 3-dňový online challenge zdarma | Y3S × Chalan z Burzy" },
+      { name: "description", content: "20.–22. jún 2026, 19:00. Dodo a Lukáš ťa za 3 dni naučia zarábať obchodovaním. 100% online, 100% zdarma, bez kamery." },
+      { property: "og:title", content: "Zero to Hero — Online Challenge" },
+      { property: "og:description", content: "3 dni naživo s Dodo & Lukášom. Žrebovanie o $500 000 funded účet pre LIVE účastníkov." },
+      { property: "og:image", content: posterAsset.url },
+      { name: "twitter:image", content: posterAsset.url },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="relative min-h-screen text-foreground lg:h-screen lg:overflow-hidden">
+      <Background />
+      {/* Desktop: 2-col, no scroll. Mobile: stacked, scrollable */}
+      <div className="mx-auto flex h-full max-w-[1400px] flex-col gap-6 px-4 py-5 sm:px-6 lg:grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8 lg:py-6">
+        {/* Header (mobile) */}
+        <header className="flex items-center justify-between lg:hidden">
+          <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-7 w-auto" />
+          <LivePill />
+        </header>
+
+        {/* Left: poster */}
+        <section className="relative flex items-center justify-center lg:h-full lg:py-2">
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_45/0.35),transparent_60%)] blur-2xl" />
+          <div className="glass-strong relative overflow-hidden rounded-3xl p-2 glow-orange">
+            <img
+              src={posterAsset.url}
+              alt="Zero to Hero — Online Challenge"
+              className="block h-full max-h-[min(72vh,720px)] w-auto rounded-2xl object-contain"
+            />
+          </div>
+        </section>
+
+        {/* Right: info */}
+        <section className="flex min-h-0 flex-col gap-3 lg:h-full lg:gap-3 lg:py-2">
+          {/* Header (desktop) */}
+          <div className="hidden items-center justify-between lg:flex">
+            <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-8 w-auto" />
+            <LivePill />
+          </div>
+
+          <div className="space-y-2">
+            <p className="font-display text-xs uppercase tracking-[0.3em] text-primary">
+              Y3S × Chalan z Burzy uvádzajú
+            </p>
+            <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-black leading-[0.92] tracking-tight">
+              <span className="block">ZERO TO</span>
+              <span className="block text-gradient-orange">HERO</span>
+            </h1>
+            <p className="font-display text-base uppercase tracking-[0.2em] text-foreground/85 lg:text-lg">
+              Online Challenge · 20.–22. jún 2026 · 19:00
+            </p>
+          </div>
+
+          <EventChips />
+
+          <p className="text-sm text-foreground/85 lg:text-base">
+            Za <span className="font-semibold text-foreground">3 dni</span> ťa Dodo a Lukáš naučia zarábať{" "}
+            <span className="text-gradient-orange font-semibold">obchodovaním</span> — naživo, krok po kroku, aj keď úplne začínaš.
+          </p>
+
+          {/* Desktop horizontal timeline */}
+          <div className="hidden lg:block">
+            <DayTimeline orientation="horizontal" />
+          </div>
+          {/* Mobile vertical timeline */}
+          <div className="lg:hidden">
+            <DayTimeline orientation="vertical" />
+          </div>
+
+          <RaffleCallout />
+
+          <HostsBlock />
+
+          <div className="mt-auto pt-1">
+            <CTA />
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }
