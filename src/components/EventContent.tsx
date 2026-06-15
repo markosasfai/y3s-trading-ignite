@@ -78,26 +78,26 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
 
 export function RaffleCallout() {
   return (
-    <div className="glass-strong relative overflow-hidden rounded-2xl bg-card/90 p-5 lg:p-6">
+    <div className="glass-strong relative overflow-hidden rounded-2xl bg-card/90 p-4 lg:p-4.5">
       <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-primary/25 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-primary-glow/15 blur-3xl" />
-      <div className="relative flex items-center gap-5">
-        <div className="relative grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground glow-orange lg:h-24 lg:w-24">
-          <Gift className="h-10 w-10 lg:h-12 lg:w-12" />
+      <div className="relative flex items-center gap-4">
+        <div className="relative grid h-18 w-18 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground glow-orange lg:h-20 lg:w-20">
+          <Gift className="h-9 w-9 lg:h-10 lg:w-10" />
           <span className="absolute -top-1.5 -right-1.5 grid h-7 w-7 place-items-center rounded-full bg-background text-sm font-black text-primary ring-2 ring-primary">
             !
           </span>
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-primary lg:text-base">
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-primary lg:text-[0.95rem]">
             <Trophy className="mr-1.5 inline h-5 w-5" /> LIVE žrebovanie · darček
           </p>
-          <p className="mt-1 font-display text-[2.05rem] uppercase leading-[0.9] text-foreground lg:text-[2.65rem]">
+          <p className="mt-1 font-display text-[2.05rem] uppercase leading-[0.9] text-foreground lg:text-[2.35rem]">
             Vyhraj{" "}
             <span className="text-gradient-orange">$500 000</span>{" "}
             funded účet
           </p>
-          <p className="mt-2 text-base font-semibold text-foreground/85 lg:text-lg">
+          <p className="mt-1.5 text-base font-semibold text-foreground/85 lg:text-[1.05rem]">
             Iba pre LIVE účastníkov všetky 3 dni. Žiadne nahrávky.
           </p>
         </div>
@@ -108,11 +108,11 @@ export function RaffleCallout() {
 
 export function HostsBlock() {
   return (
-    <div className="space-y-3">
+    <div className="space-y-2.5">
       <p className="text-sm font-black uppercase tracking-[0.25em] text-muted-foreground lg:text-base">
         Tvoji hostia
       </p>
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-2.5">
         <HostCard
           name="Dodo"
           role="Trading mechanics"
@@ -128,7 +128,7 @@ export function HostsBlock() {
           img={lukasAsset.url}
         />
       </div>
-      <p className="glass-strong inline-flex items-start gap-3 rounded-2xl bg-card/90 px-4 py-3 text-lg font-semibold leading-snug text-foreground lg:text-xl">
+      <p className="glass-strong inline-flex items-start gap-3 rounded-2xl bg-card/90 px-4 py-3 text-lg font-semibold leading-snug text-foreground lg:text-[1.15rem]">
         <ShieldCheck className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
         <span>
           <span className="font-black text-primary">Garancia:</span> ak budeš dávať pozor, urobíš svoje prvé profitabilné obchody.
