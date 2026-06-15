@@ -108,11 +108,11 @@ export function RaffleCallout() {
 
 export function HostsBlock() {
   return (
-    <div className="space-y-2">
-      <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
+    <div className="space-y-2.5">
+      <p className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">
         Tvoji hostia
       </p>
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 gap-2.5">
         <HostCard
           name="Dodo"
           role="Trading mechanics"
@@ -128,8 +128,8 @@ export function HostsBlock() {
           img={lukasAsset.url}
         />
       </div>
-      <p className="inline-flex items-start gap-1.5 px-1 text-[11px] text-foreground/85">
-        <ShieldCheck className="mt-[2px] h-3.5 w-3.5 shrink-0 text-primary" />
+      <p className="inline-flex items-start gap-1.5 px-1 text-sm text-foreground/85">
+        <ShieldCheck className="mt-[2px] h-4 w-4 shrink-0 text-primary" />
         <span>
           <span className="font-semibold">Garancia:</span> ak budeš dávať pozor, urobíš svoje prvé profitabilné obchody.
         </span>
@@ -152,16 +152,16 @@ function HostCard({
   img: string;
 }) {
   return (
-    <div className="glass flex items-center gap-3 rounded-2xl bg-black/40 p-3">
-      <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full ring-2 ring-primary/40">
+    <div className="glass flex items-center gap-3 rounded-2xl bg-black/40 p-3.5">
+      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-primary/40">
         <img src={img} alt={name} className="h-full w-full object-cover" />
       </div>
       <div className="min-w-0">
-        <p className="font-display text-lg uppercase leading-none">{name}</p>
-        <p className="mt-1 inline-flex items-center gap-1 text-[10px] uppercase tracking-wider text-primary">
+        <p className="font-display text-xl uppercase leading-none">{name}</p>
+        <p className="mt-1.5 inline-flex items-center gap-1 text-xs uppercase tracking-wider text-primary">
           {icon} {role}
         </p>
-        <p className="mt-1 line-clamp-2 text-[11px] text-muted-foreground">{desc}</p>
+        <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{desc}</p>
       </div>
     </div>
   );
