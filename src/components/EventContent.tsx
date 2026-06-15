@@ -1,4 +1,4 @@
-import { BadgeDollarSign, VideoOff, Trophy, ShieldCheck, Sparkles, Brain, LineChart, Gift, Calendar } from "lucide-react";
+import { BadgeDollarSign, VideoOff, ShieldCheck, Sparkles, Brain, LineChart, Calendar } from "lucide-react";
 import { LivePill } from "./LivePill";
 import { SignupDialog } from "./SignupDialog";
 import dodoAsset from "@/assets/dodo.png.asset.json";
