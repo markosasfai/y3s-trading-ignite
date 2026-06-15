@@ -28,17 +28,17 @@ const DAYS = [
 export function EventChips() {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <Chip icon={<Sparkles className="h-3.5 w-3.5" />}>100% online</Chip>
-      <Chip icon={<BadgeDollarSign className="h-3.5 w-3.5" />}>100% zdarma</Chip>
-      <Chip icon={<VideoOff className="h-3.5 w-3.5" />}>Bez kamery</Chip>
-      <Chip icon={<Gift className="h-3.5 w-3.5" />}>Darček pri vstupe</Chip>
+      <Chip icon={<Sparkles className="h-4 w-4" />}>100% online</Chip>
+      <Chip icon={<BadgeDollarSign className="h-4 w-4" />}>100% zdarma</Chip>
+      <Chip icon={<VideoOff className="h-4 w-4" />}>Bez kamery</Chip>
+      <Chip icon={<Gift className="h-4 w-4" />}>Darček pri vstupe</Chip>
     </div>
   );
 }
 
 function Chip({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <span className="glass inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium text-foreground/90">
+    <span className="glass inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/90">
       <span className="text-primary">{icon}</span>
       {children}
     </span>
@@ -47,27 +47,28 @@ function Chip({ icon, children }: { icon: React.ReactNode; children: React.React
 
 export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } = {}) {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2.5">
       {DAYS.map((d) => (
         <div
           key={d.n}
-          className="glass relative flex items-center gap-4 overflow-hidden rounded-2xl bg-black/40 p-3 pr-4 lg:p-3.5"
+          className="glass relative flex items-center gap-4 overflow-hidden rounded-2xl bg-black/40 p-3.5 pr-5 lg:p-4"
         >
-          <div className="relative flex h-16 w-20 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary-glow/10 lg:h-[4.5rem] lg:w-24">
-            <span className="font-display text-[2.75rem] leading-none text-gradient-orange lg:text-5xl">
+          <div className="relative flex h-[4.5rem] w-[5.5rem] shrink-0 flex-col items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary-glow/10 lg:h-20 lg:w-28">
+            <span className="font-display text-[0.7rem] uppercase tracking-[0.2em] text-primary/90 lg:text-xs">
+              Deň
+            </span>
+            <span className="font-display text-[3rem] leading-[0.85] text-gradient-orange lg:text-[3.5rem]">
               {d.n}
             </span>
           </div>
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-              <span>Deň {d.n}</span>
-              <span className="h-1 w-1 rounded-full bg-primary/70" />
-              <span className="text-primary/90">{d.date}</span>
+            <div className="text-xs uppercase tracking-[0.2em] text-primary/90 lg:text-sm">
+              {d.date}
             </div>
-            <h3 className="mt-0.5 font-display text-lg uppercase leading-tight lg:text-xl">
+            <h3 className="mt-0.5 font-display text-xl uppercase leading-tight lg:text-2xl">
               {d.title}
             </h3>
-            <p className="line-clamp-1 text-xs text-muted-foreground">{d.desc}</p>
+            <p className="mt-0.5 line-clamp-1 text-sm text-muted-foreground">{d.desc}</p>
           </div>
         </div>
       ))}
