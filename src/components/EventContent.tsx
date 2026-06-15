@@ -7,18 +7,21 @@ import lukasAsset from "@/assets/lukas.png.asset.json";
 const DAYS = [
   {
     n: 1,
+    label: "Deň 1",
     date: "20. jún",
     title: "Základy obchodovania",
     desc: "Mindset, riadenie rizika a ako čítať trh od nuly.",
   },
   {
     n: 2,
+    label: "Deň 2",
     date: "21. jún",
     title: "Stratégia v praxi",
     desc: "Live setupy, vstupy a výstupy priamo na obrazovke.",
   },
   {
     n: 3,
+    label: "Deň 3",
     date: "22. jún",
     title: "Tvoj prvý profit",
     desc: "Vlastné obchody pod dohľadom Dodo a Lukáša.",
@@ -27,18 +30,18 @@ const DAYS = [
 
 export function EventChips() {
   return (
-    <div className="flex flex-wrap items-center gap-2">
-      <Chip icon={<Sparkles className="h-4 w-4" />}>100% online</Chip>
-      <Chip icon={<BadgeDollarSign className="h-4 w-4" />}>100% zdarma</Chip>
-      <Chip icon={<VideoOff className="h-4 w-4" />}>Bez kamery</Chip>
-      <Chip icon={<Gift className="h-4 w-4" />}>Darček pri vstupe</Chip>
+    <div className="flex flex-wrap items-center gap-2.5">
+      <Chip icon={<Sparkles className="h-5 w-5" />}>100% online</Chip>
+      <Chip icon={<BadgeDollarSign className="h-5 w-5" />}>100% zdarma</Chip>
+      <Chip icon={<VideoOff className="h-5 w-5" />}>Bez kamery</Chip>
+      <Chip icon={<Gift className="h-5 w-5" />}>Darček pri vstupe</Chip>
     </div>
   );
 }
 
 function Chip({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <span className="glass inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-sm font-medium text-foreground/90">
+    <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-base font-bold text-foreground/95 lg:text-lg">
       <span className="text-primary">{icon}</span>
       {children}
     </span>
@@ -47,28 +50,25 @@ function Chip({ icon, children }: { icon: React.ReactNode; children: React.React
 
 export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } = {}) {
   return (
-    <div className="space-y-2.5">
+    <div className="space-y-3">
       {DAYS.map((d) => (
         <div
           key={d.n}
-          className="glass relative flex items-center gap-4 overflow-hidden rounded-2xl bg-black/40 p-3.5 pr-5 lg:p-4"
+          className="glass relative flex items-center gap-4 overflow-hidden rounded-2xl bg-card/80 p-4 pr-5 lg:gap-5 lg:p-4.5"
         >
-          <div className="relative flex h-[4.5rem] w-[5.5rem] shrink-0 flex-col items-center justify-center rounded-xl bg-gradient-to-br from-primary/25 to-primary-glow/10 lg:h-20 lg:w-28">
-            <span className="font-display text-[0.7rem] uppercase tracking-[0.2em] text-primary/90 lg:text-xs">
-              Deň
-            </span>
-            <span className="font-display text-[3rem] leading-[0.85] text-gradient-orange lg:text-[3.5rem]">
-              {d.n}
+          <div className="relative flex h-20 w-32 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary/30 to-primary-glow/10 ring-1 ring-primary/35 lg:h-24 lg:w-40">
+            <span className="font-display text-[2.35rem] uppercase leading-none text-foreground lg:text-[3rem]">
+              <span className="text-primary">Deň</span> {d.n}
             </span>
           </div>
           <div className="min-w-0 flex-1">
-            <div className="text-xs uppercase tracking-[0.2em] text-primary/90 lg:text-sm">
+            <div className="text-sm font-black uppercase tracking-[0.18em] text-primary lg:text-base">
               {d.date}
             </div>
-            <h3 className="mt-0.5 font-display text-xl uppercase leading-tight lg:text-2xl">
+            <h3 className="mt-1 font-display text-2xl uppercase leading-none lg:text-[2rem]">
               {d.title}
             </h3>
-            <p className="mt-0.5 line-clamp-1 text-sm text-muted-foreground">{d.desc}</p>
+            <p className="mt-1 text-base leading-snug text-muted-foreground lg:text-lg">{d.desc}</p>
           </div>
         </div>
       ))}
