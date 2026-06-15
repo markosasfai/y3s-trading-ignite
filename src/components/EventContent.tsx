@@ -1,8 +1,9 @@
-import { Gift, BadgeDollarSign, VideoOff, Trophy, ShieldCheck, Sparkles, Brain, LineChart } from "lucide-react";
+import { BadgeDollarSign, VideoOff, Trophy, ShieldCheck, Sparkles, Brain, LineChart, Gift, Calendar } from "lucide-react";
 import { LivePill } from "./LivePill";
 import { SignupDialog } from "./SignupDialog";
 import dodoAsset from "@/assets/dodo.png.asset.json";
 import lukasAsset from "@/assets/lukas.png.asset.json";
+import giftAsset from "@/assets/gift-3d.png.asset.json";
 
 const DAYS = [
   {
@@ -31,18 +32,27 @@ const DAYS = [
 export function EventChips() {
   return (
     <div className="flex flex-wrap items-center gap-2.5">
-      <Chip icon={<Sparkles className="h-5 w-5" />}>100% online</Chip>
-      <Chip icon={<BadgeDollarSign className="h-5 w-5" />}>100% zdarma</Chip>
-      <Chip icon={<VideoOff className="h-5 w-5" />}>Bez kamery</Chip>
-      <Chip icon={<Gift className="h-5 w-5" />}>Darček pri vstupe</Chip>
+      <Chip icon={<Sparkles className="h-5 w-5" />} tone="sky">100% online</Chip>
+      <Chip icon={<BadgeDollarSign className="h-5 w-5" />} tone="emerald">100% zdarma</Chip>
+      <Chip icon={<VideoOff className="h-5 w-5" />} tone="violet">Bez kamery</Chip>
+      <Chip icon={<Gift className="h-5 w-5" />} tone="amber">Darček pri vstupe</Chip>
     </div>
   );
 }
 
-function Chip({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
+const TONES = {
+  sky:     { ring: "ring-sky-400/40",     bg: "bg-sky-400/10",     text: "text-sky-300",     glow: "shadow-[0_0_24px_-8px_oklch(0.75_0.15_240)]" },
+  emerald: { ring: "ring-emerald-400/40", bg: "bg-emerald-400/10", text: "text-emerald-300", glow: "shadow-[0_0_24px_-8px_oklch(0.75_0.15_160)]" },
+  violet:  { ring: "ring-violet-400/40",  bg: "bg-violet-400/10",  text: "text-violet-300",  glow: "shadow-[0_0_24px_-8px_oklch(0.70_0.18_300)]" },
+  amber:   { ring: "ring-amber-400/45",   bg: "bg-amber-400/12",   text: "text-amber-300",   glow: "shadow-[0_0_24px_-8px_oklch(0.80_0.16_75)]" },
+  rose:    { ring: "ring-rose-400/40",    bg: "bg-rose-400/10",    text: "text-rose-300",    glow: "shadow-[0_0_24px_-8px_oklch(0.70_0.18_15)]" },
+} as const;
+
+function Chip({ icon, children, tone = "amber" }: { icon: React.ReactNode; children: React.ReactNode; tone?: keyof typeof TONES }) {
+  const t = TONES[tone];
   return (
-    <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-base font-bold text-foreground/95 lg:text-[1.05rem]">
-      <span className="text-primary">{icon}</span>
+    <span className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-bold text-foreground/95 ring-1 backdrop-blur-md lg:text-[1rem] ${t.bg} ${t.ring} ${t.glow}`}>
+      <span className={t.text}>{icon}</span>
       {children}
     </span>
   );
@@ -50,25 +60,27 @@ function Chip({ icon, children }: { icon: React.ReactNode; children: React.React
 
 export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } = {}) {
   return (
-    <div className="grid grid-cols-3 gap-2.5">
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
       {DAYS.map((d) => (
         <div
           key={d.n}
-          className="glass relative min-w-0 overflow-hidden rounded-2xl bg-card/80 p-3.5"
+          className="group relative min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-black/55 p-4 backdrop-blur-md transition hover:border-primary/40"
         >
-          <div className="relative mb-2 flex h-15 items-center justify-center rounded-xl bg-gradient-to-br from-primary/30 to-primary-glow/10 ring-1 ring-primary/35 lg:h-16">
-            <span className="font-display text-[2.35rem] uppercase leading-none text-foreground lg:text-[2.55rem]">
-              <span className="text-primary">Deň</span> {d.n}
+          {/* Big DAY 0X header bar */}
+          <div className="-mx-4 -mt-4 mb-3 flex items-center gap-3 border-b border-white/10 bg-black/60 px-4 py-3">
+            <span className="font-display text-[2.4rem] leading-none tracking-wide text-foreground lg:text-[2.6rem]">
+              DEŇ <span className="text-foreground">0{d.n}</span>
             </span>
           </div>
           <div className="min-w-0">
-            <div className="text-sm font-black uppercase tracking-[0.16em] text-primary lg:text-[0.95rem]">
-              {d.date}
-            </div>
-            <h3 className="mt-0.5 font-display text-[1.65rem] uppercase leading-none lg:text-[1.75rem]">
+            <p className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.18em] text-primary lg:text-sm">
+              <Calendar className="h-3.5 w-3.5" /> {d.date}
+            </p>
+            <h3 className="mt-1.5 text-lg font-black leading-tight text-foreground lg:text-xl">
               {d.title}
             </h3>
-            <p className="mt-1 line-clamp-2 text-base leading-snug text-muted-foreground">{d.desc}</p>
+            <div className="my-2 h-px w-12 bg-primary/70" />
+            <p className="text-sm leading-snug text-muted-foreground lg:text-[0.95rem]">{d.desc}</p>
           </div>
         </div>
       ))}
@@ -78,27 +90,27 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
 
 export function RaffleCallout() {
   return (
-    <div className="glass-strong relative overflow-hidden rounded-2xl bg-card/90 p-3.5 lg:p-4">
-      <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-primary/25 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-primary-glow/15 blur-3xl" />
+    <div className="glass-strong relative overflow-hidden rounded-2xl p-4 lg:p-5">
+      <div className="pointer-events-none absolute -top-16 -right-10 h-48 w-48 rounded-full bg-primary/25 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-amber-400/15 blur-3xl" />
       <div className="relative flex items-center gap-4">
-        <div className="relative grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary to-primary-glow text-primary-foreground glow-orange lg:h-18 lg:w-18">
-          <Gift className="h-9 w-9 lg:h-10 lg:w-10" />
-          <span className="absolute -top-1.5 -right-1.5 grid h-7 w-7 place-items-center rounded-full bg-background text-sm font-black text-primary ring-2 ring-primary">
-            !
-          </span>
-        </div>
+        <img
+          src={giftAsset.url}
+          alt=""
+          width={120}
+          height={120}
+          loading="lazy"
+          className="h-24 w-24 shrink-0 drop-shadow-[0_8px_24px_oklch(0.72_0.19_45/0.55)] lg:h-28 lg:w-28"
+        />
         <div className="min-w-0 flex-1">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-primary lg:text-[0.95rem]">
-            <Trophy className="mr-1.5 inline h-5 w-5" /> LIVE žrebovanie · darček
+          <p className="inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.18em] text-amber-300 lg:text-sm">
+            <Trophy className="h-4 w-4" /> LIVE žrebovanie
           </p>
-          <p className="mt-0.5 font-display text-[2.05rem] uppercase leading-[0.9] text-foreground lg:text-[2.2rem]">
-            Vyhraj{" "}
-            <span className="text-gradient-orange">$500 000</span>{" "}
-            funded účet
+          <p className="mt-1 font-display text-[1.85rem] uppercase leading-[0.95] text-foreground lg:text-[2.15rem]">
+            Vyhraj <span className="text-gradient-orange">$500 000</span> funded účet
           </p>
-          <p className="mt-1 text-base font-semibold text-foreground/85 lg:text-[1.05rem]">
-            Iba pre LIVE účastníkov všetky 3 dni. Žiadne nahrávky.
+          <p className="mt-2 text-sm font-semibold text-foreground/85 lg:text-[1rem]">
+            Klikni na tlačidlo nižšie a vyplň formulár — inak nebudeš v žrebovaní.
           </p>
         </div>
       </div>
@@ -108,37 +120,32 @@ export function RaffleCallout() {
 
 export function HostsBlock() {
   return (
-    <div className="space-y-2">
-      <p className="text-sm font-black uppercase tracking-[0.25em] text-muted-foreground lg:text-base">
+    <div className="space-y-3">
+      <p className="text-xs font-black uppercase tracking-[0.3em] text-muted-foreground lg:text-sm">
         Tvoji hostia
       </p>
-      <div className="grid grid-cols-2 gap-2.5">
-        <HostCard
+      {/* Hosts — no container card; hover floats and enlarges */}
+      <div className="relative grid grid-cols-2 gap-6 sm:gap-8">
+        <HostInline
           name="Dodo"
           role="Trading mechanics"
-          desc="10 rokov v hre. Naučí ťa techniky, taktiky a setupy."
+          desc="10 rokov v hre. Naučí ťa techniky, taktiky a setupy ako otvárať profitabilné obchody."
           icon={<LineChart className="h-3.5 w-3.5" />}
           img={dodoAsset.url}
         />
-        <HostCard
+        <HostInline
           name="Lukáš"
           role="Psychológia & risk"
-          desc="Mindset, risk management a kedy do obchodu (ne)ísť."
+          desc="Psychológia obchodovania, risk management a kedy obchod (ne)otvoriť. Mindset hráča."
           icon={<Brain className="h-3.5 w-3.5" />}
           img={lukasAsset.url}
         />
       </div>
-      <p className="glass-strong inline-flex items-start gap-3 rounded-2xl bg-card/90 px-4 py-2.5 text-lg font-semibold leading-snug text-foreground lg:text-[1.1rem]">
-        <ShieldCheck className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
-        <span>
-          <span className="font-black text-primary">Garancia:</span> ak budeš dávať pozor, urobíš svoje prvé profitabilné obchody.
-        </span>
-      </p>
     </div>
   );
 }
 
-function HostCard({
+function HostInline({
   name,
   role,
   desc,
@@ -152,18 +159,35 @@ function HostCard({
   img: string;
 }) {
   return (
-    <div className="glass flex items-center gap-3 rounded-2xl bg-card/80 p-3">
-      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-primary/50 lg:h-18 lg:w-18">
-        <img src={img} alt={name} className="h-full w-full object-cover" />
+    <div className="group/host relative flex flex-col items-center text-center transition-all duration-300 hover:z-40">
+      {/* Floating expanded card on hover */}
+      <div className="pointer-events-none relative">
+        <div className="relative h-24 w-24 overflow-hidden rounded-full ring-2 ring-primary/50 transition-all duration-300 group-hover/host:scale-[1.35] group-hover/host:shadow-[0_20px_60px_-10px_oklch(0.72_0.19_45/0.6)] group-hover/host:ring-primary sm:h-28 sm:w-28">
+          <img src={img} alt={name} className="h-full w-full object-cover" />
+        </div>
       </div>
-      <div className="min-w-0">
-        <p className="font-display text-2xl uppercase leading-none lg:text-[1.8rem]">{name}</p>
-        <p className="mt-1 inline-flex items-center gap-1.5 text-sm font-black uppercase tracking-wide text-primary">
-          {icon} {role}
-        </p>
-        <p className="mt-0.5 line-clamp-2 text-base leading-snug text-muted-foreground">{desc}</p>
-      </div>
+      <p className="mt-3 font-display text-2xl uppercase leading-none transition-all duration-300 group-hover/host:scale-110 sm:text-3xl">
+        {name}
+      </p>
+      <p className="mt-1.5 inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-primary sm:text-sm">
+        {icon} {role}
+      </p>
+      {/* Description that reveals/expands on hover */}
+      <p className="mt-2 max-w-[18ch] text-xs leading-snug text-muted-foreground transition-all duration-300 group-hover/host:max-w-[26ch] group-hover/host:text-sm group-hover/host:text-foreground/95 sm:text-sm">
+        {desc}
+      </p>
     </div>
+  );
+}
+
+export function GuaranteeLine() {
+  return (
+    <p className="flex items-start gap-2.5 text-base font-semibold leading-snug text-foreground/90 lg:text-[1.05rem]">
+      <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
+      <span>
+        <span className="font-black text-emerald-400">Garancia:</span> ak budeš dávať pozor, urobíš svoje prvé profitabilné obchody.
+      </span>
+    </p>
   );
 }
 
