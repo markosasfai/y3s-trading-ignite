@@ -45,7 +45,6 @@ function Chip({ icon, children }: { icon: React.ReactNode; children: React.React
   );
 }
 
-export function DayTimeline({ orientation = "horizontal" }: { orientation?: "horizontal" | "vertical" }) {
 export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } = {}) {
   return (
     <div className="space-y-2">
