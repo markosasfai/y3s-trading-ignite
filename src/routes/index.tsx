@@ -44,22 +44,16 @@ function Index() {
 
         {/* Right: info */}
         <section className="flex min-h-0 flex-col gap-3 lg:h-full lg:gap-3 lg:py-2">
-          {/* Header (desktop) */}
-          <div className="hidden items-center justify-between lg:flex">
-            <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-14 w-auto" />
-            <LivePill />
-          </div>
-
           <div className="flex min-h-0 flex-1 flex-col justify-center gap-3 lg:gap-3.5">
           <div className="space-y-2">
-            <p className="font-display text-xs uppercase tracking-[0.3em] text-primary">
+            <p className="font-display text-sm uppercase tracking-[0.3em] text-primary">
               Y3S × Chalan z Burzy uvádzajú
             </p>
             <h1 className="font-display text-[clamp(2.25rem,5.2vw,4.5rem)] font-black leading-[0.92] tracking-tight">
               <span className="block">ZERO TO</span>
               <span className="block text-gradient-orange">HERO</span>
             </h1>
-            <p className="font-display text-base uppercase tracking-[0.2em] text-foreground/85 lg:text-lg">
+            <p className="font-display text-lg uppercase tracking-[0.2em] text-foreground/85 lg:text-xl">
               Online Challenge · 20.–22. jún 2026 · 19:00
             </p>
           </div>
@@ -73,6 +67,12 @@ function Index() {
           <HostsBlock />
 
           <CTA />
+          </div>
+
+          {/* Footer bar (desktop): logo + live pill */}
+          <div className="hidden items-center justify-between border-t border-white/10 pt-3 lg:flex">
+            <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-10 w-auto opacity-90" />
+            <LivePill />
           </div>
         </section>
       </div>
