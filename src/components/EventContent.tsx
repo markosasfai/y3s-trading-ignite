@@ -139,7 +139,7 @@ function PrizeCard({
           dropShadow: "drop-shadow-[0_8px_24px_oklch(0.75_0.15_160/0.55)]",
         };
   return (
-    <div className={`relative overflow-hidden rounded-2xl border ${styles.border} bg-gradient-to-b ${styles.bg} p-3.5 backdrop-blur-md ${styles.shadow}`}>
+    <div className={`relative overflow-hidden rounded-2xl border ${styles.border} bg-gradient-to-b ${styles.bg} p-3 sm:p-3.5 backdrop-blur-md ${styles.shadow}`}>
       <div className={`pointer-events-none absolute -top-16 -right-10 h-44 w-44 rounded-full ${styles.glow1} blur-3xl`} />
       <div className={`pointer-events-none absolute -bottom-20 -left-10 h-36 w-36 rounded-full ${styles.glow2} blur-3xl`} />
       <div className="relative flex items-center gap-3.5">
