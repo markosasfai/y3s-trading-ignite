@@ -62,6 +62,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
     if (!phone.valid) return setError("Zadajte platné telefónne číslo.");
     // Placeholder — Twilio verification will be wired here later.
     setCodeSent(true);
+    setStep(3);
   };
 
   const confirmAndSubmit = async (e: FormEvent) => {
