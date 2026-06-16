@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import posterAsset from "@/assets/zero-hero-poster.png.asset.json";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 import { Background } from "@/components/Background";
-import { CTA, DayTimeline, EventChips, GuaranteeLine, HostsBlock, LivePill, RaffleCallout } from "@/components/EventContent";
+import { CTA, DayTimeline, EventChips, GuaranteeLine, HostsBlock, LivePill, MobileTopCTA, RaffleCallout } from "@/components/EventContent";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,7 +27,7 @@ function Index() {
           <LivePill />
         </div>
       </div>
-      <div className="mx-auto flex h-full max-w-[1700px] flex-col justify-center gap-4 px-4 py-6 sm:px-6 lg:gap-6 lg:px-8 lg:py-8">
+      <div className="mx-auto flex h-full max-w-[1700px] flex-col justify-center gap-4 px-4 pt-24 pb-16 sm:px-6 lg:gap-6 lg:px-8 lg:py-8">
         <header className="flex justify-center">
           <img
             src={logoAsset.url}
@@ -35,6 +35,9 @@ function Index() {
             className="h-14 w-auto sm:h-16 lg:h-20"
           />
         </header>
+        <div className="flex justify-center lg:hidden">
+          <MobileTopCTA />
+        </div>
 
         <div className="flex min-h-0 flex-1 flex-col gap-5 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
         {/* Left: poster */}
@@ -74,6 +77,9 @@ function Index() {
           <RaffleCallout />
 
           <CTA />
+          <footer className="pb-[calc(env(safe-area-inset-bottom)+4rem)] text-center text-sm font-semibold leading-snug text-muted-foreground lg:hidden">
+            Po registrácii ti pošleme link na živé vysielanie emailom aj SMS. Miesta sú limitované.
+          </footer>
           </div>
         </section>
         </div>
