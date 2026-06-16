@@ -184,79 +184,85 @@ function ThankYou() {
           <div className="pointer-events-none absolute -top-32 -right-24 h-72 w-72 rounded-full bg-sky-400/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-32 -left-24 h-72 w-72 rounded-full bg-sky-500/15 blur-3xl" />
 
-          <div className="relative p-6 sm:p-10 lg:p-12">
-            <div className="grid gap-6 sm:gap-10 lg:grid-cols-[1fr_minmax(0,1.2fr)] lg:items-center">
-              {/* Gift visual */}
-              <div className="relative mx-auto w-full max-w-[14rem] sm:max-w-xs lg:max-w-sm">
-                <div className="absolute inset-0 rounded-[2rem] bg-sky-400/20 blur-3xl" />
-                <img
-                  src={giftAsset.url}
-                  alt="Tvoj bonusový darček: hovor s trading špecialistom"
-                  className="relative w-full drop-shadow-[0_20px_50px_rgba(56,189,248,0.35)]"
-                />
-                <div className="relative mt-6 flex flex-col items-center gap-4 text-center">
-                  <div className="relative inline-block">
-                    <span className="font-display text-5xl font-black tracking-tight text-muted-foreground sm:text-6xl">
-                      250 €
-                    </span>
-                    <span
-                      aria-hidden
-                      className="pointer-events-none absolute left-[-6%] right-[-6%] top-1/2 h-[6px] -translate-y-1/2 rotate-[-10deg] rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.6)]"
-                    />
-                  </div>
-                  <span className="rounded-full bg-sky-400 px-7 py-3 font-display text-xl font-black uppercase tracking-wider text-sky-950 shadow-[0_0_36px_rgba(56,189,248,0.55)] sm:text-2xl sm:px-10 sm:py-4">
-                    Zdarma pre teba
-                  </span>
-                </div>
-              </div>
-
-              {/* Copy */}
+          <div className="relative p-6 sm:p-8">
+            {/* Header band — full width, balanced */}
+            <div className="grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
               <div>
                 <p className="inline-flex items-center gap-2 rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 font-display text-base font-bold uppercase tracking-[0.18em] text-sky-300">
                   <Gift className="h-4 w-4" /> Tvoj bonus k vstupenke
                 </p>
-                <h2 className="mt-5 font-display text-[clamp(2rem,4.5vw,3rem)] font-black uppercase leading-[1.05]">
+                <h2 className="mt-4 font-display text-[clamp(1.9rem,4vw,2.75rem)] font-black uppercase leading-[1.05]">
                   Hovor 1:1 s naším{" "}
                   <span className="bg-gradient-to-r from-sky-300 to-sky-500 bg-clip-text text-transparent">
                     trading špecialistom.
                   </span>
                 </h2>
-                {/* Specialist photo + intro */}
-                <div className="mt-5 flex items-center gap-4 rounded-2xl border border-sky-400/15 bg-black/30 p-3 backdrop-blur-md">
+              </div>
+              {/* Price + pill — compact stack, right side on desktop */}
+              <div className="flex shrink-0 items-center gap-5 sm:flex-col sm:items-end sm:gap-3">
+                <div className="relative inline-block">
+                  <span className="font-display text-4xl font-black tracking-tight text-muted-foreground sm:text-5xl">
+                    250 €
+                  </span>
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute left-[-6%] right-[-6%] top-1/2 h-[5px] -translate-y-1/2 rotate-[-10deg] rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.6)]"
+                  />
+                </div>
+                <span className="rounded-full bg-sky-400 px-5 py-2.5 font-display text-base font-black uppercase tracking-wider text-sky-950 shadow-[0_0_36px_rgba(56,189,248,0.55)] sm:text-lg sm:px-6 sm:py-3">
+                  Zdarma pre teba
+                </span>
+              </div>
+            </div>
+
+            {/* Body grid — specialist + gift on left, benefits on right */}
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 sm:items-stretch">
+              {/* Specialist card with gift accent */}
+              <div className="relative overflow-hidden rounded-2xl border border-sky-400/20 bg-gradient-to-br from-sky-950/60 to-black/40 p-4 backdrop-blur-md">
+                <img
+                  src={giftAsset.url}
+                  alt=""
+                  aria-hidden
+                  className="pointer-events-none absolute -bottom-6 -right-6 w-28 opacity-40 drop-shadow-[0_10px_30px_rgba(56,189,248,0.4)] sm:w-32"
+                />
+                <div className="relative flex items-center gap-4">
                   <img
                     src={specialistAsset.url}
                     alt="Trading špecialistka z tímu Y3S"
-                    className="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-sky-400/40 sm:h-20 sm:w-20"
+                    className="h-20 w-20 shrink-0 rounded-full object-cover ring-2 ring-sky-400/40 sm:h-24 sm:w-24"
                   />
-                  <div className="min-w-0 text-left">
-                    <p className="font-display text-xs font-bold uppercase tracking-[0.18em] text-sky-300">Tvoj špecialista</p>
-                    <p className="mt-1 text-base font-semibold text-foreground sm:text-lg">Tím Y3S — trading mentor</p>
+                  <div className="min-w-0">
+                    <p className="font-display text-base font-bold uppercase tracking-[0.18em] text-sky-300">Tvoj špecialista</p>
+                    <p className="mt-1 text-lg font-semibold text-foreground">Tím Y3S</p>
+                    <p className="text-base text-foreground/75">Trading mentor</p>
                   </div>
                 </div>
-                <p className="mt-5 text-lg leading-relaxed text-foreground/85">
-                  Bežne za tento hovor ľudia platia. Ty ho máš ako darček k vstupenke — stačí sa zapísať.
+                <p className="relative mt-4 text-base leading-relaxed text-foreground/85">
+                  Bežne sa za hovor platí. Ty ho máš ako darček — stačí sa zapísať.
                 </p>
-
-                <ul className="mt-6 space-y-3 text-base sm:text-lg">
-                  <BenefitItem icon={<MessageCircle className="h-5 w-5" />}>
-                    Spýtaj sa čokoľvek o evente alebo o tradingu vo všeobecnosti
-                  </BenefitItem>
-                  <BenefitItem icon={<Sparkles className="h-5 w-5" />}>
-                    Extra tipy a personalizovaný plán ešte pred štartom
-                  </BenefitItem>
-                  <BenefitItem icon={<Clock className="h-5 w-5" />}>
-                    Vyber si čas, ktorý ti sadne — 30 minút, online
-                  </BenefitItem>
-                </ul>
-
-                <div className="mt-6 flex items-start gap-3 rounded-2xl border border-amber-400/30 bg-amber-400/5 p-4 text-base text-amber-100/90">
-                  <AlertTriangle className="mt-0.5 h-6 w-6 shrink-0 text-amber-300" />
-                  <p>
-                    <span className="font-semibold text-amber-200">Keď sa kalendár zaplní, končíme.</span>{" "}
-                    Ďalšie termíny už nepridávame — vyber si voľný slot teraz, kým je.
-                  </p>
-                </div>
               </div>
+
+              {/* Benefits */}
+              <ul className="flex flex-col justify-center gap-3 text-base sm:text-lg">
+                <BenefitItem icon={<MessageCircle className="h-5 w-5" />}>
+                  Spýtaj sa čokoľvek o evente alebo o tradingu
+                </BenefitItem>
+                <BenefitItem icon={<Sparkles className="h-5 w-5" />}>
+                  Extra tipy a personalizovaný plán pred štartom
+                </BenefitItem>
+                <BenefitItem icon={<Clock className="h-5 w-5" />}>
+                  30 minút online — vyber si čas, ktorý ti sadne
+                </BenefitItem>
+              </ul>
+            </div>
+
+            {/* Scarcity — slim full-width bar */}
+            <div className="mt-5 flex items-start gap-3 rounded-2xl border border-amber-400/30 bg-amber-400/5 p-4 text-base text-amber-100/90">
+              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />
+              <p>
+                <span className="font-semibold text-amber-200">Keď sa kalendár zaplní, končíme.</span>{" "}
+                Ďalšie termíny už nepridávame — vyber si voľný slot teraz.
+              </p>
             </div>
           </div>
 
