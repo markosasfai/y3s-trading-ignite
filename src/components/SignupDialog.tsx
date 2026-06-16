@@ -1,4 +1,4 @@
-import { cloneElement, isValidElement, useEffect, useState, type FormEvent, type ReactElement, type ReactNode } from "react";
+import { cloneElement, isValidElement, useCallback, useEffect, useState, type FormEvent, type MouseEvent, type ReactElement, type ReactNode } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { X } from "lucide-react";
@@ -6,7 +6,7 @@ import { submitChallengeRegistration } from "@/lib/registrations.functions";
 import { PhoneInput } from "./PhoneInput";
 
 type TriggerElement = ReactElement<{
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (event: MouseEvent<HTMLElement>) => void;
 }>;
 
 export function SignupDialog({ children }: { children: ReactNode }) {
@@ -19,6 +19,10 @@ export function SignupDialog({ children }: { children: ReactNode }) {
   const [website, setWebsite] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  const handlePhoneChange = useCallback((value: string, valid: boolean) => {
+    setPhone((current) => (current.value === value && current.valid === valid ? current : { value, valid }));
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -123,7 +127,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
               <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">
                 Telefón
               </label>
-              <PhoneInput onChange={(v, valid) => setPhone({ value: v, valid })} />
+              <PhoneInput onChange={handlePhoneChange} />
             </div>
             {error && (
               <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive-foreground">
