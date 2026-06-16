@@ -148,26 +148,53 @@ function ThankYou() {
           <Recap icon={<Trophy className="h-6 w-6" />} title="LIVE žrebovanie" sub="$500 000 funded účet" />
         </section>
 
+        {/* Raffle congrats banner */}
+        <section className="relative mt-8 overflow-hidden rounded-[2rem] border border-primary/30 bg-gradient-to-r from-primary/15 via-primary/10 to-transparent p-6 backdrop-blur-md sm:p-8">
+          <div className="pointer-events-none absolute -top-20 -right-10 h-44 w-44 rounded-full bg-primary/25 blur-3xl" />
+          <div className="relative flex items-start gap-4 sm:items-center sm:gap-6">
+            <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-primary text-primary-foreground shadow-[0_0_24px_color-mix(in_oklab,var(--primary)_45%,transparent)] sm:h-16 sm:w-16">
+              <Trophy className="h-7 w-7 sm:h-8 sm:w-8" />
+            </div>
+            <div className="min-w-0">
+              <p className="font-display text-[11px] font-bold uppercase tracking-[0.2em] text-primary sm:text-xs">
+                Gratulujeme — si v žrebovaní
+              </p>
+              <h3 className="mt-1.5 font-display text-xl font-black uppercase leading-tight sm:text-2xl">
+                Hráš o <span className="text-gradient-orange">$500 000 funded účet</span>
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/75 sm:text-base">
+                Stačí jediné — <span className="font-semibold text-foreground">pripojiť sa naživo na event</span>. Víťaza vyhlasujeme priamo počas vysielania, takže musíš byť pri tom.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* VIP Call Section — gift / bluish tint */}
-        <section className="relative mt-10 overflow-hidden rounded-[2rem] border border-sky-400/20 bg-gradient-to-br from-sky-950/40 via-card/60 to-card/40 backdrop-blur-2xl">
+        <section className="relative mt-8 overflow-hidden rounded-[2rem] border border-sky-400/20 bg-gradient-to-br from-sky-950/40 via-card/60 to-card/40 backdrop-blur-2xl">
           <div className="pointer-events-none absolute -top-32 -right-24 h-72 w-72 rounded-full bg-sky-400/20 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-32 -left-24 h-72 w-72 rounded-full bg-sky-500/15 blur-3xl" />
 
-          <div className="relative p-8 sm:p-12">
-            <div className="grid gap-10 lg:grid-cols-[1fr_minmax(0,1.2fr)] lg:items-center">
+          <div className="relative p-6 sm:p-10 lg:p-12">
+            <div className="grid gap-6 sm:gap-10 lg:grid-cols-[1fr_minmax(0,1.2fr)] lg:items-center">
               {/* Gift visual */}
-              <div className="relative mx-auto w-full max-w-sm">
+              <div className="relative mx-auto w-full max-w-[14rem] sm:max-w-xs lg:max-w-sm">
                 <div className="absolute inset-0 rounded-[2rem] bg-sky-400/20 blur-3xl" />
                 <img
                   src={giftAsset.url}
                   alt="Tvoj bonusový darček: hovor s trading špecialistom"
                   className="relative w-full drop-shadow-[0_20px_50px_rgba(56,189,248,0.35)]"
                 />
-                <div className="relative mt-4 flex items-center justify-center gap-3 text-center">
-                  <span className="font-display text-lg font-bold uppercase tracking-wider text-muted-foreground line-through decoration-2">
-                    250 €
-                  </span>
-                  <span className="rounded-full bg-sky-400 px-4 py-1.5 font-display text-sm font-black uppercase tracking-wider text-sky-950 shadow-[0_0_24px_rgba(56,189,248,0.45)]">
+                <div className="relative mt-6 flex flex-col items-center gap-4 text-center">
+                  <div className="relative inline-block">
+                    <span className="font-display text-5xl font-black tracking-tight text-muted-foreground sm:text-6xl">
+                      250 €
+                    </span>
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute left-[-6%] right-[-6%] top-1/2 h-[6px] -translate-y-1/2 rotate-[-10deg] rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.6)]"
+                    />
+                  </div>
+                  <span className="rounded-full bg-sky-400 px-7 py-3 font-display text-lg font-black uppercase tracking-wider text-sky-950 shadow-[0_0_36px_rgba(56,189,248,0.55)] sm:text-xl sm:px-9 sm:py-4">
                     Zdarma pre teba
                   </span>
                 </div>
