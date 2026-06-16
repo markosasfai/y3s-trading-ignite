@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { X } from "lucide-react";
 import { submitChallengeRegistration } from "@/lib/registrations.functions";
 import { PhoneInput } from "./PhoneInput";
+import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 
 type TriggerElement = ReactElement<{
   onClick?: (event: MouseEvent<HTMLElement>) => void;
@@ -83,13 +84,17 @@ export function SignupDialog({ children }: { children: ReactNode }) {
             >
               <X className="h-4 w-4" />
             </button>
-            <header className="relative pr-10">
-              <h2 className="font-display text-3xl uppercase tracking-wide">Rezervuj si miesto</h2>
-              <p className="mt-3 text-sm leading-relaxed text-foreground/90">
-                Zaregistruj sa a získaš <span className="font-bold text-foreground">vstupenku zdarma</span> na 3-dňový challenge.
+            <header className="relative">
+              <img
+                src={logoAsset.url}
+                alt="Y3S × Chalan z Burzy"
+                className="mx-auto h-12 w-auto sm:h-14"
+              />
+              <p className="mt-5 text-center font-display text-2xl uppercase leading-[1.05] tracking-wide text-foreground sm:text-3xl">
+                Získaj <span className="text-gradient-orange">vstupenku zdarma</span>
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/90">
-                <span className="font-bold text-gradient-orange">+ Bonus:</span> jeden z účastníkov vyhrá <span className="font-bold text-gradient-orange">funded účet $500&nbsp;000</span> od Y3S.
+              <p className="mt-3 text-center text-base leading-snug text-foreground/90 sm:text-lg">
+                + šanca vyhrať <span className="font-bold text-gradient-orange">funded účet $500&nbsp;000</span> od Y3S
               </p>
             </header>
           <form onSubmit={submit} className="relative mt-6 space-y-4">
