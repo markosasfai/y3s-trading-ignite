@@ -88,12 +88,12 @@ export function RaffleCallout() {
   return (
     <div className="space-y-2.5">
       <p className="text-center text-xs font-black uppercase tracking-[0.25em] text-foreground/80 sm:text-sm">
-        Môžeš vyhrať <span className="text-gradient-orange">2 darčeky</span>
+        Získaj <span className="text-gradient-orange">dva darčeky</span>
       </p>
       <PrizeCard
         index={1}
         tone="sky"
-        title={<>Špeciálny darček <span className="text-sky-300">hneď po registrácii</span></>}
+        title={<>Špeciálny darček <span className="block text-sky-300 sm:inline">hneď po registrácii</span></>}
         desc="Príde ti okamžite na email — bez čakania."
       />
       <PrizeCard
@@ -105,6 +105,7 @@ export function RaffleCallout() {
     </div>
   );
 }
+
 
 function PrizeCard({
   index,
