@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { Calendar, Play, Share2, Trophy, VideoOff, ArrowLeft } from "lucide-react";
+import { Calendar, Play, Share2, Trophy, VideoOff, ArrowLeft, CheckCircle2, Gift, Clock, MessageCircle, Sparkles, AlertTriangle } from "lucide-react";
 import { DisclaimerFooter } from "@/components/EventContent";
 import { Background } from "@/components/Background";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
+import giftAsset from "@/assets/gift-3d.png.asset.json";
 
 export const Route = createFileRoute("/dakujeme")({
   head: () => ({
@@ -95,8 +96,8 @@ function ThankYou() {
             <div className="pointer-events-none absolute -bottom-32 -left-20 h-64 w-64 rounded-full bg-primary-glow/20 blur-3xl" />
 
             <div className="relative flex flex-col items-center text-center">
-              <p className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 font-display text-xs font-bold uppercase tracking-[0.2em] text-primary ring-1 ring-primary/30">
-                Vstupenka potvrdená
+              <p className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-black/70 px-5 py-2.5 font-display text-sm font-bold uppercase tracking-[0.2em] text-primary shadow-[0_0_24px_color-mix(in_oklab,var(--primary)_25%,transparent)] backdrop-blur-sm">
+                <CheckCircle2 className="h-4 w-4" /> Vstupenka potvrdená
               </p>
 
               <h1 className="mt-6 font-display text-[clamp(2.75rem,6vw,4.5rem)] font-black uppercase leading-[1.05]">
@@ -147,28 +148,70 @@ function ThankYou() {
           <Recap icon={<Trophy className="h-6 w-6" />} title="LIVE žrebovanie" sub="$500 000 funded účet" />
         </section>
 
-        {/* VIP Call Section */}
-        <section className="mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-card/40 backdrop-blur-2xl">
-          <div className="relative border-b border-white/5 p-8 sm:p-12">
-            <div className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-primary-glow/20 blur-3xl" />
-            <div className="relative">
-              <p className="font-display text-xs font-bold uppercase tracking-[0.2em] text-primary">
-                VIP náskok
-              </p>
-              <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.25rem)] font-black uppercase leading-[1.05]">
-                Nemôžeš sa dočkať?{" "}
-                <span className="text-gradient-orange">Rezervuj si hovor zdarma.</span>
-              </h2>
-              <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/70 sm:text-lg">
-                Bezplatný hovor s naším trading špecialistom z tímu Y3S. Pred ostatnými ti povieme, čo presne sa na challenge naučíš, a dáme ti extra tipy.{" "}
-                <span className="font-semibold text-foreground">
-                  Miest je málo — keď sa kalendár zaplní, ďalšie termíny nepridávame.
-                </span>
-              </p>
+        {/* VIP Call Section — gift / bluish tint */}
+        <section className="relative mt-10 overflow-hidden rounded-[2rem] border border-sky-400/20 bg-gradient-to-br from-sky-950/40 via-card/60 to-card/40 backdrop-blur-2xl">
+          <div className="pointer-events-none absolute -top-32 -right-24 h-72 w-72 rounded-full bg-sky-400/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-32 -left-24 h-72 w-72 rounded-full bg-sky-500/15 blur-3xl" />
+
+          <div className="relative p-8 sm:p-12">
+            <div className="grid gap-10 lg:grid-cols-[1fr_minmax(0,1.2fr)] lg:items-center">
+              {/* Gift visual */}
+              <div className="relative mx-auto w-full max-w-sm">
+                <div className="absolute inset-0 rounded-[2rem] bg-sky-400/20 blur-3xl" />
+                <img
+                  src={giftAsset.url}
+                  alt="Tvoj bonusový darček: hovor s trading špecialistom"
+                  className="relative w-full drop-shadow-[0_20px_50px_rgba(56,189,248,0.35)]"
+                />
+                <div className="relative mt-4 flex items-center justify-center gap-3 text-center">
+                  <span className="font-display text-lg font-bold uppercase tracking-wider text-muted-foreground line-through decoration-2">
+                    250 €
+                  </span>
+                  <span className="rounded-full bg-sky-400 px-4 py-1.5 font-display text-sm font-black uppercase tracking-wider text-sky-950 shadow-[0_0_24px_rgba(56,189,248,0.45)]">
+                    Zdarma pre teba
+                  </span>
+                </div>
+              </div>
+
+              {/* Copy */}
+              <div>
+                <p className="inline-flex items-center gap-2 rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 font-display text-xs font-bold uppercase tracking-[0.2em] text-sky-300">
+                  <Gift className="h-3.5 w-3.5" /> Tvoj bonus k vstupenke
+                </p>
+                <h2 className="mt-5 font-display text-[clamp(2rem,4.5vw,3rem)] font-black uppercase leading-[1.05]">
+                  Hovor 1:1 s naším{" "}
+                  <span className="bg-gradient-to-r from-sky-300 to-sky-500 bg-clip-text text-transparent">
+                    trading špecialistom.
+                  </span>
+                </h2>
+                <p className="mt-5 text-base leading-relaxed text-foreground/75 sm:text-lg">
+                  Bežne za tento hovor ľudia platia. Ty ho máš ako darček k vstupenke — stačí sa zapísať.
+                </p>
+
+                <ul className="mt-6 space-y-3 text-sm sm:text-base">
+                  <BenefitItem icon={<MessageCircle className="h-4 w-4" />}>
+                    Spýtaj sa čokoľvek o evente alebo o tradingu vo všeobecnosti
+                  </BenefitItem>
+                  <BenefitItem icon={<Sparkles className="h-4 w-4" />}>
+                    Extra tipy a personalizovaný plán ešte pred štartom
+                  </BenefitItem>
+                  <BenefitItem icon={<Clock className="h-4 w-4" />}>
+                    Vyber si čas, ktorý ti sadne — 30 minút, online
+                  </BenefitItem>
+                </ul>
+
+                <div className="mt-6 flex items-start gap-3 rounded-2xl border border-amber-400/30 bg-amber-400/5 p-4 text-sm text-amber-100/90">
+                  <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />
+                  <p>
+                    <span className="font-semibold text-amber-200">Keď sa kalendár zaplní, končíme.</span>{" "}
+                    Ďalšie termíny už nepridávame — vyber si voľný slot teraz, kým je.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="bg-white">
+          <div className="relative border-t border-sky-400/15 bg-white">
             <CalendlyInlineWidget />
           </div>
         </section>
@@ -209,5 +252,16 @@ function Recap({ icon, title, sub }: { icon: React.ReactNode; title: string; sub
         <p className="truncate text-xs text-muted-foreground/70">{sub}</p>
       </div>
     </div>
+  );
+}
+
+function BenefitItem({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <li className="flex items-start gap-3 text-foreground/85">
+      <span className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-sky-400/15 text-sky-300 ring-1 ring-sky-400/30">
+        {icon}
+      </span>
+      <span>{children}</span>
+    </li>
   );
 }
