@@ -163,11 +163,17 @@ function ThankYou() {
                   alt="Tvoj bonusový darček: hovor s trading špecialistom"
                   className="relative w-full drop-shadow-[0_20px_50px_rgba(56,189,248,0.35)]"
                 />
-                <div className="relative mt-4 flex items-center justify-center gap-3 text-center">
-                  <span className="font-display text-lg font-bold uppercase tracking-wider text-muted-foreground line-through decoration-2">
-                    250 €
-                  </span>
-                  <span className="rounded-full bg-sky-400 px-4 py-1.5 font-display text-sm font-black uppercase tracking-wider text-sky-950 shadow-[0_0_24px_rgba(56,189,248,0.45)]">
+                <div className="relative mt-6 flex flex-col items-center gap-4 text-center">
+                  <div className="relative inline-block">
+                    <span className="font-display text-5xl font-black tracking-tight text-muted-foreground sm:text-6xl">
+                      250 €
+                    </span>
+                    <span
+                      aria-hidden
+                      className="pointer-events-none absolute left-[-6%] right-[-6%] top-1/2 h-[6px] -translate-y-1/2 rotate-[-10deg] rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.6)]"
+                    />
+                  </div>
+                  <span className="rounded-full bg-sky-400 px-7 py-3 font-display text-lg font-black uppercase tracking-wider text-sky-950 shadow-[0_0_36px_rgba(56,189,248,0.55)] sm:text-xl sm:px-9 sm:py-4">
                     Zdarma pre teba
                   </span>
                 </div>
