@@ -44,6 +44,90 @@ export type Database = {
         }
         Relationships: []
       }
+      leads: {
+        Row: {
+          consent: boolean
+          country: string | null
+          created_at: string
+          device_type: string | null
+          email: string
+          id: string
+          ip_address: string | null
+          name: string
+          phone: string
+          phone_verified: boolean
+          source: string
+          user_agent: string | null
+          utm_campaign: string | null
+          utm_medium: string | null
+          utm_source: string | null
+        }
+        Insert: {
+          consent?: boolean
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          email: string
+          id?: string
+          ip_address?: string | null
+          name: string
+          phone: string
+          phone_verified?: boolean
+          source?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Update: {
+          consent?: boolean
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          email?: string
+          id?: string
+          ip_address?: string | null
+          name?: string
+          phone?: string
+          phone_verified?: boolean
+          source?: string
+          user_agent?: string | null
+          utm_campaign?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Relationships: []
+      }
+      phone_verifications: {
+        Row: {
+          attempts: number
+          code_hash: string
+          created_at: string
+          expires_at: string
+          id: string
+          phone: string
+          verified: boolean
+        }
+        Insert: {
+          attempts?: number
+          code_hash: string
+          created_at?: string
+          expires_at: string
+          id?: string
+          phone: string
+          verified?: boolean
+        }
+        Update: {
+          attempts?: number
+          code_hash?: string
+          created_at?: string
+          expires_at?: string
+          id?: string
+          phone?: string
+          verified?: boolean
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
