@@ -222,7 +222,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
               </form>
             )}
 
-            {step === 2 && (
+            {(step === 2 || step === 3) && (
               <form onSubmit={codeSent ? confirmAndSubmit : sendCode} className="relative mt-6 space-y-4">
                 <div>
                   <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">
@@ -268,7 +268,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
                 </button>
                 <button
                   type="button"
-                  onClick={() => { setStep(1); setError(null); }}
+                  onClick={() => { setStep(codeSent ? 2 : 1); setCodeSent(false); setCode(""); setError(null); }}
                   className="block w-full text-center text-xs text-muted-foreground hover:text-foreground"
                 >
                   ← Späť
