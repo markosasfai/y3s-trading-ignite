@@ -142,11 +142,15 @@ function ThankYou() {
           </div>
         </section>
 
-        {/* Quick Stats Grid */}
-        <section className="mt-8 grid gap-4 sm:grid-cols-3">
-          <Recap icon={<Calendar className="h-6 w-6" />} title="20.–24. júla 2026" sub="19:00 (CET)" />
-          <Recap icon={<VideoOff className="h-6 w-6" />} title="Bez kamery" sub="100 % online" />
-          <Recap icon={<Trophy className="h-6 w-6" />} title="LIVE žrebovanie" sub="$500 000 funded účet" />
+        {/* Event date + time */}
+        <section className="mt-8 flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-white/10 bg-card/40 px-6 py-4 text-center backdrop-blur-md">
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/30">
+            <Calendar className="h-5 w-5" />
+          </span>
+          <div className="min-w-0">
+            <p className="text-base font-bold text-foreground">20.–24. júla 2026</p>
+            <p className="text-base text-muted-foreground/80">19:00 (CET)</p>
+          </div>
         </section>
 
         {/* Raffle congrats banner — green */}
