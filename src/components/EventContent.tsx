@@ -304,9 +304,16 @@ export { LivePill };
 export function DisclaimerFooter() {
   return (
     <footer className="py-4 text-center text-[0.65rem] leading-snug text-muted-foreground/70">
-      <p>Copyright 2026 © TJR LLC. Všetky práva vyhradené.</p>
+      <p>Copyright 2026 © UOwn Corporation s.r.o. Všetky práva vyhradené.</p>
       <p className="mt-1">
-        Výsledky na stránke sú ilustratívne a vychádzajú z minulých výsledkov; skutočné výsledky sa môžu líšiť. Day trading je rizikový a väčšina traderov prichádza o peniaze. TJR LLC je vzdelávacia spoločnosť — negarantujeme žiadne konkrétne zárobky ani príjmy. Tento program nie je MLM, sieťový marketing ani príležitosť na podnikanie. Táto stránka nie je súčasťou ani nie je schválená spoločnosťami YouTube, Google, Meta ani Microsoft. Používanie stránky sa riadi Podmienkami používania a Zásadami ochrany osobných údajov.
+        Výsledky na stránke sú ilustratívne a vychádzajú z minulých výsledkov; skutočné výsledky sa môžu líšiť. Day trading je rizikový a väčšina traderov prichádza o peniaze. UOwn Corporation s.r.o. je vzdelávacia spoločnosť — negarantujeme žiadne konkrétne zárobky ani príjmy. Tento program nie je MLM, sieťový marketing ani príležitosť na podnikanie. Táto stránka nie je súčasťou ani nie je schválená spoločnosťami YouTube, Google, Meta ani Microsoft. Používanie stránky sa riadi{" "}
+        <a href="https://y3s.app/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
+          Podmienkami používania
+        </a>{" "}
+        a{" "}
+        <a href="https://y3s.app/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
+          Zásadami ochrany osobných údajov
+        </a>.
       </p>
     </footer>
   );
