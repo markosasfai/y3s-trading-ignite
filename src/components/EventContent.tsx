@@ -86,24 +86,79 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
 
 export function RaffleCallout() {
   return (
-    <div className="glass-strong relative overflow-hidden rounded-2xl p-3.5 lg:p-3.5">
-      <div className="pointer-events-none absolute -top-16 -right-10 h-48 w-48 rounded-full bg-primary/25 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-amber-400/15 blur-3xl" />
-      <div className="relative flex items-center gap-4">
-        <img
-          src={giftAsset.url}
-          alt=""
-          width={120}
-          height={120}
-          loading="lazy"
-          className="h-20 w-20 shrink-0 drop-shadow-[0_8px_24px_oklch(0.72_0.19_45/0.55)] sm:h-24 sm:w-24 lg:h-20 lg:w-20"
-        />
+    <div className="space-y-2.5">
+      <p className="text-center text-xs font-black uppercase tracking-[0.25em] text-foreground/80 sm:text-sm">
+        Môžeš vyhrať <span className="text-gradient-orange">2 darčeky</span>
+      </p>
+      <PrizeCard
+        index={1}
+        tone="sky"
+        title={<>Špeciálny darček <span className="text-sky-300">hneď po registrácii</span></>}
+        desc="Príde ti okamžite na email — bez čakania."
+      />
+      <PrizeCard
+        index={2}
+        tone="emerald"
+        title={<><span className="text-emerald-300">$500 000</span> funded účet</>}
+        desc="Žrebujeme naživo počas eventu — musíš byť s nami."
+      />
+    </div>
+  );
+}
+
+function PrizeCard({
+  index,
+  tone,
+  title,
+  desc,
+}: {
+  index: number;
+  tone: "sky" | "emerald";
+  title: React.ReactNode;
+  desc: string;
+}) {
+  const styles =
+    tone === "sky"
+      ? {
+          border: "border-sky-400/35",
+          bg: "from-sky-500/15 to-background/85",
+          shadow: "shadow-[0_0_30px_-12px_oklch(0.75_0.15_240/0.6)]",
+          glow1: "bg-sky-400/25",
+          glow2: "bg-sky-300/15",
+          number: "text-sky-400/15",
+          dropShadow: "drop-shadow-[0_8px_24px_oklch(0.75_0.15_240/0.55)]",
+        }
+      : {
+          border: "border-emerald-400/35",
+          bg: "from-emerald-500/15 to-background/85",
+          shadow: "shadow-[0_0_30px_-12px_oklch(0.75_0.15_160/0.6)]",
+          glow1: "bg-emerald-400/25",
+          glow2: "bg-emerald-300/15",
+          number: "text-emerald-400/15",
+          dropShadow: "drop-shadow-[0_8px_24px_oklch(0.75_0.15_160/0.55)]",
+        };
+  return (
+    <div className={`relative overflow-hidden rounded-2xl border ${styles.border} bg-gradient-to-b ${styles.bg} p-3.5 backdrop-blur-md ${styles.shadow}`}>
+      <div className={`pointer-events-none absolute -top-16 -right-10 h-44 w-44 rounded-full ${styles.glow1} blur-3xl`} />
+      <div className={`pointer-events-none absolute -bottom-20 -left-10 h-36 w-36 rounded-full ${styles.glow2} blur-3xl`} />
+      <div className="relative flex items-center gap-3.5">
+        <div className="relative h-20 w-20 shrink-0 sm:h-24 sm:w-24">
+          <span className={`pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[6rem] leading-none ${styles.number} sm:text-[7rem]`}>
+            {index}
+          </span>
+          <img
+            src={giftAsset.url}
+            alt=""
+            loading="lazy"
+            className={`relative h-full w-full ${styles.dropShadow}`}
+          />
+        </div>
         <div className="min-w-0 flex-1">
-          <p className="font-display text-[1.9rem] uppercase leading-[0.95] text-foreground lg:text-[1.9rem]">
-            Vyhraj <span className="text-gradient-orange">$500 000</span> funded účet
+          <p className="font-display text-[1.55rem] uppercase leading-[0.95] text-foreground sm:text-[1.8rem]">
+            {title}
           </p>
-          <p className="mt-2 text-sm font-semibold text-foreground/85 lg:text-[0.95rem]">
-            Klikni na tlačidlo nižšie a vyplň formulár — inak nebudeš v žrebovaní.
+          <p className="mt-1.5 text-[0.85rem] font-semibold text-foreground/80 sm:text-[0.95rem]">
+            {desc}
           </p>
         </div>
       </div>
@@ -182,10 +237,10 @@ export function CTA({ subline = true }: { subline?: boolean }) {
     <div className="space-y-2">
       <SignupDialog>
         <button className="shimmer-overlay glow-orange group relative flex w-full flex-col items-center justify-center gap-1 overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-7 py-4 text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99]">
-          <span className="text-xl font-black uppercase tracking-wide text-black sm:text-2xl">
+          <span className="text-base font-black uppercase leading-tight tracking-wide text-black sm:text-2xl">
             Registruj sa zadarmo a získaj darček →
           </span>
-          <span className="text-[0.78rem] font-medium text-black/75 sm:text-sm">
+          <span className="text-[0.7rem] font-medium leading-snug text-black/75 sm:text-sm">
             Darček ti príde hneď po registrácii — žiadne čakanie.
           </span>
         </button>
