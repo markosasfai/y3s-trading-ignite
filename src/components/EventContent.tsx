@@ -88,12 +88,12 @@ export function RaffleCallout() {
   return (
     <div className="space-y-2.5">
       <p className="text-center text-xs font-black uppercase tracking-[0.25em] text-foreground/80 sm:text-sm">
-        Môžeš vyhrať <span className="text-gradient-orange">2 darčeky</span>
+        Získaj <span className="text-gradient-orange">dva darčeky</span>
       </p>
       <PrizeCard
         index={1}
         tone="sky"
-        title={<>Špeciálny darček <span className="text-sky-300">hneď po registrácii</span></>}
+        title={<>Špeciálny darček <span className="block text-sky-300 sm:inline">hneď po registrácii</span></>}
         desc="Príde ti okamžite na email — bez čakania."
       />
       <PrizeCard
@@ -105,6 +105,7 @@ export function RaffleCallout() {
     </div>
   );
 }
+
 
 function PrizeCard({
   index,
@@ -138,7 +139,7 @@ function PrizeCard({
           dropShadow: "drop-shadow-[0_8px_24px_oklch(0.75_0.15_160/0.55)]",
         };
   return (
-    <div className={`relative overflow-hidden rounded-2xl border ${styles.border} bg-gradient-to-b ${styles.bg} p-3.5 backdrop-blur-md ${styles.shadow}`}>
+    <div className={`relative overflow-hidden rounded-2xl border ${styles.border} bg-gradient-to-b ${styles.bg} p-3 sm:p-3.5 backdrop-blur-md ${styles.shadow}`}>
       <div className={`pointer-events-none absolute -top-16 -right-10 h-44 w-44 rounded-full ${styles.glow1} blur-3xl`} />
       <div className={`pointer-events-none absolute -bottom-20 -left-10 h-36 w-36 rounded-full ${styles.glow2} blur-3xl`} />
       <div className="relative flex items-center gap-3.5">
