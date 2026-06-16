@@ -170,6 +170,25 @@ function ThankYou() {
   );
 }
 
+function CalendlyInlineWidget() {
+  useEffect(() => {
+    if (document.getElementById("calendly-widget-script")) return;
+    const script = document.createElement("script");
+    script.id = "calendly-widget-script";
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
+  return (
+    <div
+      className="calendly-inline-widget w-full"
+      data-url="https://calendly.com/y3s-info/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=ff5a00"
+      style={{ minWidth: 320, height: 700 }}
+    />
+  );
+}
+
 function Recap({ icon, title, sub }: { icon: React.ReactNode; title: string; sub: string }) {
   return (
     <div className="glass flex items-center gap-3 rounded-2xl p-4">
