@@ -19,31 +19,31 @@ const DAYS = [
     n: 1,
     dayOfWeek: "Pondelok",
     date: "20. júl",
-    title: "Deň 1: Ako fungujú trhy",
+    title: "Ako fungujú trhy",
   },
   {
     n: 2,
     dayOfWeek: "Utorok",
     date: "21. júl",
-    title: "Deň 2: Prvé obchody od nuly",
+    title: "Prvé obchody od nuly",
   },
   {
     n: 3,
     dayOfWeek: "Streda",
     date: "22. júl",
-    title: "Deň 3: Risk management & psychológia",
+    title: "Risk management & psychológia",
   },
   {
     n: 4,
     dayOfWeek: "Štvrtok",
     date: "23. júl",
-    title: "Deň 4: Techniky profesionálov",
+    title: "Techniky profesionálov",
   },
   {
     n: 5,
     dayOfWeek: "Piatok",
     date: "24. júl",
-    title: "Deň 5: Kombinácia a FINÁLE",
+    title: "Kombinácia a FINÁLE",
   },
 ];
 
@@ -128,6 +128,9 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
             DEŇ 0{d.n}
           </span>
           <div className="h-px w-14 bg-gradient-to-r from-primary/40 via-primary/25 to-transparent" />
+          <h3 className="text-[1.05rem] font-black leading-tight text-foreground sm:text-lg lg:text-[1.15rem]">
+            {d.title}
+          </h3>
           <div className="flex flex-col items-center gap-0.5 opacity-55">
             <span className="inline-flex items-center gap-1 text-[0.75rem] font-black uppercase tracking-wider text-primary/80">
               <Calendar className="h-3.5 w-3.5" /> {d.dayOfWeek}
