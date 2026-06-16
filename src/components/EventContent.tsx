@@ -9,23 +9,37 @@ const DAYS = [
   {
     n: 1,
     label: "Deň 1",
-    date: "20. jún",
-    title: "Základy obchodovania",
-    desc: "Mindset, riadenie rizika a ako čítať trh od nuly.",
+    date: "Pondelok 20. júl",
+    title: "Predstavenie a základy",
+    desc: "Kto sme, čo sme — úvod do tradingu, platformy, prop tradingu a základy.",
   },
   {
     n: 2,
     label: "Deň 2",
-    date: "21. jún",
-    title: "Stratégia v praxi",
-    desc: "Live setupy, vstupy a výstupy priamo na obrazovke.",
+    date: "Utorok 21. júl",
+    title: "Základné pojmy",
+    desc: "Fundamenty, kľúčové pojmy a to, čo každý trader musí rozumieť.",
   },
   {
     n: 3,
     label: "Deň 3",
-    date: "22. jún",
-    title: "Tvoj prvý profit",
-    desc: "Vlastné obchody pod dohľadom Dodo a Lukáša.",
+    date: "Streda 22. júl",
+    title: "Ľahké techniky",
+    desc: "Jednoduché trading techniky, risk management a prvý predaj.",
+  },
+  {
+    n: 4,
+    label: "Deň 4",
+    date: "Štvrtok 23. júl",
+    title: "Ťažšie techniky",
+    desc: "Pokročilejšie techniky a prevedenie všetkého do praxe.",
+  },
+  {
+    n: 5,
+    label: "Deň 5",
+    date: "Piatok 24. júl",
+    title: "Finiš a rekapitulácia",
+    desc: "Zakončenie poslednými technikami, rekapitulácia týždňa a predaj.",
   },
 ];
 
@@ -59,7 +73,7 @@ function Chip({ icon, children, tone = "amber" }: { icon: React.ReactNode; child
 
 export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } = {}) {
   return (
-    <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
       {DAYS.map((d) => (
         <div
           key={d.n}
@@ -227,7 +241,7 @@ export function GuaranteeLine() {
     <p className="flex items-start gap-2.5 text-base font-semibold leading-snug text-foreground/90 lg:text-[1.05rem]">
       <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
       <span>
-        <span className="font-black text-emerald-400">Garancia:</span> ak budeš s nami naživo všetky 3 dni, naučíš sa robiť profitabilné obchody.
+        <span className="font-black text-emerald-400">Garancia:</span> ak budeš s nami naživo všetkých 5 dní, naučíš sa robiť profitabilné obchody.
       </span>
     </p>
   );
