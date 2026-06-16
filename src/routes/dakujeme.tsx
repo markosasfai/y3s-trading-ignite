@@ -75,8 +75,8 @@ function ThankYou() {
   return (
     <main className="relative min-h-screen text-foreground">
       <Background />
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
-        <div className="mb-8 flex items-center justify-between">
+      <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-16">
+        <div className="mb-10 flex items-center justify-between">
           <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-16 w-auto sm:h-20" />
           <Link
             to="/"
@@ -86,80 +86,90 @@ function ThankYou() {
           </Link>
         </div>
 
-        <section className="glass-strong relative overflow-hidden rounded-3xl p-6 sm:p-10">
-          <div className="pointer-events-none absolute -top-32 -right-32 h-72 w-72 rounded-full bg-primary/35 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-32 -left-20 h-64 w-64 rounded-full bg-primary-glow/25 blur-3xl" />
-          <p className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 font-display text-xs uppercase tracking-[0.3em] text-primary ring-1 ring-primary/40">
-            Vstupenka potvrdená
-          </p>
-          <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] font-black leading-[0.95]">
-            Si v hre! <span className="text-gradient-orange">Vidíme sa naživo.</span>
-          </h1>
-          <p className="mt-3 max-w-xl text-foreground/85">
-            Posielame ti potvrdenie na email. Pre vstup do žrebovania o{" "}
-            <span className="text-gradient-orange font-semibold">$500 000 funded účet</span> sa pripoj naživo
-            <span className="font-semibold text-foreground"> 20.–24. júla 2026 o 19:00</span>.
-          </p>
+        {/* Main Confirmation Ticket */}
+        <section className="group relative">
+          <div className="absolute -inset-1 rounded-[2rem] bg-gradient-to-r from-primary to-primary-glow opacity-15 blur transition duration-1000 group-hover:opacity-25" />
+          <div className="glass-strong relative overflow-hidden rounded-[2rem] p-8 sm:p-12">
+            <div className="absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent" />
+            <div className="pointer-events-none absolute -top-32 -right-32 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-32 -left-20 h-64 w-64 rounded-full bg-primary-glow/20 blur-3xl" />
 
-          {/* Video placeholder */}
-          <div className="relative mt-6 aspect-video w-full overflow-hidden rounded-2xl border border-white/10 bg-black/40">
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="grid h-16 w-16 place-items-center rounded-full bg-primary/90 text-primary-foreground shadow-2xl glow-orange">
-                <Play className="h-7 w-7 translate-x-[2px]" />
+            <div className="relative flex flex-col items-center text-center">
+              <p className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 font-display text-xs font-bold uppercase tracking-[0.2em] text-primary ring-1 ring-primary/30">
+                Vstupenka potvrdená
+              </p>
+
+              <h1 className="mt-6 font-display text-[clamp(2.75rem,6vw,4.5rem)] font-black uppercase leading-[1.05]">
+                Si v hre! <span className="text-gradient-orange">Vidíme sa naživo.</span>
+              </h1>
+
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/70 sm:text-xl">
+                Posielame ti potvrdenie na email. Pre vstup do žrebovania o{" "}
+                <span className="font-semibold text-foreground">$500 000 funded účet</span> sa pripoj naživo{" "}
+                <span className="font-semibold text-foreground">20.–24. júla 2026 o 19:00</span>.
+              </p>
+
+              {/* Video placeholder */}
+              <div className="group/video relative mt-10 aspect-video w-full overflow-hidden rounded-2xl border border-white/5 bg-black/40">
+                <div className="absolute inset-0 grid place-items-center">
+                  <div className="grid h-20 w-20 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_0_30px_color-mix(in_oklab,var(--primary)_40%,transparent)] transition-transform duration-300 group-hover/video:scale-110">
+                    <Play className="h-8 w-8 translate-x-[2px] fill-current" />
+                  </div>
+                </div>
+                <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60">
+                  Video čoskoro
+                </p>
+              </div>
+
+              {/* Action buttons */}
+              <div className="mt-10 flex w-full flex-col gap-4 sm:flex-row sm:justify-center">
+                <button
+                  onClick={downloadIcs}
+                  className="shimmer-overlay glow-orange relative flex flex-1 items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-primary to-primary-glow px-8 py-4 text-sm font-bold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01] sm:flex-none"
+                >
+                  <Calendar className="h-5 w-5" /> Pridať do kalendára
+                </button>
+                <button
+                  onClick={share}
+                  className="glass flex flex-1 items-center justify-center gap-3 rounded-xl border border-white/10 px-8 py-4 text-sm font-bold uppercase tracking-wider transition hover:bg-white/10 sm:flex-none"
+                >
+                  <Share2 className="h-5 w-5" /> Zdieľať s kamarátom
+                </button>
               </div>
             </div>
-            <p className="absolute bottom-3 left-4 text-xs uppercase tracking-wider text-muted-foreground">
-              Video čoskoro
-            </p>
-          </div>
-
-          <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            <button
-              onClick={downloadIcs}
-              className="shimmer-overlay glow-orange relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary to-primary-glow px-5 py-3.5 text-sm font-bold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01]"
-            >
-              <span className="inline-flex items-center gap-2">
-                <Calendar className="h-4 w-4" /> Pridať do kalendára
-              </span>
-            </button>
-            <button
-              onClick={share}
-              className="glass rounded-2xl px-5 py-3.5 text-sm font-bold uppercase tracking-wider transition hover:bg-white/10"
-            >
-              <span className="inline-flex items-center gap-2">
-                <Share2 className="h-4 w-4" /> Zdieľať s kamarátom
-              </span>
-            </button>
           </div>
         </section>
 
-        {/* Recap */}
-        <section className="mt-6 grid gap-3 sm:grid-cols-3">
-          <Recap icon={<Calendar className="h-4 w-4" />} title="20.–24. júl 2026" sub="19:00 (CET)" />
-          <Recap icon={<VideoOff className="h-4 w-4" />} title="Bez kamery" sub="100 % online" />
-          <Recap icon={<Trophy className="h-4 w-4" />} title="LIVE žrebovanie" sub="$500 000 funded účet" />
+        {/* Quick Stats Grid */}
+        <section className="mt-8 grid gap-4 sm:grid-cols-3">
+          <Recap icon={<Calendar className="h-6 w-6" />} title="20.–24. júla 2026" sub="19:00 (CET)" />
+          <Recap icon={<VideoOff className="h-6 w-6" />} title="Bez kamery" sub="100 % online" />
+          <Recap icon={<Trophy className="h-6 w-6" />} title="LIVE žrebovanie" sub="$500 000 funded účet" />
         </section>
 
-        {/* Calendly placeholder */}
-        <section className="glass-strong relative mt-6 overflow-hidden rounded-3xl p-6 sm:p-8">
-          <div className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-primary-glow/30 blur-3xl" />
-          <div className="relative">
-            <p className="font-display text-xs uppercase tracking-[0.3em] text-primary">
-              VIP náskok
-            </p>
-            <h2 className="mt-2 font-display text-2xl uppercase sm:text-3xl">
-              Nemôžeš sa dočkať? <span className="text-gradient-orange">Rezervuj si hovor zdarma.</span>
-            </h2>
-            <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-              Bezplatný hovor s naším trading špecialistom z tímu Y3S. Pred ostatnými ti povieme, čo presne sa na challenge naučíš, a dáme ti extra tipy.{" "}
-              <span className="text-foreground/90">
-                Miest je málo — keď sa kalendár zaplní, ďalšie termíny nepridávame.
-              </span>
-            </p>
-
-            <div className="mt-5">
-              <CalendlyInlineWidget />
+        {/* VIP Call Section */}
+        <section className="mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-card/40 backdrop-blur-2xl">
+          <div className="relative border-b border-white/5 p-8 sm:p-12">
+            <div className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-primary-glow/20 blur-3xl" />
+            <div className="relative">
+              <p className="font-display text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                VIP náskok
+              </p>
+              <h2 className="mt-4 font-display text-[clamp(2rem,4.5vw,3.25rem)] font-black uppercase leading-[1.05]">
+                Nemôžeš sa dočkať?{" "}
+                <span className="text-gradient-orange">Rezervuj si hovor zdarma.</span>
+              </h2>
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-foreground/70 sm:text-lg">
+                Bezplatný hovor s naším trading špecialistom z tímu Y3S. Pred ostatnými ti povieme, čo presne sa na challenge naučíš, a dáme ti extra tipy.{" "}
+                <span className="font-semibold text-foreground">
+                  Miest je málo — keď sa kalendár zaplní, ďalšie termíny nepridávame.
+                </span>
+              </p>
             </div>
+          </div>
+
+          <div className="bg-white">
+            <CalendlyInlineWidget />
           </div>
         </section>
 
@@ -190,13 +200,13 @@ function CalendlyInlineWidget() {
 
 function Recap({ icon, title, sub }: { icon: React.ReactNode; title: string; sub: string }) {
   return (
-    <div className="glass flex items-center gap-3 rounded-2xl p-4">
-      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/40">
+    <div className="flex items-center gap-4 rounded-2xl border border-white/5 bg-card/40 p-5 backdrop-blur-md">
+      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/30">
         {icon}
       </div>
       <div className="min-w-0">
-        <p className="text-sm font-semibold">{title}</p>
-        <p className="truncate text-xs text-muted-foreground">{sub}</p>
+        <p className="text-sm font-bold text-foreground">{title}</p>
+        <p className="truncate text-xs text-muted-foreground/70">{sub}</p>
       </div>
     </div>
   );
