@@ -16,13 +16,13 @@ export function Background() {
       />
       {/* grid */}
       <div
-        className="absolute inset-0 opacity-[0.05]"
+        className="absolute inset-0 opacity-[0.09]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, oklch(0.85_0.05_45) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.85_0.05_45) 1px, transparent 1px)",
+            "linear-gradient(to right, oklch(0.95 0.04 60) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.95 0.04 60) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
           maskImage:
-            "radial-gradient(circle at center, black, transparent 75%)",
+            "radial-gradient(circle at center, black, transparent 78%)",
         }}
       />
       {/* grain */}
