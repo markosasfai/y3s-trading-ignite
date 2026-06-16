@@ -65,6 +65,13 @@ export function SignupDialog({ children }: { children: ReactNode }) {
     setStep(3);
   };
 
+  const resendCode = () => {
+    setCode("");
+    // Placeholder — Twilio resend will be wired here later.
+    setError("Kód bol znova odoslaný. Pre testovanie použite 000000.");
+    window.setTimeout(() => setError(null), 4000);
+  };
+
   const confirmAndSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -173,7 +180,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
               )}
 
               {step === 2 && (
-                <p className="mt-4 text-center font-display text-lg uppercase leading-snug text-foreground sm:text-xl">
+                <p className="mt-4 text-center font-display text-xl uppercase leading-snug text-foreground sm:text-2xl">
                   Overte telefónne číslo a získajte darčeky a vstupenku zadarmo
                 </p>
               )}
@@ -262,6 +269,16 @@ export function SignupDialog({ children }: { children: ReactNode }) {
                     />
                     <p className="mt-1.5 text-center text-[0.7rem] text-muted-foreground">
                       Pre testovanie použite 000000
+                    </p>
+                    <p className="mt-2 text-center text-[0.75rem] text-muted-foreground">
+                      Neprišiel vám kód?{" "}
+                      <button
+                        type="button"
+                        onClick={resendCode}
+                        className="font-semibold text-primary underline decoration-primary/50 underline-offset-2 transition hover:text-foreground"
+                      >
+                        Poslať znova
+                      </button>
                     </p>
                   </div>
                 )}

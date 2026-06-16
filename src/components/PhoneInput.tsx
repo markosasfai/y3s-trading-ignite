@@ -26,18 +26,28 @@ export function PhoneInput({
     return [...PRIORITY, ...rest];
   }, []);
 
+  const handleChange = (value: string) => {
+    // Keep digits and + only
+    let cleaned = value.replace(/[^\d+]/g, "");
+
+    // Convert national leading 0 to international format (SK 0918… → 918…)
+    if (cleaned.startsWith("0") && !cleaned.startsWith("00")) {
+      cleaned = cleaned.replace(/^0+/, "");
+    }
+    // Convert 00 prefix to +
+    if (cleaned.startsWith("00")) {
+      cleaned = "+" + cleaned.slice(2);
+    }
+
+    setRaw(cleaned);
+  };
+
   useEffect(() => {
-    let input = raw.replace(/[^\d+]/g, "");
-    if (input.startsWith("00")) input = "+" + input.slice(2);
-    // If user typed leading 0(s) without country code prefix, drop them so SK 0918... → +421918...
-    if (!input.startsWith("+") && input.startsWith("0")) input = input.replace(/^0+/, "");
-    const parsed = parsePhoneNumberFromString(input, country);
+    const parsed = parsePhoneNumberFromString(raw, country);
     onChange(parsed?.number ?? "", !!parsed?.isValid());
   }, [raw, country, onChange]);
 
-  const display = new AsYouType(country).input(
-    raw.startsWith("+") ? raw : raw.replace(/^0+/, ""),
-  );
+  const display = new AsYouType(country).input(raw);
 
   return (
     <div className="glass flex items-stretch overflow-hidden rounded-xl focus-within:ring-2 focus-within:ring-primary/60">
@@ -63,9 +73,9 @@ export function PhoneInput({
       <input
         inputMode="tel"
         autoComplete="tel-national"
-        placeholder="918 799 977"
+        placeholder="0918 799 977"
         value={display}
-        onChange={(e) => setRaw(e.target.value)}
+        onChange={(e) => handleChange(e.target.value)}
         className="flex-1 bg-transparent px-3 py-3 text-base outline-none placeholder:text-muted-foreground/60"
       />
     </div>
