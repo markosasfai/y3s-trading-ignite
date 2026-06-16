@@ -2,7 +2,7 @@ import { cloneElement, isValidElement, useCallback, useEffect, useRef, useState,
 import { useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { X } from "lucide-react";
-import { submitChallengeRegistration } from "@/lib/registrations.functions";
+import { sendPhoneOtp, verifyAndSubmitLead } from "@/lib/registrations.functions";
 import { PhoneInput } from "./PhoneInput";
 import giftAsset from "@/assets/gift-3d.png.asset.json";
 
@@ -13,7 +13,8 @@ type TriggerElement = ReactElement<{
 
 export function SignupDialog({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
-  const submitRegistration = useServerFn(submitChallengeRegistration);
+  const sendOtp = useServerFn(sendPhoneOtp);
+  const verifyAndSubmit = useServerFn(verifyAndSubmitLead);
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [codeSent, setCodeSent] = useState(false);
@@ -56,31 +57,44 @@ export function SignupDialog({ children }: { children: ReactNode }) {
     setStep(2);
   };
 
-  const sendCode = (e: FormEvent) => {
+  const sendCode = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
     if (!phone.valid) return setError("Zadajte platné telefónne číslo.");
-    // Placeholder — Twilio verification will be wired here later.
-    setCodeSent(true);
-    setStep(3);
+    if (submitting) return;
+    setSubmitting(true);
+    try {
+      await sendOtp({ data: { phone: phone.value, website } });
+      setCodeSent(true);
+      setStep(3);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Nepodarilo sa odoslať kód.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
-  const resendCode = () => {
+  const resendCode = async () => {
     setCode("");
-    // Placeholder — Twilio resend will be wired here later.
-    setError("Kód bol znova odoslaný. Pre testovanie použite 000000.");
-    window.setTimeout(() => setError(null), 4000);
+    setError(null);
+    try {
+      await sendOtp({ data: { phone: phone.value, website } });
+      setError("Kód bol znova odoslaný.");
+      window.setTimeout(() => setError(null), 4000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Nepodarilo sa znova odoslať kód.");
+    }
   };
 
   const confirmAndSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
     if (submitting) return;
-    if (code !== "000000") return setError("Nesprávny kód. Pre testovanie použite 000000.");
+    if (!/^\d{6}$/.test(code)) return setError("Zadajte 6-miestny kód.");
     setSubmitting(true);
     try {
-      await submitRegistration({
-        data: { name, email, phone: phone.value, website },
+      await verifyAndSubmit({
+        data: { name, email, phone: phone.value, code, website },
       });
       setOpen(false);
       navigate({ to: "/dakujeme" });
