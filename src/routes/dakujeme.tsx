@@ -75,7 +75,7 @@ function ThankYou() {
       <Background />
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
         <div className="mb-8 flex items-center justify-between">
-          <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-12 w-auto sm:h-14" />
+          <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-16 w-auto sm:h-20" />
           <Link
             to="/"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition hover:text-foreground"
@@ -85,9 +85,9 @@ function ThankYou() {
         </div>
 
         <section className="glass-strong relative overflow-hidden rounded-3xl p-6 sm:p-10">
-          <div className="pointer-events-none absolute -top-32 -right-32 h-72 w-72 rounded-full bg-emerald-400/25 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-32 -left-20 h-64 w-64 rounded-full bg-sky-400/15 blur-3xl" />
-          <p className="inline-flex items-center gap-2 rounded-full bg-emerald-400/15 px-3 py-1 font-display text-xs uppercase tracking-[0.3em] text-emerald-300 ring-1 ring-emerald-400/30">
+          <div className="pointer-events-none absolute -top-32 -right-32 h-72 w-72 rounded-full bg-primary/35 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-32 -left-20 h-64 w-64 rounded-full bg-primary-glow/25 blur-3xl" />
+          <p className="inline-flex items-center gap-2 rounded-full bg-primary/15 px-3 py-1 font-display text-xs uppercase tracking-[0.3em] text-primary ring-1 ring-primary/40">
             Vstupenka potvrdená
           </p>
           <h1 className="mt-3 font-display text-[clamp(2.25rem,5vw,3.75rem)] font-black leading-[0.95]">
@@ -133,9 +133,9 @@ function ThankYou() {
 
         {/* Recap */}
         <section className="mt-6 grid gap-3 sm:grid-cols-3">
-          <Recap icon={<Calendar className="h-4 w-4" />} title="20.–22. jún 2026" sub="19:00 (CET)" tone="sky" />
-          <Recap icon={<VideoOff className="h-4 w-4" />} title="Bez kamery" sub="100 % online" tone="violet" />
-          <Recap icon={<Trophy className="h-4 w-4" />} title="LIVE žrebovanie" sub="$500 000 funded účet" tone="amber" />
+          <Recap icon={<Calendar className="h-4 w-4" />} title="20.–22. jún 2026" sub="19:00 (CET)" />
+          <Recap icon={<VideoOff className="h-4 w-4" />} title="Bez kamery" sub="100 % online" />
+          <Recap icon={<Trophy className="h-4 w-4" />} title="LIVE žrebovanie" sub="$500 000 funded účet" />
         </section>
 
         {/* Calendly placeholder */}
@@ -173,16 +173,10 @@ function ThankYou() {
   );
 }
 
-function Recap({ icon, title, sub, tone = "amber" }: { icon: React.ReactNode; title: string; sub: string; tone?: "sky" | "violet" | "amber" | "emerald" }) {
-  const toneMap = {
-    sky: "bg-sky-400/15 text-sky-300 ring-sky-400/30",
-    violet: "bg-violet-400/15 text-violet-300 ring-violet-400/30",
-    amber: "bg-amber-400/15 text-amber-300 ring-amber-400/30",
-    emerald: "bg-emerald-400/15 text-emerald-300 ring-emerald-400/30",
-  } as const;
+function Recap({ icon, title, sub }: { icon: React.ReactNode; title: string; sub: string }) {
   return (
     <div className="glass flex items-center gap-3 rounded-2xl p-4">
-      <div className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl ring-1 ${toneMap[tone]}`}>
+      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/40">
         {icon}
       </div>
       <div className="min-w-0">

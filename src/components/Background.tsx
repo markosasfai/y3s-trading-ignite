@@ -1,24 +1,25 @@
 export function Background() {
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      {/* base radial wash */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,oklch(0.18_0.05_260/0.35),transparent_55%),radial-gradient(circle_at_85%_90%,oklch(0.16_0.05_30/0.28),transparent_55%)]" />
-      {/* floating blobs — restrained color palette */}
-      <div className="blob-float absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-primary/8 blur-[180px]" />
+      {/* deep near-black base with warm orange wash */}
+      <div className="absolute inset-0 bg-[oklch(0.07_0.012_45)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,oklch(0.22_0.09_45/0.45),transparent_55%),radial-gradient(circle_at_85%_90%,oklch(0.20_0.08_35/0.35),transparent_55%)]" />
+      {/* floating warm blobs */}
+      <div className="blob-float absolute -top-32 -left-32 h-[40rem] w-[40rem] rounded-full bg-primary/12 blur-[180px]" />
       <div
-        className="blob-float absolute -bottom-40 -right-32 h-[36rem] w-[36rem] rounded-full bg-[oklch(0.55_0.18_260)]/10 blur-[180px]"
+        className="blob-float absolute -bottom-40 -right-32 h-[36rem] w-[36rem] rounded-full bg-[oklch(0.55_0.18_35)]/14 blur-[180px]"
         style={{ animationDelay: "-7s" }}
       />
       <div
-        className="blob-float absolute top-1/3 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-[oklch(0.60_0.18_330)]/6 blur-[200px]"
+        className="blob-float absolute top-1/3 left-1/2 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-[oklch(0.45_0.15_25)]/10 blur-[200px]"
         style={{ animationDelay: "-3.5s" }}
       />
       {/* grid */}
       <div
-        className="absolute inset-0 opacity-[0.06]"
+        className="absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+            "linear-gradient(to right, oklch(0.85_0.05_45) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.85_0.05_45) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
           maskImage:
             "radial-gradient(circle at center, black, transparent 75%)",
