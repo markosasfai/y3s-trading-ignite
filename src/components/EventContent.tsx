@@ -1,4 +1,13 @@
-import { BadgeDollarSign, VideoOff, ShieldCheck, Sparkles, Brain, LineChart, Calendar, ArrowRight } from "lucide-react";
+import {
+  BadgeDollarSign,
+  VideoOff,
+  ShieldCheck,
+  Sparkles,
+  Brain,
+  LineChart,
+  Calendar,
+  ArrowRight,
+} from "lucide-react";
 import { LivePill } from "./LivePill";
 import { SignupDialog } from "./SignupDialog";
 import dodoAsset from "@/assets/dodo.png.asset.json";
@@ -41,25 +50,66 @@ const DAYS = [
 export function EventChips() {
   return (
     <div className="flex flex-wrap items-center gap-2.5">
-      <Chip icon={<Sparkles className="h-5 w-5" />} tone="sky">100% online</Chip>
-      <Chip icon={<BadgeDollarSign className="h-5 w-5" />} tone="emerald">100% zdarma</Chip>
-      <Chip icon={<VideoOff className="h-5 w-5" />} tone="violet">Bez kamery</Chip>
+      <Chip icon={<Sparkles className="h-5 w-5" />} tone="sky">
+        100% online
+      </Chip>
+      <Chip icon={<BadgeDollarSign className="h-5 w-5" />} tone="emerald">
+        100% zdarma
+      </Chip>
+      <Chip icon={<VideoOff className="h-5 w-5" />} tone="violet">
+        Bez kamery
+      </Chip>
     </div>
   );
 }
 
 const TONES = {
-  sky:     { ring: "ring-sky-400/40",     bg: "bg-sky-400/10",     text: "text-sky-300",     glow: "shadow-[0_0_24px_-8px_oklch(0.75_0.15_240)]" },
-  emerald: { ring: "ring-emerald-400/40", bg: "bg-emerald-400/10", text: "text-emerald-300", glow: "shadow-[0_0_24px_-8px_oklch(0.75_0.15_160)]" },
-  violet:  { ring: "ring-violet-400/40",  bg: "bg-violet-400/10",  text: "text-violet-300",  glow: "shadow-[0_0_24px_-8px_oklch(0.70_0.18_300)]" },
-  amber:   { ring: "ring-amber-400/45",   bg: "bg-amber-400/12",   text: "text-amber-300",   glow: "shadow-[0_0_24px_-8px_oklch(0.80_0.16_75)]" },
-  rose:    { ring: "ring-rose-400/40",    bg: "bg-rose-400/10",    text: "text-rose-300",    glow: "shadow-[0_0_24px_-8px_oklch(0.70_0.18_15)]" },
+  sky: {
+    ring: "ring-sky-400/40",
+    bg: "bg-sky-400/10",
+    text: "text-sky-300",
+    glow: "shadow-[0_0_24px_-8px_oklch(0.75_0.15_240)]",
+  },
+  emerald: {
+    ring: "ring-emerald-400/40",
+    bg: "bg-emerald-400/10",
+    text: "text-emerald-300",
+    glow: "shadow-[0_0_24px_-8px_oklch(0.75_0.15_160)]",
+  },
+  violet: {
+    ring: "ring-violet-400/40",
+    bg: "bg-violet-400/10",
+    text: "text-violet-300",
+    glow: "shadow-[0_0_24px_-8px_oklch(0.70_0.18_300)]",
+  },
+  amber: {
+    ring: "ring-amber-400/45",
+    bg: "bg-amber-400/12",
+    text: "text-amber-300",
+    glow: "shadow-[0_0_24px_-8px_oklch(0.80_0.16_75)]",
+  },
+  rose: {
+    ring: "ring-rose-400/40",
+    bg: "bg-rose-400/10",
+    text: "text-rose-300",
+    glow: "shadow-[0_0_24px_-8px_oklch(0.70_0.18_15)]",
+  },
 } as const;
 
-function Chip({ icon, children, tone = "amber" }: { icon: React.ReactNode; children: React.ReactNode; tone?: keyof typeof TONES }) {
+function Chip({
+  icon,
+  children,
+  tone = "amber",
+}: {
+  icon: React.ReactNode;
+  children: React.ReactNode;
+  tone?: keyof typeof TONES;
+}) {
   const t = TONES[tone];
   return (
-    <span className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-bold text-foreground/95 ring-1 backdrop-blur-md lg:text-[1rem] ${t.bg} ${t.ring} ${t.glow}`}>
+    <span
+      className={`inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-bold text-foreground/95 ring-1 backdrop-blur-md lg:text-[1rem] ${t.bg} ${t.ring} ${t.glow}`}
+    >
       <span className={t.text}>{icon}</span>
       {children}
     </span>
@@ -104,19 +154,27 @@ export function RaffleCallout() {
       <PrizeCard
         index={1}
         tone="sky"
-        title={<>Špeciálny darček <span className="block text-sky-300 sm:inline">hneď po registrácii</span></>}
+        title={
+          <>
+            Špeciálny darček{" "}
+            <span className="block text-sky-300 sm:inline">hneď po registrácii</span>
+          </>
+        }
         desc="Príde ti okamžite na email — bez čakania."
       />
       <PrizeCard
         index={2}
         tone="emerald"
-        title={<><span className="text-emerald-300">$500 000</span> funded účet</>}
+        title={
+          <>
+            <span className="text-emerald-300">$500 000</span> funded účet
+          </>
+        }
         desc="Žrebujeme naživo počas eventu — musíš byť s nami."
       />
     </div>
   );
 }
-
 
 function PrizeCard({
   index,
@@ -150,12 +208,20 @@ function PrizeCard({
           dropShadow: "drop-shadow-[0_8px_24px_oklch(0.75_0.15_160/0.55)]",
         };
   return (
-    <div className={`relative overflow-hidden rounded-2xl border ${styles.border} bg-gradient-to-b ${styles.bg} p-3 sm:p-3.5 backdrop-blur-md ${styles.shadow}`}>
-      <div className={`pointer-events-none absolute -top-16 -right-10 h-44 w-44 rounded-full ${styles.glow1} blur-3xl`} />
-      <div className={`pointer-events-none absolute -bottom-20 -left-10 h-36 w-36 rounded-full ${styles.glow2} blur-3xl`} />
+    <div
+      className={`relative overflow-hidden rounded-2xl border ${styles.border} bg-gradient-to-b ${styles.bg} p-3 sm:p-3.5 backdrop-blur-md ${styles.shadow}`}
+    >
+      <div
+        className={`pointer-events-none absolute -top-16 -right-10 h-44 w-44 rounded-full ${styles.glow1} blur-3xl`}
+      />
+      <div
+        className={`pointer-events-none absolute -bottom-20 -left-10 h-36 w-36 rounded-full ${styles.glow2} blur-3xl`}
+      />
       <div className="relative flex items-center gap-3.5">
         <div className="relative h-20 w-20 shrink-0 sm:h-24 sm:w-24">
-          <span className={`pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[6rem] leading-none ${styles.number} sm:text-[7rem]`}>
+          <span
+            className={`pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[6rem] leading-none ${styles.number} sm:text-[7rem]`}
+          >
             {index}
           </span>
           <img
@@ -238,7 +304,8 @@ export function GuaranteeLine() {
     <p className="flex items-start gap-2.5 text-base font-semibold leading-snug text-foreground/90 lg:text-[1.05rem]">
       <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
       <span>
-        <span className="font-black text-emerald-400">Garancia:</span> ak budeš s nami naživo všetkých 5 dní, naučíš sa robiť profitabilné obchody.
+        <span className="font-black text-emerald-400">Garancia:</span> ak budeš s nami naživo
+        všetkých 5 dní, naučíš sa robiť profitabilné obchody.
       </span>
     </p>
   );
@@ -306,14 +373,29 @@ export function DisclaimerFooter() {
     <footer className="py-4 text-center text-[0.65rem] leading-snug text-muted-foreground/70">
       <p>Copyright 2026 © UOwn Corporation s.r.o. Všetky práva vyhradené.</p>
       <p className="mt-1">
-        Výsledky na stránke sú ilustratívne a vychádzajú z minulých výsledkov; skutočné výsledky sa môžu líšiť. Day trading je rizikový. UOwn Corporation s.r.o. je spoločnosť poskytujúca prop tradingové balíky — negarantujeme žiadne konkrétne zárobky ani príjmy. Tento program nie je MLM, sieťový marketing ani príležitosť na podnikanie. Táto stránka nie je súčasťou spoločností YouTube, Google, Meta ani Microsoft. Používanie stránky sa riadi{" "}
-        <a href="https://y3s.app/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
+        Výsledky na stránke sú ilustratívne a vychádzajú z minulých výsledkov; skutočné výsledky sa
+        môžu líšiť. Day trading je rizikový. UOwn Corporation s.r.o. je spoločnosť poskytujúca prop
+        tradingové balíky — negarantujeme žiadne konkrétne zárobky ani príjmy. Tento program nie je
+        MLM, sieťový marketing ani príležitosť na podnikanie. Táto stránka nie je súčasťou
+        spoločností YouTube, Google, Meta ani Microsoft. Používanie stránky sa riadi{" "}
+        <a
+          href="https://y3s.app/terms"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-foreground"
+        >
           Podmienkami používania
         </a>{" "}
         a{" "}
-        <a href="https://y3s.app/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-foreground">
+        <a
+          href="https://y3s.app/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-foreground"
+        >
           Zásadami ochrany osobných údajov
-        </a>.
+        </a>
+        .
       </p>
     </footer>
   );
