@@ -22,6 +22,11 @@ function Index() {
   return (
     <main className="relative min-h-screen text-foreground lg:h-screen lg:overflow-hidden">
       <Background />
+      <div className="pointer-events-none absolute right-4 top-6 z-20 sm:right-6 lg:right-8 lg:top-8">
+        <div className="pointer-events-auto">
+          <LivePill />
+        </div>
+      </div>
       <div className="mx-auto flex h-full max-w-[1700px] flex-col justify-center gap-4 px-4 py-6 sm:px-6 lg:gap-6 lg:px-8 lg:py-8">
         <header className="flex justify-center">
           <img
@@ -47,9 +52,6 @@ function Index() {
         {/* Right: info */}
         <section className="flex min-h-0 flex-col justify-center lg:h-full">
           <div className="flex min-h-0 flex-col justify-center gap-4 lg:gap-3">
-          <div className="flex justify-center lg:justify-end">
-            <LivePill />
-          </div>
           <div className="space-y-2">
             <h1 className="font-display text-[clamp(3.5rem,5.6vw,6rem)] font-black leading-[0.84] tracking-normal">
               <span className="block">ZERO TO</span>
