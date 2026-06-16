@@ -99,11 +99,11 @@ export function RaffleCallout() {
           className="h-20 w-20 shrink-0 drop-shadow-[0_8px_24px_oklch(0.72_0.19_45/0.55)] sm:h-24 sm:w-24 lg:h-20 lg:w-20"
         />
         <div className="min-w-0 flex-1">
-          <p className="font-display text-[1.7rem] uppercase leading-[0.95] text-foreground lg:text-[1.9rem]">
-            Vstupenka zdarma <span className="text-gradient-orange">+ šanca vyhrať $500 000</span> funded účet
+          <p className="font-display text-[1.9rem] uppercase leading-[0.95] text-foreground lg:text-[1.9rem]">
+            Vyhraj <span className="text-gradient-orange">$500 000</span> funded účet
           </p>
           <p className="mt-2 text-sm font-semibold text-foreground/85 lg:text-[0.95rem]">
-            Každý registrovaný dostane vstupenku. Jeden z účastníkov vyhrá funded účet od Y3S.
+            Klikni na tlačidlo nižšie a vyplň formulár — inak nebudeš v žrebovaní.
           </p>
         </div>
       </div>
