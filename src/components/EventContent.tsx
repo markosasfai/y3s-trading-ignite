@@ -171,7 +171,7 @@ export function GuaranteeLine() {
     <p className="flex items-start gap-2.5 text-base font-semibold leading-snug text-foreground/90 lg:text-[1.05rem]">
       <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
       <span>
-        <span className="font-black text-emerald-400">Garancia:</span> ak budeš dávať pozor, urobíš svoje prvé profitabilné obchody.
+        <span className="font-black text-emerald-400">Garancia:</span> ak budeš s nami naživo všetky 3 dni, naučíš sa robiť profitabilné obchody.
       </span>
     </p>
   );
@@ -181,10 +181,13 @@ export function CTA({ subline = true }: { subline?: boolean }) {
   return (
     <div className="space-y-2">
       <SignupDialog>
-        <button className="shimmer-overlay glow-orange group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-7 py-3.5 text-xl font-black uppercase tracking-wide text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99] sm:text-2xl">
-          Zaregistrovať sa zadarmo →
+        <button className="shimmer-overlay glow-orange group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-7 py-4 text-xl font-black uppercase tracking-wide text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99] sm:text-2xl">
+          Registruj sa zadarmo a získaj darček →
         </button>
       </SignupDialog>
+      <p className="text-center text-sm font-semibold text-foreground/80 lg:text-[0.95rem]">
+        Hneď po registrácii ti príde darček — žiadne čakanie.
+      </p>
       {subline && (
         <p className="text-center text-base font-semibold text-muted-foreground lg:text-lg">
           Obmedzený počet miest · 100% zdarma · bez kamery
