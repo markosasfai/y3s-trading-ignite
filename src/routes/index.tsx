@@ -22,10 +22,13 @@ function Index() {
   return (
     <main className="relative min-h-screen text-foreground lg:h-screen lg:overflow-hidden">
       <Background />
-      <div className="mx-auto flex h-full max-w-[1700px] flex-col gap-4 px-4 py-4 sm:px-6 lg:gap-6 lg:px-8 lg:py-4">
-        {/* Top bar: LIVE pill on the right */}
-        <header className="flex items-center justify-center lg:justify-end">
-          <LivePill />
+      <div className="mx-auto flex h-full max-w-[1700px] flex-col justify-center gap-4 px-4 py-6 sm:px-6 lg:gap-6 lg:px-8 lg:py-8">
+        <header className="flex justify-center">
+          <img
+            src={logoAsset.url}
+            alt="Y3S × Chalan z Burzy"
+            className="h-14 w-auto sm:h-16 lg:h-20"
+          />
         </header>
 
         <div className="flex min-h-0 flex-1 flex-col gap-5 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
@@ -44,12 +47,10 @@ function Index() {
         {/* Right: info */}
         <section className="flex min-h-0 flex-col justify-center lg:h-full">
           <div className="flex min-h-0 flex-col justify-center gap-4 lg:gap-3">
+          <div className="flex justify-center lg:justify-end">
+            <LivePill />
+          </div>
           <div className="space-y-2">
-            <img
-              src={logoAsset.url}
-              alt="Y3S × Chalan z Burzy"
-              className="h-10 w-auto sm:h-12 lg:h-14"
-            />
             <h1 className="font-display text-[clamp(3.5rem,5.6vw,6rem)] font-black leading-[0.84] tracking-normal">
               <span className="block">ZERO TO</span>
               <span className="block text-gradient-orange">HERO</span>
