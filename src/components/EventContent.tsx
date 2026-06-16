@@ -128,7 +128,7 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
             DEŇ 0{d.n}
           </span>
           <div className="h-px w-14 bg-gradient-to-r from-primary/40 via-primary/25 to-transparent" />
-          <h3 className="text-[0.95rem] font-black leading-tight text-foreground sm:text-[1.05rem] lg:text-[1.1rem]">
+          <h3 className="text-[0.82rem] font-black leading-tight text-foreground sm:text-[0.92rem] lg:text-[0.95rem]">
             {d.title}
           </h3>
           <div className="flex flex-col items-center gap-0.5 opacity-55">
