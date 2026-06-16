@@ -97,13 +97,13 @@ export function SignupDialog({ children }: { children: ReactNode }) {
                 Získaj <span className="text-gradient-orange">vstupenku zdarma</span>
               </p>
               <p className="mt-1 text-center text-sm font-semibold uppercase tracking-wider text-foreground/70">
-                + šanca vyhrať
+                + jeden z vás získa:
               </p>
 
               <div className="group relative mt-3 overflow-hidden rounded-2xl border border-primary/35 bg-gradient-to-b from-primary/10 to-background/85 p-4 shadow-[0_0_30px_-12px_oklch(0.72_0.19_45/0.65)] backdrop-blur-md">
                 <div className="flex items-start justify-between gap-3">
                   <span className="font-display text-[2.15rem] uppercase leading-none text-gradient-orange sm:text-[2.45rem]">
-                    Výhra
+                    Hlavná cena
                   </span>
                   <span className="mt-1 text-right text-[0.68rem] font-black uppercase tracking-[0.18em] text-primary">
                     Y3S funded účet
@@ -121,10 +121,10 @@ export function SignupDialog({ children }: { children: ReactNode }) {
                       $500&nbsp;000
                     </p>
                     <p className="mt-1 text-sm font-black uppercase leading-tight text-foreground">
-                      Jeden z vás ho získa
+                      Žrebujeme naživo počas eventu
                     </p>
                     <p className="mt-1 text-xs font-semibold leading-snug text-foreground/75">
-                      Registrácia = vstupenka plus zaradenie do žrebovania.
+                      Registrácia ťa automaticky zaradí do žrebovania.
                     </p>
                   </div>
                 </div>

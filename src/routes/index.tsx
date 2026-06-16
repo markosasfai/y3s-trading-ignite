@@ -40,7 +40,7 @@ function Index() {
         <div className="flex min-h-0 flex-1 flex-col gap-5 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
         {/* Left: poster */}
         <section className="relative flex items-center justify-center lg:h-full lg:min-h-0">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_45/0.35),transparent_60%)] blur-2xl" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_45/0.18),transparent_60%)] blur-2xl lg:bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_45/0.35),transparent_60%)]" />
           <div className="glass-strong relative overflow-hidden rounded-3xl p-2 glow-orange lg:p-2.5">
             <img
               src={posterAsset.url}
