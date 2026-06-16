@@ -180,7 +180,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
               )}
 
               {step === 2 && (
-                <p className="mt-4 text-center font-display text-lg uppercase leading-snug text-foreground sm:text-xl">
+                <p className="mt-4 text-center font-display text-xl uppercase leading-snug text-foreground sm:text-2xl">
                   Overte telefónne číslo a získajte darčeky a vstupenku zadarmo
                 </p>
               )}
