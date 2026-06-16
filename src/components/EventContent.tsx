@@ -11,35 +11,30 @@ const DAYS = [
     label: "Deň 1",
     date: "Pondelok 20. júl",
     title: "Predstavenie a základy",
-    desc: "Kto sme, čo sme — úvod do tradingu, platformy, prop tradingu a základy.",
   },
   {
     n: 2,
     label: "Deň 2",
     date: "Utorok 21. júl",
     title: "Základné pojmy",
-    desc: "Fundamenty, kľúčové pojmy a to, čo každý trader musí rozumieť.",
   },
   {
     n: 3,
     label: "Deň 3",
     date: "Streda 22. júl",
     title: "Ľahké techniky",
-    desc: "Jednoduché trading techniky, risk management a prvý predaj.",
   },
   {
     n: 4,
     label: "Deň 4",
     date: "Štvrtok 23. júl",
     title: "Ťažšie techniky",
-    desc: "Pokročilejšie techniky a prevedenie všetkého do praxe.",
   },
   {
     n: 5,
     label: "Deň 5",
     date: "Piatok 24. júl",
     title: "Finiš a rekapitulácia",
-    desc: "Zakončenie poslednými technikami, rekapitulácia týždňa a predaj.",
   },
 ];
 
