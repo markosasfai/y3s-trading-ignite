@@ -19,31 +19,31 @@ const DAYS = [
     n: 1,
     dayOfWeek: "Pondelok",
     date: "20. júl",
-    title: "Úvod do tradingu",
+    title: "Deň 1: Ako fungujú trhy",
   },
   {
     n: 2,
     dayOfWeek: "Utorok",
     date: "21. júl",
-    title: "Základné pojmy",
+    title: "Deň 2: Prvé obchody od nuly",
   },
   {
     n: 3,
     dayOfWeek: "Streda",
     date: "22. júl",
-    title: "Risk management",
+    title: "Deň 3: Risk management & psychológia",
   },
   {
     n: 4,
     dayOfWeek: "Štvrtok",
     date: "23. júl",
-    title: "Pokročilé techniky",
+    title: "Deň 4: Techniky profesionálov",
   },
   {
     n: 5,
     dayOfWeek: "Piatok",
     date: "24. júl",
-    title: "Rekapitulácia a záver",
+    title: "Deň 5: Kombinácia a FINÁLE",
   },
 ];
 
