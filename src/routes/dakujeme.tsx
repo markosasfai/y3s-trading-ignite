@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Calendar, Play, Share2, Trophy, VideoOff, BadgeDollarSign, ArrowLeft, PhoneCall } from "lucide-react";
+import { useEffect } from "react";
+import { Calendar, Play, Share2, Trophy, VideoOff, ArrowLeft } from "lucide-react";
 import { Background } from "@/components/Background";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 
@@ -155,12 +156,8 @@ function ThankYou() {
               </span>
             </p>
 
-            <div className="mt-5 grid place-items-center rounded-2xl border border-dashed border-white/15 bg-black/30 p-10 text-center">
-              <PhoneCall className="mb-3 h-8 w-8 text-primary" />
-              <p className="text-sm text-muted-foreground">Calendly widget — placeholder</p>
-              <button className="mt-4 inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary to-primary-glow px-5 py-2.5 text-sm font-bold uppercase tracking-wider text-primary-foreground glow-orange">
-                <BadgeDollarSign className="h-4 w-4" /> Rezervovať bezplatný hovor
-              </button>
+            <div className="mt-5">
+              <CalendlyInlineWidget />
             </div>
           </div>
         </section>
@@ -170,6 +167,25 @@ function ThankYou() {
         </p>
       </div>
     </main>
+  );
+}
+
+function CalendlyInlineWidget() {
+  useEffect(() => {
+    if (document.getElementById("calendly-widget-script")) return;
+    const script = document.createElement("script");
+    script.id = "calendly-widget-script";
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
+  return (
+    <div
+      className="calendly-inline-widget w-full"
+      data-url="https://calendly.com/y3s-info/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=ff5a00"
+      style={{ minWidth: 320, height: 700 }}
+    />
   );
 }
 
