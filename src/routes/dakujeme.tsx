@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { Calendar, Play, Share2, Trophy, VideoOff, BadgeDollarSign, ArrowLeft, PhoneCall } from "lucide-react";
+import { Calendar, Play, Share2, Trophy, VideoOff, ArrowLeft } from "lucide-react";
 import { Background } from "@/components/Background";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 
