@@ -74,7 +74,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
       {trigger}
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 px-4 py-5 backdrop-blur-xl" role="dialog" aria-modal="true">
-          <button className="absolute inset-0 cursor-default" aria-label="Zavrieť formulár" onClick={() => setOpen(false)} />
+          <div className="absolute inset-0" aria-hidden="true" />
           <div className="glass-strong relative max-h-[calc(100dvh-2.5rem)] w-full max-w-md overflow-y-auto overflow-x-hidden rounded-2xl border-border bg-background/95 p-5 shadow-2xl sm:p-8">
             <div className="pointer-events-none absolute -top-24 -right-16 h-56 w-56 rounded-full bg-primary/40 blur-3xl" />
             <button
@@ -98,9 +98,16 @@ export function SignupDialog({ children }: { children: ReactNode }) {
                 + šanca vyhrať
               </p>
 
-              <div className="relative mt-3 overflow-hidden rounded-2xl border-2 border-primary/60 bg-gradient-to-br from-primary/25 via-primary/10 to-amber-500/15 p-4 shadow-[0_0_40px_-10px_oklch(0.72_0.19_45/0.8)]">
-                <div className="pointer-events-none absolute -top-10 -right-10 h-40 w-40 rounded-full bg-primary/40 blur-3xl" />
-                <div className="pointer-events-none absolute -bottom-12 -left-10 h-36 w-36 rounded-full bg-amber-400/25 blur-3xl" />
+              <div className="group relative mt-3 overflow-hidden rounded-2xl border border-primary/35 bg-gradient-to-b from-primary/10 to-black/60 p-4 shadow-[0_0_30px_-12px_oklch(0.72_0.19_45/0.65)] backdrop-blur-md">
+                <div className="flex items-start justify-between gap-3">
+                  <span className="font-display text-[2.15rem] uppercase leading-none text-gradient-orange sm:text-[2.45rem]">
+                    Výhra
+                  </span>
+                  <span className="mt-1 text-right text-[0.68rem] font-black uppercase tracking-[0.18em] text-primary">
+                    Y3S funded účet
+                  </span>
+                </div>
+                <div className="my-2.5 h-px w-full bg-gradient-to-r from-primary/60 via-primary/20 to-transparent" />
                 <div className="relative flex items-center gap-3">
                   <img
                     src={giftAsset.url}
@@ -108,14 +115,14 @@ export function SignupDialog({ children }: { children: ReactNode }) {
                     className="h-20 w-20 shrink-0 drop-shadow-[0_8px_24px_oklch(0.72_0.19_45/0.7)] sm:h-24 sm:w-24"
                   />
                   <div className="min-w-0 flex-1 text-left">
-                    <p className="text-[0.7rem] font-black uppercase tracking-[0.2em] text-primary">
-                      Funded účet
-                    </p>
-                    <p className="font-display text-[2.4rem] leading-[0.9] text-gradient-orange sm:text-[2.8rem]">
+                    <p className="font-display text-[2.45rem] leading-[0.88] text-gradient-orange sm:text-[2.9rem]">
                       $500&nbsp;000
                     </p>
-                    <p className="mt-1 text-xs font-bold uppercase tracking-wider text-foreground/80">
-                      od Y3S
+                    <p className="mt-1 text-sm font-black uppercase leading-tight text-foreground">
+                      Jeden z vás ho získa
+                    </p>
+                    <p className="mt-1 text-xs font-semibold leading-snug text-foreground/75">
+                      Registrácia = vstupenka plus zaradenie do žrebovania.
                     </p>
                   </div>
                 </div>
