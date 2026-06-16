@@ -181,13 +181,15 @@ export function CTA({ subline = true }: { subline?: boolean }) {
   return (
     <div className="space-y-2">
       <SignupDialog>
-        <button className="shimmer-overlay glow-orange group relative w-full overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-7 py-4 text-xl font-black uppercase tracking-wide text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99] sm:text-2xl">
-          Registruj sa zadarmo a získaj darček →
+        <button className="shimmer-overlay glow-orange group relative flex w-full flex-col items-center justify-center gap-1 overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-7 py-4 text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99]">
+          <span className="text-xl font-black uppercase tracking-wide text-black sm:text-2xl">
+            Registruj sa zadarmo a získaj darček →
+          </span>
+          <span className="text-[0.78rem] font-medium text-black/75 sm:text-sm">
+            Darček ti príde hneď po registrácii — žiadne čakanie.
+          </span>
         </button>
       </SignupDialog>
-      <p className="text-center text-sm font-semibold text-foreground/80 lg:text-[0.95rem]">
-        Hneď po registrácii ti príde darček — žiadne čakanie.
-      </p>
       {subline && (
         <p className="text-center text-base font-semibold text-muted-foreground lg:text-lg">
           Obmedzený počet miest · 100% zdarma · bez kamery
