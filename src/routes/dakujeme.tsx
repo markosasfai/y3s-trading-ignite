@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { Calendar, Play, Share2, Trophy, VideoOff, ArrowLeft, CheckCircle2, Gift, Clock, MessageCircle, Sparkles, AlertTriangle } from "lucide-react";
+import { Calendar, Play, Share2, Trophy, ArrowLeft, CheckCircle2, Gift, Clock, MessageCircle, Sparkles, AlertTriangle } from "lucide-react";
 import { DisclaimerFooter } from "@/components/EventContent";
 import { Background } from "@/components/Background";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
@@ -142,11 +142,15 @@ function ThankYou() {
           </div>
         </section>
 
-        {/* Quick Stats Grid */}
-        <section className="mt-8 grid gap-4 sm:grid-cols-3">
-          <Recap icon={<Calendar className="h-6 w-6" />} title="20.–24. júla 2026" sub="19:00 (CET)" />
-          <Recap icon={<VideoOff className="h-6 w-6" />} title="Bez kamery" sub="100 % online" />
-          <Recap icon={<Trophy className="h-6 w-6" />} title="LIVE žrebovanie" sub="$500 000 funded účet" />
+        {/* Event date + time */}
+        <section className="mt-8 flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-white/10 bg-card/40 px-6 py-4 text-center backdrop-blur-md">
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/30">
+            <Calendar className="h-5 w-5" />
+          </span>
+          <div className="min-w-0">
+            <p className="text-base font-bold text-foreground">20.–24. júla 2026</p>
+            <p className="text-base text-muted-foreground/80">19:00 (CET)</p>
+          </div>
         </section>
 
         {/* Raffle congrats banner — green */}
@@ -209,7 +213,7 @@ function ThankYou() {
                     className="pointer-events-none absolute left-[-6%] right-[-6%] top-1/2 h-[5px] -translate-y-1/2 rotate-[-10deg] rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.6)]"
                   />
                 </div>
-                <span className="rounded-full bg-sky-400 px-5 py-2.5 font-display text-base font-black uppercase tracking-wider text-sky-950 shadow-[0_0_36px_rgba(56,189,248,0.55)] sm:text-lg sm:px-6 sm:py-3">
+                <span className="rounded-full bg-amber-400 px-5 py-2.5 font-display text-base font-black uppercase tracking-wider text-amber-950 shadow-[0_0_36px_rgba(251,191,36,0.55)] sm:text-lg sm:px-6 sm:py-3">
                   Zdarma pre teba
                 </span>
               </div>
