@@ -1,4 +1,4 @@
-import { BadgeDollarSign, VideoOff, ShieldCheck, Sparkles, Brain, LineChart, Calendar } from "lucide-react";
+import { BadgeDollarSign, VideoOff, ShieldCheck, Sparkles, Brain, LineChart, Calendar, ArrowRight } from "lucide-react";
 import { LivePill } from "./LivePill";
 import { SignupDialog } from "./SignupDialog";
 import dodoAsset from "@/assets/dodo.png.asset.json";
@@ -191,6 +191,17 @@ export function CTA({ subline = true }: { subline?: boolean }) {
         </p>
       )}
     </div>
+  );
+}
+
+export function MobileTopCTA() {
+  return (
+    <SignupDialog>
+      <button className="shimmer-overlay glow-orange inline-flex w-full max-w-sm items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-primary via-primary-glow to-primary px-5 py-3.5 text-base font-black uppercase tracking-wide text-primary-foreground sm:text-lg lg:hidden">
+        Registrovať teraz
+        <ArrowRight className="h-5 w-5" />
+      </button>
+    </SignupDialog>
   );
 }
 
