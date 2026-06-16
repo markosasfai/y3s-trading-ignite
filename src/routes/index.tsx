@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import posterAsset from "@/assets/zero-hero-poster.png.asset.json";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 import { Background } from "@/components/Background";
-import { CTA, DayTimeline, EventChips, GuaranteeLine, HostsBlock, LivePill, MobileTopBar, RaffleCallout } from "@/components/EventContent";
+import { CTA, DayTimeline, EventChips, GuaranteeLine, HostsBlock, MobileTopBar, RaffleCallout } from "@/components/EventContent";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,11 +23,6 @@ function Index() {
     <main className="relative min-h-screen text-foreground lg:h-screen lg:overflow-hidden">
       <Background />
       <MobileTopBar />
-      <div className="pointer-events-none absolute right-4 top-6 z-20 hidden sm:right-6 lg:right-8 lg:top-8 lg:block">
-        <div className="pointer-events-auto">
-          <LivePill />
-        </div>
-      </div>
       <div className="mx-auto flex h-full max-w-[1700px] flex-col justify-center gap-4 px-4 pt-16 pb-16 sm:px-6 lg:gap-6 lg:px-8 lg:py-8 lg:pt-8">
         <header className="flex justify-center">
           <img
