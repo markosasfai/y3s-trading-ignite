@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import posterAsset from "@/assets/zero-hero-poster.png.asset.json";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 import { Background } from "@/components/Background";
-import { CTA, DayTimeline, EventChips, HostsBlock, MobileTopBar, RaffleCallout } from "@/components/EventContent";
+import { CTA, DayTimeline, DisclaimerFooter, EventChips, HostsBlock, MobileTopBar, RaffleCallout } from "@/components/EventContent";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -79,6 +79,7 @@ function Index() {
           </div>
         </section>
         </div>
+        <DisclaimerFooter />
       </div>
     </main>
   );
