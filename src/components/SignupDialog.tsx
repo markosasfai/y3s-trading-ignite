@@ -4,8 +4,8 @@ import { useServerFn } from "@tanstack/react-start";
 import { X } from "lucide-react";
 import { submitChallengeRegistration } from "@/lib/registrations.functions";
 import { PhoneInput } from "./PhoneInput";
-import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 import giftAsset from "@/assets/gift-3d.png.asset.json";
+
 
 type TriggerElement = ReactElement<{
   onClick?: (event: MouseEvent<HTMLElement>) => void;
@@ -110,12 +110,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
               <X className="h-4 w-4" />
             </button>
             <header className="relative">
-              <img
-                src={logoAsset.url}
-                alt="Y3S × Chalan z Burzy"
-                className="mx-auto h-11 w-auto sm:h-12"
-              />
-              <p className="mt-4 text-center font-display text-xl uppercase leading-[1.05] tracking-wide text-foreground sm:text-2xl">
+              <p className="text-center font-display text-2xl uppercase leading-[1.05] tracking-wide text-foreground sm:text-[1.75rem]">
                 Získaj <span className="text-gradient-orange">vstupenku zdarma</span>
               </p>
               <p className="mt-2 text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
@@ -124,8 +119,29 @@ export function SignupDialog({ children }: { children: ReactNode }) {
 
               {step === 1 && (
                 <>
-                  <p className="mt-3 text-center text-sm font-semibold uppercase tracking-wider text-foreground/70">
-                    + jeden z vás získa:
+                  <p className="mt-3 text-center text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-foreground/70">
+                    + Každý z vás získa:
+                  </p>
+                  <div className="relative mt-3 overflow-hidden rounded-2xl border border-sky-400/35 bg-gradient-to-b from-sky-500/15 to-background/85 p-4 shadow-[0_0_30px_-12px_oklch(0.75_0.15_240/0.6)] backdrop-blur-md">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={giftAsset.url}
+                        alt=""
+                        className="h-20 w-20 shrink-0 opacity-70 drop-shadow-[0_8px_24px_oklch(0.75_0.15_240/0.55)] sm:h-24 sm:w-24"
+                      />
+                      <div className="min-w-0 flex-1 text-left">
+                        <p className="font-display text-[1.55rem] uppercase leading-[0.95] text-foreground sm:text-[1.8rem]">
+                          Špeciálny darček
+                        </p>
+                        <p className="mt-1 text-[0.85rem] font-semibold text-foreground/80">
+                          Tento darček získate hneď po registrácii.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="mt-3 text-center text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-foreground/70">
+                    A jeden z vás získa:
                   </p>
                   <div className="relative mt-3 overflow-hidden rounded-2xl border border-primary/35 bg-gradient-to-b from-primary/10 to-background/85 p-4 shadow-[0_0_30px_-12px_oklch(0.72_0.19_45/0.65)] backdrop-blur-md">
                     <div className="flex items-start justify-between gap-3">
@@ -157,9 +173,8 @@ export function SignupDialog({ children }: { children: ReactNode }) {
               )}
 
               {step === 2 && (
-                <p className="mt-3 text-center text-sm leading-snug text-foreground/80">
-                  Overte si prosím telefónne číslo a budete zaradený do žrebovania
-                  a zároveň získate vstupenku zdarma.
+                <p className="mt-4 text-center font-display text-lg uppercase leading-snug text-foreground sm:text-xl">
+                  Overte telefónne číslo a získajte darčeky a vstupenku zadarmo
                 </p>
               )}
 
