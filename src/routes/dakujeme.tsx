@@ -125,12 +125,14 @@ function ThankYou() {
 
               {/* Action buttons */}
               <div className="mt-10 flex w-full flex-col gap-4 sm:flex-row sm:justify-center">
-                <button
-                  onClick={downloadIcs}
+                <a
+                  href="https://www.addevent.com/event/8zg6vgxf52h6"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="shimmer-overlay glow-orange relative flex flex-1 items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-primary to-primary-glow px-8 py-4 text-sm font-bold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01] sm:flex-none"
                 >
                   <Calendar className="h-5 w-5" /> Pridať do kalendára
-                </button>
+                </a>
                 <button
                   onClick={share}
                   className="glass flex flex-1 items-center justify-center gap-3 rounded-xl border border-white/10 px-8 py-4 text-sm font-bold uppercase tracking-wider transition hover:bg-white/10 sm:flex-none"
