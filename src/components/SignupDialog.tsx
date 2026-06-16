@@ -150,28 +150,25 @@ export function SignupDialog({ children }: { children: ReactNode }) {
                   <p className="mt-3 text-center text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-foreground/70">
                     A jeden z vás získa:
                   </p>
-                  <div className="relative mt-3 overflow-hidden rounded-2xl border border-primary/35 bg-gradient-to-b from-primary/10 to-background/85 p-4 shadow-[0_0_30px_-12px_oklch(0.72_0.19_45/0.65)] backdrop-blur-md">
+                  <div className="relative mt-3 overflow-hidden rounded-2xl border border-emerald-400/35 bg-gradient-to-b from-emerald-500/15 to-background/85 p-4 shadow-[0_0_30px_-12px_oklch(0.75_0.15_160/0.6)] backdrop-blur-md">
                     <div className="flex items-start justify-between gap-3">
-                      <span className="font-display text-[2.15rem] uppercase leading-none text-gradient-orange sm:text-[2.45rem]">
-                        Hlavná cena
-                      </span>
-                      <span className="mt-1 text-right text-[0.68rem] font-black uppercase tracking-[0.18em] text-primary">
+                      <span className="font-display text-[2.15rem] uppercase leading-none text-emerald-300 sm:text-[2.45rem]">
                         Y3S funded účet
                       </span>
                     </div>
-                    <div className="my-2.5 h-px w-full bg-gradient-to-r from-primary/60 via-primary/20 to-transparent" />
+                    <div className="my-2.5 h-px w-full bg-gradient-to-r from-emerald-400/60 via-emerald-400/20 to-transparent" />
                     <div className="relative flex items-center gap-3">
                       <img
                         src={giftAsset.url}
                         alt=""
-                        className="h-20 w-20 shrink-0 opacity-60 drop-shadow-[0_8px_24px_oklch(0.72_0.19_45/0.7)] sm:h-24 sm:w-24"
+                        className="h-20 w-20 shrink-0 opacity-70 drop-shadow-[0_8px_24px_oklch(0.75_0.15_160/0.55)] sm:h-24 sm:w-24"
                       />
                       <div className="min-w-0 flex-1 text-left">
-                        <p className="font-display text-[2.45rem] leading-[0.88] text-gradient-orange sm:text-[2.9rem]">
+                        <p className="font-display text-[2.45rem] leading-[0.88] text-emerald-300 sm:text-[2.9rem]">
                           $500&nbsp;000
                         </p>
                         <p className="mt-1 text-xs font-semibold leading-snug text-foreground/80">
-                          Darček odomkneš až po dokončení ďalšieho kroku.
+                          Uown corporation je spoločnosť poskytujúca prop tradingové balíky.
                         </p>
                       </div>
                     </div>
