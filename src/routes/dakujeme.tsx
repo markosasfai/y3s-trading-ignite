@@ -219,12 +219,6 @@ function ThankYou() {
             <div className="mt-6 grid gap-5 sm:grid-cols-2 sm:items-stretch">
               {/* Specialist card with gift accent */}
               <div className="relative overflow-hidden rounded-2xl border border-sky-400/20 bg-gradient-to-br from-sky-950/60 to-black/40 p-4 backdrop-blur-md">
-                <img
-                  src={giftAsset.url}
-                  alt=""
-                  aria-hidden
-                  className="pointer-events-none absolute -bottom-6 -right-6 w-28 opacity-40 drop-shadow-[0_10px_30px_rgba(56,189,248,0.4)] sm:w-32"
-                />
                 <div className="relative flex items-center gap-4">
                   <img
                     src={specialistAsset.url}
