@@ -65,6 +65,13 @@ export function SignupDialog({ children }: { children: ReactNode }) {
     setStep(3);
   };
 
+  const resendCode = () => {
+    setCode("");
+    // Placeholder — Twilio resend will be wired here later.
+    setError("Kód bol znova odoslaný. Pre testovanie použite 000000.");
+    window.setTimeout(() => setError(null), 4000);
+  };
+
   const confirmAndSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
