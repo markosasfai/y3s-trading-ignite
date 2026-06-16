@@ -73,7 +73,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 px-4 py-5 backdrop-blur-xl" role="dialog" aria-modal="true">
           <button className="absolute inset-0 cursor-default" aria-label="Zavrieť formulár" onClick={() => setOpen(false)} />
-          <div className="glass-strong relative max-h-[calc(100dvh-2.5rem)] w-full max-w-md overflow-y-auto rounded-2xl border-border bg-background/95 p-5 shadow-2xl sm:p-8">
+          <div className="glass-strong relative max-h-[calc(100dvh-2.5rem)] w-full max-w-md overflow-y-auto overflow-x-hidden rounded-2xl border-border bg-background/95 p-5 shadow-2xl sm:p-8">
             <div className="pointer-events-none absolute -top-24 -right-16 h-56 w-56 rounded-full bg-primary/40 blur-3xl" />
             <button
               type="button"
@@ -85,8 +85,11 @@ export function SignupDialog({ children }: { children: ReactNode }) {
             </button>
             <header className="relative pr-10">
               <h2 className="font-display text-3xl uppercase tracking-wide">Rezervuj si miesto</h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Vyplnením formulára získate <span className="font-semibold text-foreground">vstupenku zdarma</span> a ste automaticky v žrebovaní o <span className="font-semibold text-gradient-orange">funded účet $500&nbsp;000</span> od Y3S. Počet miest je obmedzený.
+              <p className="mt-3 text-sm leading-relaxed text-foreground/90">
+                Zaregistruj sa a získaš <span className="font-bold text-foreground">vstupenku zdarma</span> na 3-dňový challenge.
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/90">
+                <span className="font-bold text-gradient-orange">+ Bonus:</span> jeden z účastníkov vyhrá <span className="font-bold text-gradient-orange">funded účet $500&nbsp;000</span> od Y3S.
               </p>
             </header>
           <form onSubmit={submit} className="relative mt-6 space-y-4">
