@@ -270,6 +270,16 @@ export function SignupDialog({ children }: { children: ReactNode }) {
                     <p className="mt-1.5 text-center text-[0.7rem] text-muted-foreground">
                       Pre testovanie použite 000000
                     </p>
+                    <p className="mt-2 text-center text-[0.75rem] text-muted-foreground">
+                      Neprišiel vám kód?{" "}
+                      <button
+                        type="button"
+                        onClick={resendCode}
+                        className="font-semibold text-primary underline decoration-primary/50 underline-offset-2 transition hover:text-foreground"
+                      >
+                        Poslať znova
+                      </button>
+                    </p>
                   </div>
                 )}
                 {error && (
