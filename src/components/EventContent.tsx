@@ -63,7 +63,7 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
       {DAYS.map((d) => (
         <div
           key={d.n}
-          className="group relative min-w-0 overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-b from-primary/10 to-black/60 p-4 backdrop-blur-md transition hover:border-primary/60 hover:shadow-[0_0_30px_-10px_oklch(0.72_0.19_45/0.7)]"
+          className="group relative min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-black/60 p-4 backdrop-blur-md transition hover:border-primary/50 hover:shadow-[0_0_30px_-10px_oklch(0.72_0.19_45/0.55)] lg:border-primary/30 lg:from-primary/10"
         >
           <div className="flex items-baseline justify-between gap-2">
             <span className="font-display text-[2.4rem] leading-none tracking-wide text-gradient-orange">
