@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { Calendar, Play, Share2, Trophy, VideoOff, ArrowLeft } from "lucide-react";
+import { DisclaimerFooter } from "@/components/EventContent";
 import { Background } from "@/components/Background";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 
@@ -162,9 +163,7 @@ function ThankYou() {
           </div>
         </section>
 
-        <p className="mt-8 text-center text-xs text-muted-foreground">
-          © Y3S × Chalan z Burzy · Garancia profitabilných obchodov je vyjadrením Dodo &amp; Lukáša, nie spoločnosti.
-        </p>
+        <DisclaimerFooter />
       </div>
     </main>
   );
