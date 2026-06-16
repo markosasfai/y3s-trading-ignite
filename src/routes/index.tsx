@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import posterAsset from "@/assets/zero-hero-poster.png.asset.json";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 import { Background } from "@/components/Background";
-import { CTA, DayTimeline, EventChips, GuaranteeLine, HostsBlock, MobileTopBar, RaffleCallout } from "@/components/EventContent";
+import { CTA, DayTimeline, EventChips, HostsBlock, MobileTopBar, RaffleCallout } from "@/components/EventContent";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,7 +49,7 @@ function Index() {
         <section className="flex min-h-0 flex-col justify-center lg:h-full">
           <div className="flex min-h-0 flex-col justify-center gap-4 lg:gap-3">
           <div className="space-y-2">
-            <h1 className="font-display text-[clamp(3.5rem,5.6vw,6rem)] font-black leading-[0.84] tracking-normal">
+            <h1 className="font-display text-[clamp(3.5rem,5.6vw,6rem)] font-black leading-[1.05] tracking-normal">
               <span className="block">ZA 3 DNI Z TEBA</span>
               <span className="block">UROBÍME </span>
               <span className="block text-gradient-orange">PROFITABILNÉHO TRADERA</span>
@@ -69,8 +69,6 @@ function Index() {
 
           {/* Swapped: hosts first, then the big prize callout near the CTA */}
           <HostsBlock />
-
-          <GuaranteeLine />
 
           <RaffleCallout />
 
