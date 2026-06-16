@@ -50,8 +50,9 @@ function Index() {
           <div className="flex min-h-0 flex-col justify-center gap-4 lg:gap-3">
           <div className="space-y-2">
             <h1 className="font-display text-[clamp(3.5rem,5.6vw,6rem)] font-black leading-[0.84] tracking-normal">
-              <span className="block">Za 3 dni</span>
-              <span className="block text-gradient-orange">profitabilný trader</span>
+              <span className="block">ZA 3 DNI Z TEBA</span>
+              <span className="block">UROBÍME </span>
+              <span className="block text-gradient-orange">PROFITABILNÉHO TRADERA</span>
             </h1>
             <p className="font-display text-2xl uppercase tracking-[0.06em] text-foreground sm:text-3xl lg:text-[2rem]">
               <span className="text-gradient-orange">20.–22. jún</span> · <span className="text-foreground">19:00</span>
