@@ -79,10 +79,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Zero to Hero — 3-dňový online challenge zdarma | Y3S × Chalan z Burzy" },
       { name: "description", content: "20.–22. jún 2026, 19:00. Dodo a Lukáš ťa za 3 dni naučia zarábať obchodovaním. 100 % online a zdarma. Obmedzený počet miest." },
-      { property: "og:title", content: "Zero to Hero — Online Challenge | Y3S × Chalan z Burzy" },
-      { property: "og:description", content: "3 dni naživo s Dodo & Lukášom. Zdarma. Online. Žrebovanie o $500 000 funded účet pre LIVE účastníkov." },
+      { property: "og:title", content: "Zero to Hero — 3-dňový online challenge zdarma | Y3S × Chalan z Burzy" },
+      { property: "og:description", content: "20.–22. jún 2026, 19:00. Dodo a Lukáš ťa za 3 dni naučia zarábať obchodovaním. 100 % online a zdarma. Obmedzený počet miest." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Zero to Hero — 3-dňový online challenge zdarma | Y3S × Chalan z Burzy" },
+      { name: "twitter:description", content: "20.–22. jún 2026, 19:00. Dodo a Lukáš ťa za 3 dni naučia zarábať obchodovaním. 100 % online a zdarma. Obmedzený počet miest." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/72b166a5-74ee-4c62-8dfd-b91fa8165372/id-preview-18b38466--787a8874-03d2-4838-b9a3-76ef7dc75437.lovable.app-1781613855091.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/72b166a5-74ee-4c62-8dfd-b91fa8165372/id-preview-18b38466--787a8874-03d2-4838-b9a3-76ef7dc75437.lovable.app-1781613855091.png" },
     ],
     links: [
       {
