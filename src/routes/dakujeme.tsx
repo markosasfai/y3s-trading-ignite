@@ -5,6 +5,7 @@ import { DisclaimerFooter } from "@/components/EventContent";
 import { Background } from "@/components/Background";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 import giftAsset from "@/assets/gift-3d.png.asset.json";
+import specialistAsset from "@/assets/specialist-y3s.png.asset.json";
 
 export const Route = createFileRoute("/dakujeme")({
   head: () => ({
@@ -148,22 +149,31 @@ function ThankYou() {
           <Recap icon={<Trophy className="h-6 w-6" />} title="LIVE žrebovanie" sub="$500 000 funded účet" />
         </section>
 
-        {/* Raffle congrats banner */}
-        <section className="relative mt-8 overflow-hidden rounded-[2rem] border border-primary/30 bg-gradient-to-r from-primary/15 via-primary/10 to-transparent p-6 backdrop-blur-md sm:p-8">
-          <div className="pointer-events-none absolute -top-20 -right-10 h-44 w-44 rounded-full bg-primary/25 blur-3xl" />
-          <div className="relative flex items-start gap-4 sm:items-center sm:gap-6">
-            <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-primary text-primary-foreground shadow-[0_0_24px_color-mix(in_oklab,var(--primary)_45%,transparent)] sm:h-16 sm:w-16">
-              <Trophy className="h-7 w-7 sm:h-8 sm:w-8" />
+        {/* Raffle congrats banner — green */}
+        <section className="relative mt-8 overflow-hidden rounded-[2rem] border border-emerald-400/30 bg-gradient-to-br from-emerald-900/40 via-emerald-950/30 to-card/40 p-6 backdrop-blur-md sm:p-10">
+          <div className="pointer-events-none absolute -top-24 -right-12 h-56 w-56 rounded-full bg-emerald-400/25 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-24 -left-12 h-56 w-56 rounded-full bg-emerald-500/15 blur-3xl" />
+          <div className="relative grid gap-6 sm:grid-cols-[auto_1fr] sm:items-center sm:gap-8">
+            <div className="relative mx-auto w-32 shrink-0 sm:w-40">
+              <div className="absolute inset-0 rounded-full bg-emerald-400/30 blur-2xl" />
+              <img
+                src={giftAsset.url}
+                alt="Bonus: žrebovanie o funded účet"
+                className="relative w-full drop-shadow-[0_15px_35px_rgba(16,185,129,0.4)]"
+              />
             </div>
-            <div className="min-w-0">
-              <p className="font-display text-[11px] font-bold uppercase tracking-[0.2em] text-primary sm:text-xs">
-                Gratulujeme — si v žrebovaní
+            <div className="min-w-0 text-center sm:text-left">
+              <p className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-4 py-1.5 font-display text-base font-bold uppercase tracking-[0.18em] text-emerald-300">
+                <Trophy className="h-4 w-4" /> Gratulujeme!
               </p>
-              <h3 className="mt-1.5 font-display text-xl font-black uppercase leading-tight sm:text-2xl">
-                Hráš o <span className="text-gradient-orange">$500 000 funded účet</span>
+              <h3 className="mt-4 font-display text-3xl font-black uppercase leading-[1.05] sm:text-4xl">
+                Si v žrebovaní o{" "}
+                <span className="bg-gradient-to-r from-emerald-300 to-emerald-500 bg-clip-text text-transparent">
+                  $500 000 funded účet
+                </span>
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/75 sm:text-base">
-                Stačí jediné — <span className="font-semibold text-foreground">pripojiť sa naživo na event</span>. Víťaza vyhlasujeme priamo počas vysielania, takže musíš byť pri tom.
+              <p className="mt-4 text-lg leading-relaxed text-foreground/85">
+                Stačí jediná vec — <span className="font-semibold text-foreground">pripoj sa naživo na event</span>. Víťaza vyhlasujeme priamo počas vysielania, takže musíš byť pri tom.
               </p>
             </div>
           </div>
@@ -194,7 +204,7 @@ function ThankYou() {
                       className="pointer-events-none absolute left-[-6%] right-[-6%] top-1/2 h-[6px] -translate-y-1/2 rotate-[-10deg] rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.6)]"
                     />
                   </div>
-                  <span className="rounded-full bg-sky-400 px-7 py-3 font-display text-lg font-black uppercase tracking-wider text-sky-950 shadow-[0_0_36px_rgba(56,189,248,0.55)] sm:text-xl sm:px-9 sm:py-4">
+                  <span className="rounded-full bg-sky-400 px-7 py-3 font-display text-xl font-black uppercase tracking-wider text-sky-950 shadow-[0_0_36px_rgba(56,189,248,0.55)] sm:text-2xl sm:px-10 sm:py-4">
                     Zdarma pre teba
                   </span>
                 </div>
@@ -202,8 +212,8 @@ function ThankYou() {
 
               {/* Copy */}
               <div>
-                <p className="inline-flex items-center gap-2 rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 font-display text-xs font-bold uppercase tracking-[0.2em] text-sky-300">
-                  <Gift className="h-3.5 w-3.5" /> Tvoj bonus k vstupenke
+                <p className="inline-flex items-center gap-2 rounded-full border border-sky-400/40 bg-sky-400/10 px-4 py-1.5 font-display text-base font-bold uppercase tracking-[0.18em] text-sky-300">
+                  <Gift className="h-4 w-4" /> Tvoj bonus k vstupenke
                 </p>
                 <h2 className="mt-5 font-display text-[clamp(2rem,4.5vw,3rem)] font-black uppercase leading-[1.05]">
                   Hovor 1:1 s naším{" "}
@@ -211,24 +221,36 @@ function ThankYou() {
                     trading špecialistom.
                   </span>
                 </h2>
-                <p className="mt-5 text-base leading-relaxed text-foreground/75 sm:text-lg">
+                {/* Specialist photo + intro */}
+                <div className="mt-5 flex items-center gap-4 rounded-2xl border border-sky-400/15 bg-black/30 p-3 backdrop-blur-md">
+                  <img
+                    src={specialistAsset.url}
+                    alt="Trading špecialistka z tímu Y3S"
+                    className="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-sky-400/40 sm:h-20 sm:w-20"
+                  />
+                  <div className="min-w-0 text-left">
+                    <p className="font-display text-xs font-bold uppercase tracking-[0.18em] text-sky-300">Tvoj špecialista</p>
+                    <p className="mt-1 text-base font-semibold text-foreground sm:text-lg">Tím Y3S — trading mentor</p>
+                  </div>
+                </div>
+                <p className="mt-5 text-lg leading-relaxed text-foreground/85">
                   Bežne za tento hovor ľudia platia. Ty ho máš ako darček k vstupenke — stačí sa zapísať.
                 </p>
 
-                <ul className="mt-6 space-y-3 text-sm sm:text-base">
-                  <BenefitItem icon={<MessageCircle className="h-4 w-4" />}>
+                <ul className="mt-6 space-y-3 text-base sm:text-lg">
+                  <BenefitItem icon={<MessageCircle className="h-5 w-5" />}>
                     Spýtaj sa čokoľvek o evente alebo o tradingu vo všeobecnosti
                   </BenefitItem>
-                  <BenefitItem icon={<Sparkles className="h-4 w-4" />}>
+                  <BenefitItem icon={<Sparkles className="h-5 w-5" />}>
                     Extra tipy a personalizovaný plán ešte pred štartom
                   </BenefitItem>
-                  <BenefitItem icon={<Clock className="h-4 w-4" />}>
+                  <BenefitItem icon={<Clock className="h-5 w-5" />}>
                     Vyber si čas, ktorý ti sadne — 30 minút, online
                   </BenefitItem>
                 </ul>
 
-                <div className="mt-6 flex items-start gap-3 rounded-2xl border border-amber-400/30 bg-amber-400/5 p-4 text-sm text-amber-100/90">
-                  <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />
+                <div className="mt-6 flex items-start gap-3 rounded-2xl border border-amber-400/30 bg-amber-400/5 p-4 text-base text-amber-100/90">
+                  <AlertTriangle className="mt-0.5 h-6 w-6 shrink-0 text-amber-300" />
                   <p>
                     <span className="font-semibold text-amber-200">Keď sa kalendár zaplní, končíme.</span>{" "}
                     Ďalšie termíny už nepridávame — vyber si voľný slot teraz, kým je.
