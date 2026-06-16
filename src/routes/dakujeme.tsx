@@ -293,12 +293,12 @@ function CalendlyInlineWidget() {
 function Recap({ icon, title, sub }: { icon: React.ReactNode; title: string; sub: string }) {
   return (
     <div className="flex items-center gap-4 rounded-2xl border border-white/5 bg-card/40 p-5 backdrop-blur-md">
-      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/30">
+      <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/30">
         {icon}
       </div>
       <div className="min-w-0">
-        <p className="text-sm font-bold text-foreground">{title}</p>
-        <p className="truncate text-xs text-muted-foreground/70">{sub}</p>
+        <p className="text-base font-bold text-foreground">{title}</p>
+        <p className="truncate text-base text-muted-foreground/80">{sub}</p>
       </div>
     </div>
   );
