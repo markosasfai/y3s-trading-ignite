@@ -15,6 +15,9 @@ export function SignupDialog({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const submitRegistration = useServerFn(submitChallengeRegistration);
   const [open, setOpen] = useState(false);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [codeSent, setCodeSent] = useState(false);
+  const [code, setCode] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState({ value: "", valid: false });
@@ -29,6 +32,10 @@ export function SignupDialog({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!open) return;
+    setStep(1);
+    setCodeSent(false);
+    setCode("");
+    setError(null);
     window.setTimeout(() => panelRef.current?.scrollTo({ top: 0 }), 0);
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
@@ -41,13 +48,28 @@ export function SignupDialog({ children }: { children: ReactNode }) {
     };
   }, [open]);
 
-  const submit = async (e: FormEvent) => {
+  const goToStep2 = (e: FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    if (name.trim().length < 2) return setError("Zadajte vaše meno a priezvisko.");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setError("Zadajte platný email.");
+    setStep(2);
+  };
+
+  const sendCode = (e: FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    if (!phone.valid) return setError("Zadajte platné telefónne číslo.");
+    // Placeholder — Twilio verification will be wired here later.
+    setCodeSent(true);
+    setStep(3);
+  };
+
+  const confirmAndSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
     if (submitting) return;
-    if (name.trim().length < 2) return setError("Zadajte vaše meno a priezvisko.");
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setError("Zadajte platný email.");
-    if (!phone.valid) return setError("Zadajte platné telefónne číslo.");
+    if (code !== "000000") return setError("Nesprávny kód. Pre testovanie použite 000000.");
     setSubmitting(true);
     try {
       await submitRegistration({
@@ -96,101 +118,164 @@ export function SignupDialog({ children }: { children: ReactNode }) {
               <p className="mt-4 text-center font-display text-xl uppercase leading-[1.05] tracking-wide text-foreground sm:text-2xl">
                 Získaj <span className="text-gradient-orange">vstupenku zdarma</span>
               </p>
-              <p className="mt-1 text-center text-sm font-semibold uppercase tracking-wider text-foreground/70">
-                + jeden z vás získa:
+              <p className="mt-2 text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                Krok {step} z 3
               </p>
 
-              <div className="group relative mt-3 overflow-hidden rounded-2xl border border-primary/35 bg-gradient-to-b from-primary/10 to-background/85 p-4 shadow-[0_0_30px_-12px_oklch(0.72_0.19_45/0.65)] backdrop-blur-md">
-                <div className="flex items-start justify-between gap-3">
-                  <span className="font-display text-[2.15rem] uppercase leading-none text-gradient-orange sm:text-[2.45rem]">
-                    Hlavná cena
-                  </span>
-                  <span className="mt-1 text-right text-[0.68rem] font-black uppercase tracking-[0.18em] text-primary">
-                    Y3S funded účet
-                  </span>
-                </div>
-                <div className="my-2.5 h-px w-full bg-gradient-to-r from-primary/60 via-primary/20 to-transparent" />
-                <div className="relative flex items-center gap-3">
-                  <img
-                    src={giftAsset.url}
-                    alt=""
-                    className="h-20 w-20 shrink-0 drop-shadow-[0_8px_24px_oklch(0.72_0.19_45/0.7)] sm:h-24 sm:w-24"
+              {step === 1 && (
+                <>
+                  <p className="mt-3 text-center text-sm font-semibold uppercase tracking-wider text-foreground/70">
+                    + jeden z vás získa:
+                  </p>
+                  <div className="relative mt-3 overflow-hidden rounded-2xl border border-primary/35 bg-gradient-to-b from-primary/10 to-background/85 p-4 shadow-[0_0_30px_-12px_oklch(0.72_0.19_45/0.65)] backdrop-blur-md">
+                    <div className="flex items-start justify-between gap-3">
+                      <span className="font-display text-[2.15rem] uppercase leading-none text-gradient-orange sm:text-[2.45rem]">
+                        Hlavná cena
+                      </span>
+                      <span className="mt-1 text-right text-[0.68rem] font-black uppercase tracking-[0.18em] text-primary">
+                        Y3S funded účet
+                      </span>
+                    </div>
+                    <div className="my-2.5 h-px w-full bg-gradient-to-r from-primary/60 via-primary/20 to-transparent" />
+                    <div className="relative flex items-center gap-3">
+                      <img
+                        src={giftAsset.url}
+                        alt=""
+                        className="h-20 w-20 shrink-0 opacity-60 drop-shadow-[0_8px_24px_oklch(0.72_0.19_45/0.7)] sm:h-24 sm:w-24"
+                      />
+                      <div className="min-w-0 flex-1 text-left">
+                        <p className="font-display text-[2.45rem] leading-[0.88] text-gradient-orange sm:text-[2.9rem]">
+                          $500&nbsp;000
+                        </p>
+                        <p className="mt-1 text-xs font-semibold leading-snug text-foreground/80">
+                          Darček odomkneš až po dokončení ďalšieho kroku.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {step === 2 && (
+                <p className="mt-3 text-center text-sm leading-snug text-foreground/80">
+                  Overte si prosím telefónne číslo a budete zaradený do žrebovania
+                  a zároveň získate vstupenku zdarma.
+                </p>
+              )}
+
+              {step === 3 && (
+                <p className="mt-3 text-center text-sm leading-snug text-foreground/80">
+                  Zadajte 6-miestny kód, ktorý sme vám poslali, a dokončite registráciu.
+                </p>
+              )}
+            </header>
+
+            {step === 1 && (
+              <form onSubmit={goToStep2} className="relative mt-6 space-y-4">
+                <input
+                  aria-hidden="true"
+                  tabIndex={-1}
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  className="absolute -left-[9999px] h-px w-px opacity-0"
+                  autoComplete="off"
+                />
+                <div>
+                  <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">
+                    Meno a priezvisko
+                  </label>
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="glass w-full rounded-xl px-3 py-3 text-base outline-none focus-within:ring-2 focus:ring-2 focus:ring-primary/60"
+                    placeholder="Ján Novák"
+                    autoComplete="name"
                   />
-                  <div className="min-w-0 flex-1 text-left">
-                    <p className="font-display text-[2.45rem] leading-[0.88] text-gradient-orange sm:text-[2.9rem]">
-                      $500&nbsp;000
-                    </p>
-                    <p className="mt-1 text-sm font-black uppercase leading-tight text-foreground">
-                      Žrebujeme naživo počas eventu
-                    </p>
-                    <p className="mt-1 text-xs font-semibold leading-snug text-foreground/75">
-                      Registrácia ťa automaticky zaradí do žrebovania.
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="glass w-full rounded-xl px-3 py-3 text-base outline-none focus:ring-2 focus:ring-primary/60"
+                    placeholder="jan@email.sk"
+                    autoComplete="email"
+                  />
+                </div>
+                {error && (
+                  <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive-foreground">
+                    {error}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  className="shimmer-overlay glow-orange relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-primary to-primary-glow px-6 py-4 text-base font-bold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99]"
+                >
+                  Pokračovať →
+                </button>
+                <p className="text-center text-xs text-muted-foreground">
+                  100% zdarma · bez kamery · obmedzený počet miest
+                </p>
+              </form>
+            )}
+
+            {(step === 2 || step === 3) && (
+              <form onSubmit={codeSent ? confirmAndSubmit : sendCode} className="relative mt-6 space-y-4">
+                <div>
+                  <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">
+                    Telefón
+                  </label>
+                  <PhoneInput onChange={handlePhoneChange} />
+                </div>
+                {codeSent && (
+                  <div>
+                    <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">
+                      6-miestny kód
+                    </label>
+                    <input
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      maxLength={6}
+                      value={code}
+                      onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                      className="glass w-full rounded-xl px-3 py-3 text-center text-2xl font-bold tracking-[0.5em] outline-none focus:ring-2 focus:ring-primary/60"
+                      placeholder="000000"
+                      autoComplete="one-time-code"
+                    />
+                    <p className="mt-1.5 text-center text-[0.7rem] text-muted-foreground">
+                      Pre testovanie použite 000000
                     </p>
                   </div>
-                </div>
-              </div>
-
-              <p className="mt-3 text-center text-xs text-muted-foreground sm:text-sm">
-                Stačí vyplniť údaje — trvá to menej ako 2 sekundy.
-              </p>
-            </header>
-          <form onSubmit={submit} className="relative mt-6 space-y-4">
-            <input
-              aria-hidden="true"
-              tabIndex={-1}
-              value={website}
-              onChange={(e) => setWebsite(e.target.value)}
-              className="absolute -left-[9999px] h-px w-px opacity-0"
-              autoComplete="off"
-            />
-            <div>
-              <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">
-                Meno a priezvisko
-              </label>
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="glass w-full rounded-xl px-3 py-3 text-base outline-none focus-within:ring-2 focus:ring-2 focus:ring-primary/60"
-                placeholder="Ján Novák"
-                autoComplete="name"
-              />
-            </div>
-            <div>
-              <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">
-                Email
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="glass w-full rounded-xl px-3 py-3 text-base outline-none focus:ring-2 focus:ring-primary/60"
-                placeholder="jan@email.sk"
-                autoComplete="email"
-              />
-            </div>
-            <div>
-              <label className="mb-1.5 block text-xs uppercase tracking-wider text-muted-foreground">
-                Telefón
-              </label>
-              <PhoneInput onChange={handlePhoneChange} />
-            </div>
-            {error && (
-              <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive-foreground">
-                {error}
-              </p>
+                )}
+                {error && (
+                  <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive-foreground">
+                    {error}
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="shimmer-overlay glow-orange relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-primary to-primary-glow px-6 py-4 text-base font-bold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70"
+                >
+                  {codeSent
+                    ? submitting
+                      ? "Odosielam..."
+                      : "Potvrdiť číslo a dokončiť registráciu →"
+                    : "Overiť a zaregistrovať →"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setStep(codeSent ? 2 : 1); setCodeSent(false); setCode(""); setError(null); }}
+                  className="block w-full text-center text-xs text-muted-foreground hover:text-foreground"
+                >
+                  ← Späť
+                </button>
+              </form>
             )}
-            <button
-              type="submit"
-              disabled={submitting}
-              className="shimmer-overlay glow-orange relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-primary to-primary-glow px-6 py-4 text-base font-bold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01] active:scale-[0.99]"
-            >
-              {submitting ? "Odosielam..." : "Zarezervovať miesto zadarmo →"}
-            </button>
-            <p className="text-center text-xs text-muted-foreground">
-              100% zdarma · bez kamery · obmedzený počet miest
-            </p>
-          </form>
-        </div>
+          </div>
         </div>
       )}
     </>
