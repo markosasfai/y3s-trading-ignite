@@ -99,11 +99,11 @@ export function RaffleCallout() {
           className="h-20 w-20 shrink-0 drop-shadow-[0_8px_24px_oklch(0.72_0.19_45/0.55)] sm:h-24 sm:w-24 lg:h-20 lg:w-20"
         />
         <div className="min-w-0 flex-1">
-          <p className="font-display text-[1.9rem] uppercase leading-[0.95] text-foreground lg:text-[1.9rem]">
-            Vyhraj <span className="text-gradient-orange">$500 000</span> funded účet
+          <p className="font-display text-[1.7rem] uppercase leading-[0.95] text-foreground lg:text-[1.9rem]">
+            Vstupenka zdarma <span className="text-gradient-orange">+ šanca vyhrať $500 000</span> funded účet
           </p>
           <p className="mt-2 text-sm font-semibold text-foreground/85 lg:text-[0.95rem]">
-            Klikni na tlačidlo nižšie a vyplň formulár — inak nebudeš v žrebovaní.
+            Každý registrovaný dostane vstupenku. Jeden z účastníkov vyhrá funded účet od Y3S.
           </p>
         </div>
       </div>
@@ -202,6 +202,28 @@ export function MobileTopCTA() {
         <ArrowRight className="h-5 w-5" />
       </button>
     </SignupDialog>
+  );
+}
+
+export function MobileTopBar() {
+  return (
+    <div className="fixed inset-x-0 top-0 z-30 lg:hidden">
+      <div className="flex items-center justify-between gap-3 border-b border-white/10 bg-background/80 px-3 py-2 backdrop-blur-xl">
+        <div className="inline-flex items-center gap-2 text-[0.7rem] font-black uppercase tracking-[0.18em] text-foreground">
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="live-pulse absolute inline-flex h-full w-full rounded-full bg-destructive opacity-80" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-destructive shadow-[0_0_10px_2px_oklch(0.65_0.22_25)]" />
+          </span>
+          Naživo
+        </div>
+        <SignupDialog>
+          <button className="shimmer-overlay glow-orange inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-primary to-primary-glow px-4 py-2 text-[0.78rem] font-black uppercase tracking-wider text-primary-foreground">
+            Registrovať
+            <ArrowRight className="h-3.5 w-3.5" />
+          </button>
+        </SignupDialog>
+      </div>
+    </div>
   );
 }
 
