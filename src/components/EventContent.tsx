@@ -241,7 +241,7 @@ export function GuaranteeLine() {
     <p className="flex items-start gap-2.5 text-base font-semibold leading-snug text-foreground/90 lg:text-[1.05rem]">
       <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
       <span>
-        <span className="font-black text-emerald-400">Garancia:</span> ak budeš s nami naživo všetky 3 dni, naučíš sa robiť profitabilné obchody.
+        <span className="font-black text-emerald-400">Garancia:</span> ak budeš s nami naživo všetkých 5 dní, naučíš sa robiť profitabilné obchody.
       </span>
     </p>
   );
