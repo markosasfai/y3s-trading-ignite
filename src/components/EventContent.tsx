@@ -11,35 +11,30 @@ const DAYS = [
     label: "Deň 1",
     date: "Pondelok 20. júl",
     title: "Predstavenie a základy",
-    desc: "Kto sme, čo sme — úvod do tradingu, platformy, prop tradingu a základy.",
   },
   {
     n: 2,
     label: "Deň 2",
     date: "Utorok 21. júl",
     title: "Základné pojmy",
-    desc: "Fundamenty, kľúčové pojmy a to, čo každý trader musí rozumieť.",
   },
   {
     n: 3,
     label: "Deň 3",
     date: "Streda 22. júl",
     title: "Ľahké techniky",
-    desc: "Jednoduché trading techniky, risk management a prvý predaj.",
   },
   {
     n: 4,
     label: "Deň 4",
     date: "Štvrtok 23. júl",
     title: "Ťažšie techniky",
-    desc: "Pokročilejšie techniky a prevedenie všetkého do praxe.",
   },
   {
     n: 5,
     label: "Deň 5",
     date: "Piatok 24. júl",
     title: "Finiš a rekapitulácia",
-    desc: "Zakončenie poslednými technikami, rekapitulácia týždňa a predaj.",
   },
 ];
 
@@ -73,25 +68,26 @@ function Chip({ icon, children, tone = "amber" }: { icon: React.ReactNode; child
 
 export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } = {}) {
   return (
-    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+    <div className="grid grid-cols-1 gap-3">
       {DAYS.map((d) => (
         <div
           key={d.n}
-          className="group relative min-w-0 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-black/60 p-4 backdrop-blur-md transition hover:border-primary/50 hover:shadow-[0_0_30px_-10px_oklch(0.72_0.19_45/0.55)] lg:border-primary/30 lg:from-primary/10"
+          className="group relative flex items-center justify-between gap-4 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-black/60 p-4 backdrop-blur-md transition hover:border-primary/50 hover:shadow-[0_0_30px_-10px_oklch(0.72_0.19_45/0.55)] lg:border-primary/30 lg:from-primary/10"
         >
-          <div className="flex items-baseline justify-between gap-2">
+          <div className="flex items-center gap-4">
             <span className="font-display text-[2.4rem] leading-none tracking-wide text-gradient-orange">
               DEŇ 0{d.n}
             </span>
-            <span className="inline-flex items-center gap-1 text-[0.8rem] font-black uppercase tracking-wider text-primary">
-              <Calendar className="h-3.5 w-3.5" /> {d.date}
-            </span>
+            <div className="h-8 w-px bg-gradient-to-b from-primary/60 to-transparent" />
+            <div>
+              <h3 className="text-lg font-black leading-tight text-foreground sm:text-xl">
+                {d.title}
+              </h3>
+              <span className="inline-flex items-center gap-1 text-[0.8rem] font-black uppercase tracking-wider text-primary">
+                <Calendar className="h-3.5 w-3.5" /> {d.date}
+              </span>
+            </div>
           </div>
-          <div className="my-2.5 h-px w-full bg-gradient-to-r from-primary/60 via-primary/20 to-transparent" />
-          <h3 className="text-lg font-black leading-tight text-foreground">
-            {d.title}
-          </h3>
-          <p className="mt-1.5 text-[0.95rem] leading-snug text-foreground/75">{d.desc}</p>
         </div>
       ))}
     </div>
