@@ -22,22 +22,31 @@ function Index() {
   return (
     <main className="relative min-h-screen text-foreground lg:h-screen lg:overflow-hidden">
       <Background />
-      {/* Desktop: 2-col, no scroll. Mobile: stacked, scrollable */}
-      <div className="mx-auto flex h-full max-w-[1700px] flex-col gap-5 px-4 py-5 sm:px-6 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10 lg:px-8 lg:py-4">
-        {/* Header (mobile) */}
-        <header className="flex items-center justify-between lg:hidden">
-          <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-12 w-auto" />
-          <LivePill />
+      <div className="mx-auto flex h-full max-w-[1700px] flex-col px-4 py-3 sm:px-6 lg:px-8 lg:py-3">
+        {/* Centered top header — logo above both columns + LIVE pill on the right */}
+        <header className="relative flex flex-col items-center pb-3 lg:pb-2">
+          <img
+            src={logoAsset.url}
+            alt="Y3S × Chalan z Burzy"
+            className="h-10 w-auto sm:h-12 lg:h-14"
+          />
+          <p className="mt-1 font-display text-[0.7rem] uppercase tracking-[0.4em] text-muted-foreground sm:text-xs lg:text-sm">
+            presents
+          </p>
+          <div className="absolute right-0 top-1 lg:top-2">
+            <LivePill />
+          </div>
         </header>
 
+        <div className="flex min-h-0 flex-1 flex-col gap-5 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10">
         {/* Left: poster */}
-        <section className="relative flex items-center justify-center lg:h-full">
+        <section className="relative flex items-center justify-center lg:h-full lg:min-h-0">
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,oklch(0.72_0.19_45/0.35),transparent_60%)] blur-2xl" />
           <div className="glass-strong relative overflow-hidden rounded-3xl p-2 glow-orange lg:p-2.5">
             <img
               src={posterAsset.url}
               alt="Zero to Hero — Online Challenge"
-              className="block h-full max-h-[60vh] w-full rounded-2xl object-contain sm:max-h-[70vh] lg:max-h-[min(89vh,980px)] lg:w-auto"
+              className="block h-full max-h-[60vh] w-full rounded-2xl object-contain sm:max-h-[70vh] lg:max-h-[min(86vh,960px)] lg:w-auto"
             />
           </div>
         </section>
@@ -46,11 +55,7 @@ function Index() {
         <section className="flex min-h-0 flex-col justify-center lg:h-full">
           <div className="flex min-h-0 flex-col justify-center gap-4 lg:gap-3">
           <div className="space-y-2">
-            <div className="hidden items-center justify-between gap-4 lg:flex">
-              <img src={logoAsset.url} alt="Y3S × Chalan z Burzy" className="h-14 w-auto" />
-              <LivePill />
-            </div>
-            <h1 className="font-display text-[clamp(3rem,4.4vw,4.8rem)] font-black leading-[0.84] tracking-normal">
+            <h1 className="font-display text-[clamp(3.5rem,5.6vw,6rem)] font-black leading-[0.84] tracking-normal">
               <span className="block">ZERO TO</span>
               <span className="block text-gradient-orange">HERO</span>
             </h1>
@@ -73,6 +78,7 @@ function Index() {
           <CTA />
           </div>
         </section>
+        </div>
       </div>
     </main>
   );
