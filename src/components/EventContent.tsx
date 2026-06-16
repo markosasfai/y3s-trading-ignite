@@ -8,33 +8,33 @@ import giftAsset from "@/assets/gift-3d.png.asset.json";
 const DAYS = [
   {
     n: 1,
-    label: "Deň 1",
-    date: "Pondelok 20. júl",
-    title: "Predstavenie a základy",
+    dayOfWeek: "Pondelok",
+    date: "20. júl",
+    title: "Úvod do tradingu",
   },
   {
     n: 2,
-    label: "Deň 2",
-    date: "Utorok 21. júl",
+    dayOfWeek: "Utorok",
+    date: "21. júl",
     title: "Základné pojmy",
   },
   {
     n: 3,
-    label: "Deň 3",
-    date: "Streda 22. júl",
-    title: "Ľahké techniky",
+    dayOfWeek: "Streda",
+    date: "22. júl",
+    title: "Risk management",
   },
   {
     n: 4,
-    label: "Deň 4",
-    date: "Štvrtok 23. júl",
-    title: "Ťažšie techniky",
+    dayOfWeek: "Štvrtok",
+    date: "23. júl",
+    title: "Pokročilé techniky",
   },
   {
     n: 5,
-    label: "Deň 5",
-    date: "Piatok 24. júl",
-    title: "Finiš a rekapitulácia",
+    dayOfWeek: "Piatok",
+    date: "24. júl",
+    title: "Rekapitulácia a záver",
   },
 ];
 
