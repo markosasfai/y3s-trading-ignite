@@ -73,9 +73,9 @@ export function PhoneInput({
       <input
         inputMode="tel"
         autoComplete="tel-national"
-        placeholder="918 799 977"
+        placeholder="0918 799 977"
         value={display}
-        onChange={(e) => setRaw(e.target.value)}
+        onChange={(e) => handleChange(e.target.value)}
         className="flex-1 bg-transparent px-3 py-3 text-base outline-none placeholder:text-muted-foreground/60"
       />
     </div>
