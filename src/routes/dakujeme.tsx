@@ -201,7 +201,7 @@ function ThankYou() {
               {/* Price + pill — compact stack, right side on desktop */}
               <div className="flex shrink-0 items-center gap-5 sm:flex-col sm:items-end sm:gap-3">
                 <div className="relative inline-block">
-                  <span className="font-display text-4xl font-black tracking-tight text-muted-foreground sm:text-5xl">
+                  <span className="font-display text-4xl font-black tracking-tight text-red-500 sm:text-5xl">
                     250 €
                   </span>
                   <span
