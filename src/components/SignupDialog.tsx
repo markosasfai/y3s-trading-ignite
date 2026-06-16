@@ -98,7 +98,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
                 + šanca vyhrať
               </p>
 
-              <div className="group relative mt-3 overflow-hidden rounded-2xl border border-primary/35 bg-gradient-to-b from-primary/10 to-black/60 p-4 shadow-[0_0_30px_-12px_oklch(0.72_0.19_45/0.65)] backdrop-blur-md">
+              <div className="group relative mt-3 overflow-hidden rounded-2xl border border-primary/35 bg-gradient-to-b from-primary/10 to-background/85 p-4 shadow-[0_0_30px_-12px_oklch(0.72_0.19_45/0.65)] backdrop-blur-md">
                 <div className="flex items-start justify-between gap-3">
                   <span className="font-display text-[2.15rem] uppercase leading-none text-gradient-orange sm:text-[2.45rem]">
                     Výhra
