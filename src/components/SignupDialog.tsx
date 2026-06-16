@@ -1,18 +1,15 @@
-import { useState } from "react";
+import { cloneElement, isValidElement, useEffect, useState, type FormEvent, type ReactElement, type ReactNode } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { X } from "lucide-react";
 import { submitChallengeRegistration } from "@/lib/registrations.functions";
 import { PhoneInput } from "./PhoneInput";
 
-export function SignupDialog({ children }: { children: React.ReactNode }) {
+type TriggerElement = ReactElement<{
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+}>;
+
+export function SignupDialog({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const submitRegistration = useServerFn(submitChallengeRegistration);
   const [open, setOpen] = useState(false);
@@ -23,7 +20,20 @@ export function SignupDialog({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  const submit = async (e: React.FormEvent) => {
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
+
+  const submit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
     if (submitting) return;
@@ -44,20 +54,37 @@ export function SignupDialog({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const trigger = isValidElement(children)
+    ? cloneElement(children as TriggerElement, {
+        onClick: (event) => {
+          (children as TriggerElement).props.onClick?.(event);
+          if (!event.defaultPrevented) setOpen(true);
+        },
+      })
+    : children;
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="glass-strong max-h-[calc(100dvh-2rem)] max-w-md overflow-y-auto border-border bg-background/90 p-0 sm:rounded-2xl">
-        <div className="relative overflow-hidden rounded-2xl p-5 sm:p-8">
-          <div className="pointer-events-none absolute -top-24 -right-16 h-56 w-56 rounded-full bg-primary/40 blur-3xl" />
-          <DialogHeader className="relative">
-            <DialogTitle className="font-display text-3xl uppercase tracking-wide">
-              Rezervuj si miesto
-            </DialogTitle>
-            <DialogDescription className="text-muted-foreground">
-              Vyplnením formulára získate <span className="text-foreground font-semibold">vstupenku zdarma</span> a ste automaticky v žrebovaní o <span className="text-gradient-orange font-semibold">funded účet $500&nbsp;000</span> od Y3S. Počet miest je obmedzený.
-            </DialogDescription>
-          </DialogHeader>
+    <>
+      {trigger}
+      {open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 px-4 py-5 backdrop-blur-xl" role="dialog" aria-modal="true">
+          <button className="absolute inset-0 cursor-default" aria-label="Zavrieť formulár" onClick={() => setOpen(false)} />
+          <div className="glass-strong relative max-h-[calc(100dvh-2.5rem)] w-full max-w-md overflow-y-auto rounded-2xl border-border bg-background/95 p-5 shadow-2xl sm:p-8">
+            <div className="pointer-events-none absolute -top-24 -right-16 h-56 w-56 rounded-full bg-primary/40 blur-3xl" />
+            <button
+              type="button"
+              aria-label="Zavrieť"
+              onClick={() => setOpen(false)}
+              className="absolute right-4 top-4 z-10 rounded-full border border-border bg-secondary p-2 text-foreground/80 transition hover:text-foreground"
+            >
+              <X className="h-4 w-4" />
+            </button>
+            <header className="relative pr-10">
+              <h2 className="font-display text-3xl uppercase tracking-wide">Rezervuj si miesto</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Vyplnením formulára získate <span className="font-semibold text-foreground">vstupenku zdarma</span> a ste automaticky v žrebovaní o <span className="font-semibold text-gradient-orange">funded účet $500&nbsp;000</span> od Y3S. Počet miest je obmedzený.
+              </p>
+            </header>
           <form onSubmit={submit} className="relative mt-6 space-y-4">
             <input
               aria-hidden="true"
@@ -115,7 +142,8 @@ export function SignupDialog({ children }: { children: React.ReactNode }) {
             </p>
           </form>
         </div>
-      </DialogContent>
-    </Dialog>
+        </div>
+      )}
+    </>
   );
 }
