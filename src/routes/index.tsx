@@ -20,10 +20,10 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="relative min-h-screen text-foreground lg:h-screen lg:overflow-hidden">
+    <main className="relative min-h-screen text-foreground">
       <Background />
       <MobileTopBar />
-      <div className="mx-auto flex h-full max-w-[1700px] flex-col justify-center gap-4 px-4 pt-16 pb-16 sm:px-6 lg:gap-6 lg:px-8 lg:py-8 lg:pt-8">
+      <div className="mx-auto flex min-h-screen max-w-[1700px] flex-col justify-center gap-4 px-4 pt-16 pb-16 sm:px-6 lg:gap-6 lg:px-8 lg:py-8 lg:pt-8">
         <header className="flex justify-center">
           <img
             src={logoAsset.url}
