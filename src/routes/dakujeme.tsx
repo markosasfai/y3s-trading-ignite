@@ -18,33 +18,6 @@ export const Route = createFileRoute("/dakujeme")({
   component: ThankYou,
 });
 
-function buildIcs() {
-  const pad = (n: number) => String(n).padStart(2, "0");
-  // Europe/Bratislava is UTC+2 in June (CEST) → 19:00 local = 17:00 UTC
-  const ev = (y: number, m: number, d: number, hStart: number, hEnd: number, n: number) => {
-    const dt = (h: number) => `${y}${pad(m)}${pad(d)}T${pad(h)}0000Z`;
-    return [
-      "BEGIN:VEVENT",
-      `UID:zero-to-hero-day-${n}@y3s.sk`,
-      `DTSTAMP:${dt(hStart)}`,
-      `DTSTART:${dt(hStart)}`,
-      `DTEND:${dt(hEnd)}`,
-      `SUMMARY:Zero to Hero — Deň ${n}`,
-      "DESCRIPTION:Online Challenge s Dodo a Lukášom. Pripoj sa naživo a buď v žrebovaní o $500 000 funded účet.",
-      "LOCATION:Online",
-      "END:VEVENT",
-    ].join("\r\n");
-  };
-  return [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//Y3S//Zero to Hero//SK",
-    ev(2026, 6, 20, 17, 19, 1),
-    ev(2026, 6, 21, 17, 19, 2),
-    ev(2026, 6, 22, 17, 19, 3),
-    "END:VCALENDAR",
-  ].join("\r\n");
-}
 
 function ThankYou() {
   const downloadIcs = () => {
