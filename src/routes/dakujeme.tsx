@@ -20,15 +20,6 @@ export const Route = createFileRoute("/dakujeme")({
 
 
 function ThankYou() {
-  const downloadIcs = () => {
-    const blob = new Blob([buildIcs()], { type: "text/calendar;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "zero-to-hero.ics";
-    a.click();
-    URL.revokeObjectURL(url);
-  };
   const share = async () => {
     const data = {
       title: "Zero to Hero — Online Challenge",
