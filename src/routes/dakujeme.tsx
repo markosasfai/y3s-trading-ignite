@@ -55,7 +55,7 @@ function ThankYou() {
   const share = async () => {
     const data = {
       title: "Zero to Hero — Online Challenge",
-      text: "Pridaj sa ku mne na 3-dňový live tréning s Dodo a Lukášom (zdarma).",
+      text: "Pridaj sa ku mne na 5-dňový live tréning s Dodo a Lukášom (zdarma).",
       url: typeof window !== "undefined" ? window.location.origin : "https://y3s.sk",
     };
     if (typeof navigator !== "undefined" && navigator.share) {
@@ -96,7 +96,7 @@ function ThankYou() {
           <p className="mt-3 max-w-xl text-foreground/85">
             Posielame ti potvrdenie na email. Pre vstup do žrebovania o{" "}
             <span className="text-gradient-orange font-semibold">$500 000 funded účet</span> sa pripoj naživo
-            <span className="font-semibold text-foreground"> 20.–22. júna 2026 o 19:00</span>.
+            <span className="font-semibold text-foreground"> 20.–24. júla 2026 o 19:00</span>.
           </p>
 
           {/* Video placeholder */}
@@ -133,7 +133,7 @@ function ThankYou() {
 
         {/* Recap */}
         <section className="mt-6 grid gap-3 sm:grid-cols-3">
-          <Recap icon={<Calendar className="h-4 w-4" />} title="20.–22. jún 2026" sub="19:00 (CET)" />
+          <Recap icon={<Calendar className="h-4 w-4" />} title="20.–24. júl 2026" sub="19:00 (CET)" />
           <Recap icon={<VideoOff className="h-4 w-4" />} title="Bez kamery" sub="100 % online" />
           <Recap icon={<Trophy className="h-4 w-4" />} title="LIVE žrebovanie" sub="$500 000 funded účet" />
         </section>
