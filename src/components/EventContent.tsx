@@ -72,20 +72,20 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
       {DAYS.map((d) => (
         <div
           key={d.n}
-          className="group relative flex h-full flex-col items-center justify-between gap-3 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-black/60 p-4 text-center backdrop-blur-md transition hover:border-primary/50 hover:shadow-[0_0_30px_-10px_oklch(0.72_0.19_45/0.55)] lg:border-primary/30 lg:from-primary/10"
+          className="group relative flex h-full flex-col items-center justify-between gap-3 overflow-hidden rounded-2xl border border-white/5 bg-gradient-to-b from-white/[0.02] to-black/40 p-4 text-center backdrop-blur-md transition hover:border-primary/30 hover:shadow-[0_0_20px_-12px_oklch(0.72_0.19_45/0.35)] lg:border-white/5 lg:from-primary/[0.04]"
         >
-          <span className="font-display text-[2.2rem] leading-none tracking-wide text-gradient-orange sm:text-[2.4rem]">
+          <span className="font-display text-[2.2rem] leading-none tracking-wide text-primary/60 sm:text-[2.4rem]">
             DEŇ 0{d.n}
           </span>
-          <div className="h-px w-14 bg-gradient-to-r from-primary/60 via-primary/40 to-transparent" />
-          <h3 className="text-[1.05rem] font-black leading-tight text-foreground sm:text-lg lg:text-[1.15rem]">
+          <div className="h-px w-14 bg-gradient-to-r from-primary/40 via-primary/25 to-transparent" />
+          <h3 className="text-[1.05rem] font-black leading-tight text-foreground/70 sm:text-lg lg:text-[1.15rem]">
             {d.title}
           </h3>
           <div className="flex flex-col items-center gap-0.5">
-            <span className="inline-flex items-center gap-1 text-[0.75rem] font-black uppercase tracking-wider text-primary">
+            <span className="inline-flex items-center gap-1 text-[0.75rem] font-black uppercase tracking-wider text-primary/50">
               <Calendar className="h-3.5 w-3.5" /> {d.dayOfWeek}
             </span>
-            <span className="text-[0.85rem] font-semibold leading-tight text-foreground/80">
+            <span className="text-[0.85rem] font-semibold leading-tight text-foreground/50">
               {d.date}
             </span>
           </div>
