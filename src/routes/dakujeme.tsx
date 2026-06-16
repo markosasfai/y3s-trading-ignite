@@ -18,44 +18,8 @@ export const Route = createFileRoute("/dakujeme")({
   component: ThankYou,
 });
 
-function buildIcs() {
-  const pad = (n: number) => String(n).padStart(2, "0");
-  // Europe/Bratislava is UTC+2 in June (CEST) → 19:00 local = 17:00 UTC
-  const ev = (y: number, m: number, d: number, hStart: number, hEnd: number, n: number) => {
-    const dt = (h: number) => `${y}${pad(m)}${pad(d)}T${pad(h)}0000Z`;
-    return [
-      "BEGIN:VEVENT",
-      `UID:zero-to-hero-day-${n}@y3s.sk`,
-      `DTSTAMP:${dt(hStart)}`,
-      `DTSTART:${dt(hStart)}`,
-      `DTEND:${dt(hEnd)}`,
-      `SUMMARY:Zero to Hero — Deň ${n}`,
-      "DESCRIPTION:Online Challenge s Dodo a Lukášom. Pripoj sa naživo a buď v žrebovaní o $500 000 funded účet.",
-      "LOCATION:Online",
-      "END:VEVENT",
-    ].join("\r\n");
-  };
-  return [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//Y3S//Zero to Hero//SK",
-    ev(2026, 6, 20, 17, 19, 1),
-    ev(2026, 6, 21, 17, 19, 2),
-    ev(2026, 6, 22, 17, 19, 3),
-    "END:VCALENDAR",
-  ].join("\r\n");
-}
 
 function ThankYou() {
-  const downloadIcs = () => {
-    const blob = new Blob([buildIcs()], { type: "text/calendar;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "zero-to-hero.ics";
-    a.click();
-    URL.revokeObjectURL(url);
-  };
   const share = async () => {
     const data = {
       title: "Zero to Hero — Online Challenge",
@@ -125,12 +89,14 @@ function ThankYou() {
 
               {/* Action buttons */}
               <div className="mt-10 flex w-full flex-col gap-4 sm:flex-row sm:justify-center">
-                <button
-                  onClick={downloadIcs}
+                <a
+                  href="https://www.addevent.com/event/8zg6vgxf52h6"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="shimmer-overlay glow-orange relative flex flex-1 items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-primary to-primary-glow px-8 py-4 text-sm font-bold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01] sm:flex-none"
                 >
                   <Calendar className="h-5 w-5" /> Pridať do kalendára
-                </button>
+                </a>
                 <button
                   onClick={share}
                   className="glass flex flex-1 items-center justify-center gap-3 rounded-xl border border-white/10 px-8 py-4 text-sm font-bold uppercase tracking-wider transition hover:bg-white/10 sm:flex-none"
