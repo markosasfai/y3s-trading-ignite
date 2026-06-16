@@ -72,7 +72,7 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
       {DAYS.map((d) => (
         <div
           key={d.n}
-          className="group relative flex h-full flex-col items-center justify-between gap-3 overflow-hidden rounded-2xl border border-white/5 bg-gradient-to-b from-white/[0.02] to-black/40 p-4 text-center backdrop-blur-md transition hover:border-primary/30 hover:shadow-[0_0_20px_-12px_oklch(0.72_0.19_45/0.35)] lg:border-white/5 lg:from-primary/[0.04]"
+          className={`group relative flex h-full flex-col items-center justify-between gap-3 overflow-hidden rounded-2xl border border-white/5 bg-gradient-to-b from-white/[0.02] to-black/40 p-4 text-center backdrop-blur-md transition hover:border-primary/30 hover:shadow-[0_0_20px_-12px_oklch(0.72_0.19_45/0.35)] lg:border-white/5 lg:from-primary/[0.04] ${d.n === 5 ? "col-span-2 sm:col-span-1" : ""}`}
         >
           <span className="font-display text-[2.2rem] leading-none tracking-wide text-primary sm:text-[2.4rem]">
             DEŇ 0{d.n}
