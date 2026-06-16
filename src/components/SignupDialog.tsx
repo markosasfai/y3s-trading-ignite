@@ -1,4 +1,4 @@
-import { cloneElement, isValidElement, useCallback, useEffect, useState, type FormEvent, type MouseEvent, type ReactElement, type ReactNode } from "react";
+import { cloneElement, isValidElement, useCallback, useEffect, useRef, useState, type FormEvent, type MouseEvent, type ReactElement, type ReactNode } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { X } from "lucide-react";
@@ -21,6 +21,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
   const [website, setWebsite] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const handlePhoneChange = useCallback((value: string, valid: boolean) => {
     setPhone((current) => (current.value === value && current.valid === valid ? current : { value, valid }));
@@ -28,6 +29,7 @@ export function SignupDialog({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (!open) return;
+    window.setTimeout(() => panelRef.current?.scrollTo({ top: 0 }), 0);
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
@@ -73,9 +75,9 @@ export function SignupDialog({ children }: { children: ReactNode }) {
     <>
       {trigger}
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-background/90 px-4 py-5 backdrop-blur-xl" role="dialog" aria-modal="true">
+        <div className="fixed inset-0 z-50 flex items-start justify-center bg-background/95 px-4 py-4 backdrop-blur-xl sm:items-center sm:py-5" role="dialog" aria-modal="true">
           <div className="absolute inset-0" aria-hidden="true" />
-          <div className="glass-strong relative max-h-[calc(100dvh-2.5rem)] w-full max-w-md overflow-y-auto overflow-x-hidden rounded-2xl border-border bg-background/95 p-5 shadow-2xl sm:p-8">
+          <div ref={panelRef} className="relative max-h-[calc(100dvh-2rem)] w-full max-w-md overflow-y-auto overflow-x-hidden overscroll-contain rounded-2xl border border-border bg-background p-5 shadow-2xl sm:max-h-[calc(100dvh-2.5rem)] sm:p-8">
             <div className="pointer-events-none absolute -top-24 -right-16 h-56 w-56 rounded-full bg-primary/40 blur-3xl" />
             <button
               type="button"
