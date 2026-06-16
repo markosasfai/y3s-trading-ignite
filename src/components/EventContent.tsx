@@ -8,33 +8,33 @@ import giftAsset from "@/assets/gift-3d.png.asset.json";
 const DAYS = [
   {
     n: 1,
-    label: "Deň 1",
-    date: "Pondelok 20. júl",
-    title: "Predstavenie a základy",
+    dayOfWeek: "Pondelok",
+    date: "20. júl",
+    title: "Úvod do tradingu",
   },
   {
     n: 2,
-    label: "Deň 2",
-    date: "Utorok 21. júl",
+    dayOfWeek: "Utorok",
+    date: "21. júl",
     title: "Základné pojmy",
   },
   {
     n: 3,
-    label: "Deň 3",
-    date: "Streda 22. júl",
-    title: "Ľahké techniky",
+    dayOfWeek: "Streda",
+    date: "22. júl",
+    title: "Risk management",
   },
   {
     n: 4,
-    label: "Deň 4",
-    date: "Štvrtok 23. júl",
-    title: "Ťažšie techniky",
+    dayOfWeek: "Štvrtok",
+    date: "23. júl",
+    title: "Pokročilé techniky",
   },
   {
     n: 5,
-    label: "Deň 5",
-    date: "Piatok 24. júl",
-    title: "Finiš a rekapitulácia",
+    dayOfWeek: "Piatok",
+    date: "24. júl",
+    title: "Rekapitulácia a záver",
   },
 ];
 
@@ -68,25 +68,26 @@ function Chip({ icon, children, tone = "amber" }: { icon: React.ReactNode; child
 
 export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } = {}) {
   return (
-    <div className="grid grid-cols-1 gap-3">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
       {DAYS.map((d) => (
         <div
           key={d.n}
-          className="group relative flex items-center justify-between gap-4 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-black/60 p-4 backdrop-blur-md transition hover:border-primary/50 hover:shadow-[0_0_30px_-10px_oklch(0.72_0.19_45/0.55)] lg:border-primary/30 lg:from-primary/10"
+          className="group relative flex h-full flex-col items-center justify-between gap-3 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-black/60 p-4 text-center backdrop-blur-md transition hover:border-primary/50 hover:shadow-[0_0_30px_-10px_oklch(0.72_0.19_45/0.55)] lg:border-primary/30 lg:from-primary/10"
         >
-          <div className="flex items-center gap-4">
-            <span className="font-display text-[2.4rem] leading-none tracking-wide text-gradient-orange">
-              DEŇ 0{d.n}
+          <span className="font-display text-[2.2rem] leading-none tracking-wide text-gradient-orange sm:text-[2.4rem]">
+            DEŇ 0{d.n}
+          </span>
+          <div className="h-px w-14 bg-gradient-to-r from-primary/60 via-primary/40 to-transparent" />
+          <h3 className="text-[1.05rem] font-black leading-tight text-foreground sm:text-lg lg:text-[1.15rem]">
+            {d.title}
+          </h3>
+          <div className="flex flex-col items-center gap-0.5">
+            <span className="inline-flex items-center gap-1 text-[0.75rem] font-black uppercase tracking-wider text-primary">
+              <Calendar className="h-3.5 w-3.5" /> {d.dayOfWeek}
             </span>
-            <div className="h-8 w-px bg-gradient-to-b from-primary/60 to-transparent" />
-            <div>
-              <h3 className="text-lg font-black leading-tight text-foreground sm:text-xl">
-                {d.title}
-              </h3>
-              <span className="inline-flex items-center gap-1 text-[0.8rem] font-black uppercase tracking-wider text-primary">
-                <Calendar className="h-3.5 w-3.5" /> {d.date}
-              </span>
-            </div>
+            <span className="text-[0.85rem] font-semibold leading-tight text-foreground/80">
+              {d.date}
+            </span>
           </div>
         </div>
       ))}
