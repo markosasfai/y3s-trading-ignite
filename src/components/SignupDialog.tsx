@@ -4,8 +4,8 @@ import { useServerFn } from "@tanstack/react-start";
 import { X } from "lucide-react";
 import { submitChallengeRegistration } from "@/lib/registrations.functions";
 import { PhoneInput } from "./PhoneInput";
-import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 import giftAsset from "@/assets/gift-3d.png.asset.json";
+
 
 type TriggerElement = ReactElement<{
   onClick?: (event: MouseEvent<HTMLElement>) => void;
