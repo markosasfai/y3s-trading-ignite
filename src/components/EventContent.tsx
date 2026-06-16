@@ -128,9 +128,6 @@ export function DayTimeline(_props: { orientation?: "horizontal" | "vertical" } 
             DEŇ 0{d.n}
           </span>
           <div className="h-px w-14 bg-gradient-to-r from-primary/40 via-primary/25 to-transparent" />
-          <h3 className="text-[1.05rem] font-black leading-tight text-foreground sm:text-lg lg:text-[1.15rem]">
-            {d.title}
-          </h3>
           <div className="flex flex-col items-center gap-0.5 opacity-55">
             <span className="inline-flex items-center gap-1 text-[0.75rem] font-black uppercase tracking-wider text-primary/80">
               <Calendar className="h-3.5 w-3.5" /> {d.dayOfWeek}
