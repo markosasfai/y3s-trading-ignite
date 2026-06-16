@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { submitChallengeRegistration } from "@/lib/registrations.functions";
 import { PhoneInput } from "./PhoneInput";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
+import giftAsset from "@/assets/gift-3d.png.asset.json";
 
 type TriggerElement = ReactElement<{
   onClick?: (event: MouseEvent<HTMLElement>) => void;
@@ -88,13 +89,40 @@ export function SignupDialog({ children }: { children: ReactNode }) {
               <img
                 src={logoAsset.url}
                 alt="Y3S × Chalan z Burzy"
-                className="mx-auto h-12 w-auto sm:h-14"
+                className="mx-auto h-11 w-auto sm:h-12"
               />
-              <p className="mt-5 text-center font-display text-2xl uppercase leading-[1.05] tracking-wide text-foreground sm:text-3xl">
+              <p className="mt-4 text-center font-display text-xl uppercase leading-[1.05] tracking-wide text-foreground sm:text-2xl">
                 Získaj <span className="text-gradient-orange">vstupenku zdarma</span>
               </p>
-              <p className="mt-3 text-center text-base leading-snug text-foreground/90 sm:text-lg">
-                + šanca vyhrať <span className="font-bold text-gradient-orange">funded účet $500&nbsp;000</span> od Y3S
+              <p className="mt-1 text-center text-sm font-semibold uppercase tracking-wider text-foreground/70">
+                + šanca vyhrať
+              </p>
+
+              <div className="relative mt-3 overflow-hidden rounded-2xl border-2 border-primary/60 bg-gradient-to-br from-primary/25 via-primary/10 to-amber-500/15 p-4 shadow-[0_0_40px_-10px_oklch(0.72_0.19_45/0.8)]">
+                <div className="pointer-events-none absolute -top-10 -right-10 h-40 w-40 rounded-full bg-primary/40 blur-3xl" />
+                <div className="pointer-events-none absolute -bottom-12 -left-10 h-36 w-36 rounded-full bg-amber-400/25 blur-3xl" />
+                <div className="relative flex items-center gap-3">
+                  <img
+                    src={giftAsset.url}
+                    alt=""
+                    className="h-20 w-20 shrink-0 drop-shadow-[0_8px_24px_oklch(0.72_0.19_45/0.7)] sm:h-24 sm:w-24"
+                  />
+                  <div className="min-w-0 flex-1 text-left">
+                    <p className="text-[0.7rem] font-black uppercase tracking-[0.2em] text-primary">
+                      Funded účet
+                    </p>
+                    <p className="font-display text-[2.4rem] leading-[0.9] text-gradient-orange sm:text-[2.8rem]">
+                      $500&nbsp;000
+                    </p>
+                    <p className="mt-1 text-xs font-bold uppercase tracking-wider text-foreground/80">
+                      od Y3S
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="mt-3 text-center text-xs text-muted-foreground sm:text-sm">
+                Stačí vyplniť údaje — trvá to menej ako 2 sekundy.
               </p>
             </header>
           <form onSubmit={submit} className="relative mt-6 space-y-4">
