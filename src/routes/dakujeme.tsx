@@ -179,7 +179,7 @@ function ThankYou() {
                     className="pointer-events-none absolute left-[-6%] right-[-6%] top-1/2 h-[5px] -translate-y-1/2 rotate-[-10deg] rounded-full bg-red-500 shadow-[0_0_18px_rgba(239,68,68,0.6)]"
                   />
                 </div>
-                <span className="rounded-full bg-amber-400 px-5 py-2.5 font-display text-base font-black uppercase tracking-wider text-amber-950 shadow-[0_0_36px_rgba(251,191,36,0.55)] sm:text-lg sm:px-6 sm:py-3">
+                <span className="rounded-full bg-amber-400 px-5 py-2.5 font-sans text-base font-black uppercase tracking-wider text-amber-950 shadow-[0_0_36px_rgba(251,191,36,0.55)] sm:text-lg sm:px-6 sm:py-3">
                   Zdarma pre teba
                 </span>
               </div>
@@ -201,9 +201,6 @@ function ThankYou() {
                     <p className="text-base text-foreground/75">Trading mentor</p>
                   </div>
                 </div>
-                <p className="relative mt-4 text-base leading-relaxed text-foreground/85">
-                  Bežne sa za hovor platí. Ty ho máš ako darček — stačí sa zapísať.
-                </p>
               </div>
 
               {/* Benefits */}
@@ -230,7 +227,10 @@ function ThankYou() {
             </div>
           </div>
 
-          <div className="relative border-t border-sky-400/15 bg-white">
+          <div className="relative border-t border-sky-400/15 bg-white p-6 sm:p-8">
+            <h3 className="mb-4 text-center font-display text-2xl font-black uppercase tracking-wider text-sky-950">
+              Vyberte si dátum a čas
+            </h3>
             <CalendlyInlineWidget />
           </div>
         </section>
