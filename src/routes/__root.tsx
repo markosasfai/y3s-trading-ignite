@@ -113,8 +113,7 @@ window.gtag = gtag;
 gtag('js', new Date());
 gtag('config', '${GA_MEASUREMENT_ID}');
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '${FB_PIXEL_ID}');
-fbq('track', 'PageView');`,
+fbq('init', '${FB_PIXEL_ID}');`,
       },
     ],
   }),
@@ -143,13 +142,11 @@ function RootComponent() {
   const router = useRouter();
 
   useEffect(() => {
-    // Fire SPA pageview on every route change (initial PageView already fires from the inline pixel script).
-    let first = true;
-    const unsub = router.subscribe("onResolved", ({ toLocation }) => {
-      if (first) {
-        first = false;
-        return;
-      }
+    // Fire initial PageView (Pixel + CAPI with shared event_id for dedup)
+    pageview(window.location.pathname);
+    const unsub = router.subscribe("onResolved", ({ toLocation, fromLocation }) => {
+      if (fromLocation && fromLocation.pathname === toLocation.pathname) return;
+      if (!fromLocation) return; // initial already fired above
       pageview(toLocation.pathname);
     });
     return () => unsub();
