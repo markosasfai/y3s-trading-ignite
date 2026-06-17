@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { sendPhoneOtp, verifyAndSubmitLead } from "@/lib/registrations.functions";
 import { PhoneInput } from "./PhoneInput";
 import giftAsset from "@/assets/gift-3d.png.asset.json";
+import { track, trackStandard } from "@/lib/analytics";
 
 
 type TriggerElement = ReactElement<{
@@ -37,6 +38,8 @@ export function SignupDialog({ children }: { children: ReactNode }) {
     setCodeSent(false);
     setCode("");
     setError(null);
+    track("signup_cta_click", { source: "signup_dialog" });
+    track("signup_step_view", { step: 1 });
     window.setTimeout(() => panelRef.current?.scrollTo({ top: 0 }), 0);
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
@@ -54,6 +57,8 @@ export function SignupDialog({ children }: { children: ReactNode }) {
     setError(null);
     if (name.trim().length < 2) return setError("Zadajte vaše meno a priezvisko.");
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return setError("Zadajte platný email.");
+    track("signup_step_complete", { step: 1 });
+    track("signup_step_view", { step: 2 });
     setStep(2);
   };
 
@@ -66,6 +71,8 @@ export function SignupDialog({ children }: { children: ReactNode }) {
     try {
       await sendOtp({ data: { phone: phone.value, website } });
       setCodeSent(true);
+      track("signup_step_complete", { step: 2 });
+      track("signup_step_view", { step: 3 });
       setStep(3);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Nepodarilo sa odoslať kód.");
@@ -96,6 +103,9 @@ export function SignupDialog({ children }: { children: ReactNode }) {
       await verifyAndSubmit({
         data: { name, email, phone: phone.value, code, website },
       });
+      track("signup_step_complete", { step: 3 });
+      trackStandard("Lead", { content_name: "Zero to Hero registration" });
+      trackStandard("CompleteRegistration", { content_name: "Zero to Hero" });
       setOpen(false);
       navigate({ to: "/dakujeme" });
     } catch (err) {
