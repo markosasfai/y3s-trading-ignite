@@ -5,7 +5,7 @@ import { X } from "lucide-react";
 import { sendPhoneOtp, verifyAndSubmitLead } from "@/lib/registrations.functions";
 import { PhoneInput } from "./PhoneInput";
 import giftAsset from "@/assets/gift-3d.png.asset.json";
-import { track, trackStandard } from "@/lib/analytics";
+import { track, trackStandard, rememberUserData } from "@/lib/analytics";
 
 
 type TriggerElement = ReactElement<{
@@ -103,9 +103,18 @@ export function SignupDialog({ children }: { children: ReactNode }) {
       await verifyAndSubmit({
         data: { name, email, phone: phone.value, code, website },
       });
-      track("signup_step_complete", { step: 3 });
-      trackStandard("Lead", { content_name: "Zero to Hero registration" });
-      trackStandard("CompleteRegistration", { content_name: "Zero to Hero" });
+      const [firstName, ...rest] = name.trim().split(/\s+/);
+      const userData = {
+        email,
+        phone: phone.value,
+        first_name: firstName,
+        last_name: rest.join(" ") || undefined,
+        external_id: email,
+      };
+      rememberUserData(userData);
+      track("signup_step_complete", { step: 3 }, userData);
+      trackStandard("Lead", { content_name: "Zero to Hero registration" }, userData);
+      trackStandard("CompleteRegistration", { content_name: "Zero to Hero" }, userData);
       setOpen(false);
       navigate({ to: "/dakujeme" });
     } catch (err) {
