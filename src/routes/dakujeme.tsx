@@ -6,6 +6,7 @@ import { Background } from "@/components/Background";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 import giftAsset from "@/assets/gift-3d.png.asset.json";
 import specialistAsset from "@/assets/specialist-y3s.png.asset.json";
+import { track, trackStandard } from "@/lib/analytics";
 
 export const Route = createFileRoute("/dakujeme")({
   head: () => ({
@@ -20,7 +21,13 @@ export const Route = createFileRoute("/dakujeme")({
 
 
 function ThankYou() {
+  useEffect(() => {
+    trackStandard("Lead", { content_name: "Thank you page" });
+    track("thank_you_view");
+  }, []);
+
   const share = async () => {
+    track("share_click", { location: "thank_you" });
     const data = {
       title: "Zero to Hero — Online Challenge",
       text: "Pridaj sa ku mne na 5-dňový live tréning s Dodo a Lukášom (zdarma).",
@@ -93,6 +100,7 @@ function ThankYou() {
                   href="https://www.addevent.com/event/8zg6vgxf52h6"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => track("add_to_calendar_click", { location: "thank_you" })}
                   className="shimmer-overlay glow-orange relative flex flex-1 items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-r from-primary to-primary-glow px-8 py-4 text-sm font-bold uppercase tracking-wider text-primary-foreground transition-transform hover:scale-[1.01] sm:flex-none"
                 >
                   <Calendar className="h-5 w-5" /> Pridať do kalendára
@@ -249,6 +257,27 @@ function CalendlyInlineWidget() {
     script.src = "https://assets.calendly.com/assets/external/widget.js";
     script.async = true;
     document.body.appendChild(script);
+  }, []);
+
+  useEffect(() => {
+    const isCalendlyEvent = (e: MessageEvent) =>
+      typeof e.data === "object" && e.data !== null && typeof (e.data as { event?: string }).event === "string" &&
+      (e.data as { event: string }).event.indexOf("calendly.") === 0;
+
+    const onMessage = (e: MessageEvent) => {
+      if (!isCalendlyEvent(e)) return;
+      const ev = (e.data as { event: string }).event;
+      if (ev === "calendly.event_scheduled") {
+        track("calendly_booking_scheduled", { location: "thank_you" });
+        trackStandard("Schedule", { content_name: "Y3S specialist call" });
+      } else if (ev === "calendly.date_and_time_selected") {
+        track("calendly_time_selected");
+      } else if (ev === "calendly.event_type_viewed") {
+        track("calendly_widget_viewed");
+      }
+    };
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
   }, []);
 
   return (
