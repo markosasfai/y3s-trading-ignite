@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { FB_PIXEL_ID, GA_MEASUREMENT_ID, pageview } from "../lib/analytics";
 
 function NotFoundComponent() {
   return (
@@ -100,6 +101,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap",
       },
     ],
+    scripts: [
+      {
+        async: true,
+        src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,
+      },
+      {
+        children: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('js', new Date());
+gtag('config', '${GA_MEASUREMENT_ID}');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '${FB_PIXEL_ID}');
+fbq('track', 'PageView');`,
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -123,6 +140,20 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Fire SPA pageview on every route change (initial PageView already fires from the inline pixel script).
+    let first = true;
+    const unsub = router.subscribe("onResolved", ({ toLocation }) => {
+      if (first) {
+        first = false;
+        return;
+      }
+      pageview(toLocation.pathname);
+    });
+    return () => unsub();
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>
