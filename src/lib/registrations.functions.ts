@@ -24,6 +24,54 @@ function detectDevice(ua: string | null | undefined): string {
   return "desktop";
 }
 
+const BREVO_LIST_ID = 28;
+
+async function syncLeadToBrevo(input: {
+  name: string;
+  email: string;
+  phone: string;
+  country: string | null;
+}) {
+  const lovableKey = process.env.LOVABLE_API_KEY;
+  const brevoKey = process.env.BREVO_API_KEY;
+  if (!lovableKey || !brevoKey) {
+    console.warn("[brevo] missing LOVABLE_API_KEY or BREVO_API_KEY, skipping sync");
+    return;
+  }
+  const [firstName, ...rest] = input.name.trim().split(/\s+/);
+  const lastName = rest.join(" ");
+  const body = {
+    email: input.email,
+    attributes: {
+      FIRSTNAME: firstName || undefined,
+      LASTNAME: lastName || undefined,
+      SMS: input.phone,
+      WHATSAPP: input.phone,
+      COUNTRY: input.country || undefined,
+      SOURCE: "landing_page",
+    },
+    listIds: [BREVO_LIST_ID],
+    updateEnabled: true,
+  };
+  try {
+    const res = await fetch("https://connector-gateway.lovable.dev/brevo/contacts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${lovableKey}`,
+        "X-Connection-Api-Key": brevoKey,
+      },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      console.error("[brevo] contact sync failed", res.status, text);
+    }
+  } catch (err) {
+    console.error("[brevo] contact sync threw", err);
+  }
+}
+
 function twilioAuthHeader() {
   const sid = process.env.TWILIO_ACCOUNT_SID;
   const token = process.env.TWILIO_AUTH_TOKEN;
@@ -107,6 +155,14 @@ export const verifyAndSubmitLead = createServerFn({ method: "POST" })
       console.error("[leads] insert failed", error);
       throw new Error("Registráciu sa nepodarilo uložiť.");
     }
+
+    // Fire-and-forget — never let Brevo break the registration flow.
+    void syncLeadToBrevo({
+      name: data.name,
+      email: data.email.toLowerCase(),
+      phone: data.phone,
+      country,
+    });
 
     return { ok: true };
   });
