@@ -68,6 +68,8 @@ async function syncLeadToBrevo(input: {
     if (!res.ok) {
       const text = await res.text();
       console.error("[brevo] contact sync failed", res.status, text);
+    } else {
+      console.log("[brevo] contact synced", input.email, "list", BREVO_LIST_ID);
     }
   } catch (err) {
     console.error("[brevo] contact sync threw", err);
