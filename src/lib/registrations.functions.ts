@@ -49,6 +49,8 @@ async function syncLeadToBrevo(input: {
       WHATSAPP: input.phone,
       COUNTRY: input.country || undefined,
       SOURCE: "landing_page",
+      PHONE_VERIFIED: true,
+      OPT_IN: true,
     },
     listIds: [BREVO_LIST_ID],
     updateEnabled: true,
