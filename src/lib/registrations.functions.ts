@@ -48,7 +48,7 @@ async function syncLeadToBrevo(input: {
       SMS: input.phone,
       WHATSAPP: input.phone,
       COUNTRY: input.country || undefined,
-      SOURCE: "landing_page",
+      SOURCE: "ZTH Lovable Nowli",
       PHONE_VERIFIED: true,
       OPT_IN: true,
     },
