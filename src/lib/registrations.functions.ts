@@ -160,8 +160,8 @@ export const verifyAndSubmitLead = createServerFn({ method: "POST" })
       throw new Error("Registráciu sa nepodarilo uložiť.");
     }
 
-    // Fire-and-forget — never let Brevo break the registration flow.
-    void syncLeadToBrevo({
+    // Await Brevo so the serverless worker does not terminate before the sync runs.
+    await syncLeadToBrevo({
       name: data.name,
       email: data.email.toLowerCase(),
       phone: data.phone,
