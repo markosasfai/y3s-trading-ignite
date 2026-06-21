@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Zero to Hero — 5-dňový online challenge zdarma | Y3S × Chalan z Burzy" },
-      { name: "description", content: "20.–24. júl 2026, 19:00. Dodo a Lukáš ťa za 5 dní naučia zarábať obchodovaním. 100% online, 100% zdarma, bez kamery." },
+      { name: "description", content: "20.–24. júl 2026, 18:00–20:00. Dodo a Lukáš ťa za 5 dní naučia zarábať obchodovaním. 100% online, 100% zdarma, bez kamery." },
       { property: "og:title", content: "Zero to Hero — Online Challenge" },
       { property: "og:description", content: "5 dní naživo s Dodo & Lukášom. Žrebovanie o $500 000 funded účet pre LIVE účastníkov." },
       { property: "og:image", content: posterAsset.url },
@@ -55,7 +55,7 @@ function Index() {
               <span className="block text-gradient-orange">PROFITABILNÉHO TRADERA</span>
             </h1>
             <p className="font-display text-2xl uppercase tracking-[0.06em] text-foreground sm:text-3xl lg:text-[2rem]">
-              <span className="text-gradient-orange">20.–24. júl</span> · <span className="text-foreground">19:00</span>
+              <span className="text-gradient-orange">20.–24. júl</span> · <span className="text-foreground">18:00–20:00</span>
             </p>
           </div>
 
