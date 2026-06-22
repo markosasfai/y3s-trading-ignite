@@ -78,6 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "facebook-domain-verification", content: "mo03n99zprn0d64fmhnx5e4fv4touy" },
       { title: "Zero to Hero — 5-dňový online challenge zdarma | Y3S × Chalan z Burzy" },
       { name: "description", content: "20.–24. júl 2026, 19:00. Dodo a Lukáš ťa za 5 dní naučia zarábať obchodovaním. 100 % online a zdarma. Obmedzený počet miest." },
       { property: "og:title", content: "Zero to Hero — 5-dňový online challenge zdarma | Y3S × Chalan z Burzy" },
