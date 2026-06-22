@@ -127,23 +127,13 @@ export function ThankYouVideo() {
   return (
     <div className="relative mt-10 aspect-video w-full overflow-hidden rounded-2xl border border-white/5 bg-black">
       {/* YouTube player mount */}
-      <div className="absolute inset-0">
-        <div ref={mountRef} className="h-full w-full" />
+      {/* Scaled up slightly to crop YouTube title/channel chrome out of view */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div ref={mountRef} className="h-full w-full origin-center scale-[1.18]" />
       </div>
 
       {/* Click/interaction blocker — prevents navigating to YouTube */}
       <div className="absolute inset-0 z-10" aria-hidden onClick={(e) => e.preventDefault()} />
-
-      {/* Top mask — hides YouTube title/channel chrome that briefly flashes */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 z-[15] h-20 bg-gradient-to-b from-black via-black/80 to-transparent"
-        aria-hidden
-      />
-
-      {/* Startup cover — hides the title card flash before first PLAYING */}
-      {!hasStarted && (
-        <div className="pointer-events-none absolute inset-0 z-[16] bg-black" aria-hidden />
-      )}
 
       {/* Center: unmute prompt (until first toggle) */}
       {ready && !soundPrompted && (
