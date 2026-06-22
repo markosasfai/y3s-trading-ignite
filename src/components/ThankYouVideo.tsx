@@ -1,142 +1,58 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Pause, Play, Volume2, VolumeX } from "lucide-react";
 
-const VIDEO_ID = "m_a5Unl2gU4";
-
-type YTPlayer = {
-  playVideo: () => void;
-  pauseVideo: () => void;
-  mute: () => void;
-  unMute: () => void;
-  isMuted: () => boolean;
-  getPlayerState: () => number;
-};
-
-declare global {
-  interface Window {
-    YT?: {
-      Player: new (
-        el: HTMLElement,
-        opts: Record<string, unknown>,
-      ) => YTPlayer;
-      PlayerState: { PLAYING: number; PAUSED: number; ENDED: number };
-    };
-    onYouTubeIframeAPIReady?: () => void;
-  }
-}
-
-let apiPromise: Promise<void> | null = null;
-function loadYouTubeAPI(): Promise<void> {
-  if (apiPromise) return apiPromise;
-  apiPromise = new Promise((resolve) => {
-    if (typeof window === "undefined") return;
-    if (window.YT && window.YT.Player) {
-      resolve();
-      return;
-    }
-    const prev = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = () => {
-      prev?.();
-      resolve();
-    };
-    if (!document.getElementById("yt-iframe-api")) {
-      const s = document.createElement("script");
-      s.id = "yt-iframe-api";
-      s.src = "https://www.youtube.com/iframe_api";
-      document.body.appendChild(s);
-    }
-  });
-  return apiPromise;
-}
+const LIBRARY_ID = "619195";
+const VIDEO_ID = "90ee2fd1-4d8a-479a-83b9-c7ed33f032c4";
 
 export function ThankYouVideo() {
-  const mountRef = useRef<HTMLDivElement | null>(null);
-  const playerRef = useRef<YTPlayer | null>(null);
-  const [ready, setReady] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [soundPrompted, setSoundPrompted] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false);
 
-  useEffect(() => {
-    let cancelled = false;
-    loadYouTubeAPI().then(() => {
-      if (cancelled || !mountRef.current || !window.YT) return;
-      playerRef.current = new window.YT.Player(mountRef.current, {
-        videoId: VIDEO_ID,
-        host: "https://www.youtube-nocookie.com",
-        playerVars: {
-          autoplay: 1,
-          mute: 1,
-          controls: 0,
-          disablekb: 1,
-          fs: 0,
-          modestbranding: 1,
-          rel: 0,
-          playsinline: 1,
-          iv_load_policy: 3,
-          showinfo: 0,
-          cc_load_policy: 0,
-        },
-        events: {
-          onReady: (e: { target: YTPlayer }) => {
-            e.target.mute();
-            e.target.playVideo();
-            setReady(true);
-          },
-          onStateChange: (e: { data: number }) => {
-            if (!window.YT) return;
-            if (e.data === window.YT.PlayerState.PLAYING) {
-              setIsPlaying(true);
-              setHasStarted(true);
-            }
-            else if (
-              e.data === window.YT.PlayerState.PAUSED ||
-              e.data === window.YT.PlayerState.ENDED
-            )
-              setIsPlaying(false);
-          },
-        },
-      });
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const post = (cmd: string, arg?: unknown) => {
+    iframeRef.current?.contentWindow?.postMessage(
+      JSON.stringify({ event: "command", func: cmd, args: arg !== undefined ? [arg] : [] }),
+      "*",
+    );
+  };
 
   const togglePlay = () => {
-    const p = playerRef.current;
-    if (!p) return;
-    if (isPlaying) p.pauseVideo();
-    else p.playVideo();
+    if (isPlaying) post("pause");
+    else post("play");
+    setIsPlaying(!isPlaying);
   };
 
   const toggleMute = () => {
-    const p = playerRef.current;
-    if (!p) return;
-    if (p.isMuted()) {
-      p.unMute();
+    if (isMuted) {
+      post("setVolume", 1);
+      post("unmute");
       setIsMuted(false);
     } else {
-      p.mute();
+      post("mute");
       setIsMuted(true);
     }
     setSoundPrompted(true);
   };
 
+  const src = `https://iframe.mediadelivery.net/embed/${LIBRARY_ID}/${VIDEO_ID}?autoplay=true&loop=false&muted=true&preload=true&responsive=true&controls=false`;
+
   return (
     <div className="relative mt-10 aspect-video w-full overflow-hidden rounded-2xl border border-white/5 bg-black">
-      {/* YouTube player mount */}
-      {/* Scaled up slightly to crop YouTube title/channel chrome out of view */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div ref={mountRef} className="h-full w-full origin-center scale-[1.18]" />
-      </div>
+      <iframe
+        ref={iframeRef}
+        src={src}
+        loading="lazy"
+        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+        allowFullScreen={false}
+        className="absolute inset-0 h-full w-full"
+        title="Zero to Hero"
+      />
 
-      {/* Click/interaction blocker — prevents navigating to YouTube */}
+      {/* Interaction blocker */}
       <div className="absolute inset-0 z-10" aria-hidden onClick={(e) => e.preventDefault()} />
 
-      {/* Center: unmute prompt (until first toggle) */}
-      {ready && !soundPrompted && (
+      {!soundPrompted && (
         <button
           type="button"
           onClick={toggleMute}
@@ -147,20 +63,16 @@ export function ThankYouVideo() {
         </button>
       )}
 
-      {/* Bottom-left: play/pause */}
-      {ready && (
-        <button
-          type="button"
-          onClick={togglePlay}
-          aria-label={isPlaying ? "Pozastaviť video" : "Prehrať video"}
-          className="absolute bottom-4 left-4 z-20 grid h-11 w-11 place-items-center rounded-full bg-black/70 text-white ring-1 ring-white/20 backdrop-blur-md transition hover:scale-105 hover:bg-black/85"
-        >
-          {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 translate-x-[1px] fill-current" />}
-        </button>
-      )}
+      <button
+        type="button"
+        onClick={togglePlay}
+        aria-label={isPlaying ? "Pozastaviť video" : "Prehrať video"}
+        className="absolute bottom-4 left-4 z-20 grid h-11 w-11 place-items-center rounded-full bg-black/70 text-white ring-1 ring-white/20 backdrop-blur-md transition hover:scale-105 hover:bg-black/85"
+      >
+        {isPlaying ? <Pause className="h-5 w-5" /> : <Play className="h-5 w-5 translate-x-[1px] fill-current" />}
+      </button>
 
-      {/* Bottom-right: mute toggle (after first interaction) */}
-      {ready && soundPrompted && (
+      {soundPrompted && (
         <button
           type="button"
           onClick={toggleMute}
