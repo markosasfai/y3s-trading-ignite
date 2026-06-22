@@ -56,6 +56,7 @@ export function ThankYouVideo() {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [soundPrompted, setSoundPrompted] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -85,7 +86,10 @@ export function ThankYouVideo() {
           },
           onStateChange: (e: { data: number }) => {
             if (!window.YT) return;
-            if (e.data === window.YT.PlayerState.PLAYING) setIsPlaying(true);
+            if (e.data === window.YT.PlayerState.PLAYING) {
+              setIsPlaying(true);
+              setHasStarted(true);
+            }
             else if (
               e.data === window.YT.PlayerState.PAUSED ||
               e.data === window.YT.PlayerState.ENDED
@@ -129,6 +133,17 @@ export function ThankYouVideo() {
 
       {/* Click/interaction blocker — prevents navigating to YouTube */}
       <div className="absolute inset-0 z-10" aria-hidden onClick={(e) => e.preventDefault()} />
+
+      {/* Top mask — hides YouTube title/channel chrome that briefly flashes */}
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 z-[15] h-20 bg-gradient-to-b from-black via-black/80 to-transparent"
+        aria-hidden
+      />
+
+      {/* Startup cover — hides the title card flash before first PLAYING */}
+      {!hasStarted && (
+        <div className="pointer-events-none absolute inset-0 z-[16] bg-black" aria-hidden />
+      )}
 
       {/* Center: unmute prompt (until first toggle) */}
       {ready && !soundPrompted && (
