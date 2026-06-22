@@ -80,7 +80,7 @@ function ThankYou() {
               <p className="mt-6 max-w-xl text-lg leading-relaxed text-foreground/70 sm:text-xl">
                 Posielame ti potvrdenie na email. Pre vstup do žrebovania o{" "}
                 <span className="font-semibold text-foreground">$500 000 funded účet</span> sa pripoj naživo{" "}
-                <span className="font-semibold text-foreground">20.–24. júla 2026 o 19:00</span>.
+                <span className="font-semibold text-foreground">20.–24. júla 2026 o 18:00</span>.
               </p>
 
               <ThankYouVideo />
@@ -114,7 +114,7 @@ function ThankYou() {
           </span>
           <div className="min-w-0">
             <p className="text-base font-bold text-foreground">20.–24. júla 2026</p>
-            <p className="text-base text-muted-foreground/80">19:00 (CET)</p>
+            <p className="text-base text-muted-foreground/80">18:00 (CET)</p>
           </div>
         </section>
 
