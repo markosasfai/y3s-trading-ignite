@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { Calendar, Play, Share2, Trophy, ArrowLeft, CheckCircle2, Gift, Clock, MessageCircle, Sparkles, AlertTriangle } from "lucide-react";
+import { Calendar, Share2, Trophy, ArrowLeft, CheckCircle2, Gift, Clock, MessageCircle, Sparkles, AlertTriangle } from "lucide-react";
 import { DisclaimerFooter } from "@/components/EventContent";
 import { Background } from "@/components/Background";
+import { ThankYouVideo } from "@/components/ThankYouVideo";
 import logoAsset from "@/assets/y3s-chalan-logo.png.asset.json";
 import giftAsset from "@/assets/gift-3d.png.asset.json";
 import specialistAsset from "@/assets/specialist-y3s.png.asset.json";
@@ -82,17 +83,7 @@ function ThankYou() {
                 <span className="font-semibold text-foreground">20.–24. júla 2026 o 19:00</span>.
               </p>
 
-              {/* Video placeholder */}
-              <div className="group/video relative mt-10 aspect-video w-full overflow-hidden rounded-2xl border border-white/5 bg-black/40">
-                <div className="absolute inset-0 grid place-items-center">
-                  <div className="grid h-20 w-20 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_0_30px_color-mix(in_oklab,var(--primary)_40%,transparent)] transition-transform duration-300 group-hover/video:scale-110">
-                    <Play className="h-8 w-8 translate-x-[2px] fill-current" />
-                  </div>
-                </div>
-                <p className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60">
-                  Video čoskoro
-                </p>
-              </div>
+              <ThankYouVideo />
 
               {/* Action buttons */}
               <div className="mt-10 flex w-full flex-col gap-4 sm:flex-row sm:justify-center">
