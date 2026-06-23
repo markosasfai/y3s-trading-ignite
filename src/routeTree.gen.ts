@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as DakujemeRouteImport } from './routes/dakujeme'
+import { Route as R11RegistraciaUspesnaRouteImport } from './routes/1-1-registracia-uspesna'
 import { Route as IndexRouteImport } from './routes/index'
 
 const DakujemeRoute = DakujemeRouteImport.update({
   id: '/dakujeme',
   path: '/dakujeme',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const R11RegistraciaUspesnaRoute = R11RegistraciaUspesnaRouteImport.update({
+  id: '/1-1-registracia-uspesna',
+  path: '/1-1-registracia-uspesna',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/1-1-registracia-uspesna': typeof R11RegistraciaUspesnaRoute
   '/dakujeme': typeof DakujemeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/1-1-registracia-uspesna': typeof R11RegistraciaUspesnaRoute
   '/dakujeme': typeof DakujemeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/1-1-registracia-uspesna': typeof R11RegistraciaUspesnaRoute
   '/dakujeme': typeof DakujemeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dakujeme'
+  fullPaths: '/' | '/1-1-registracia-uspesna' | '/dakujeme'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dakujeme'
-  id: '__root__' | '/' | '/dakujeme'
+  to: '/' | '/1-1-registracia-uspesna' | '/dakujeme'
+  id: '__root__' | '/' | '/1-1-registracia-uspesna' | '/dakujeme'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R11RegistraciaUspesnaRoute: typeof R11RegistraciaUspesnaRoute
   DakujemeRoute: typeof DakujemeRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/dakujeme'
       fullPath: '/dakujeme'
       preLoaderRoute: typeof DakujemeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/1-1-registracia-uspesna': {
+      id: '/1-1-registracia-uspesna'
+      path: '/1-1-registracia-uspesna'
+      fullPath: '/1-1-registracia-uspesna'
+      preLoaderRoute: typeof R11RegistraciaUspesnaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R11RegistraciaUspesnaRoute: R11RegistraciaUspesnaRoute,
   DakujemeRoute: DakujemeRoute,
 }
 export const routeTree = rootRouteImport
