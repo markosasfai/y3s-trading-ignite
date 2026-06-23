@@ -230,7 +230,7 @@ function ThankYou() {
             <h3 className="mb-4 text-center font-display text-2xl font-black uppercase tracking-wider text-sky-950">
               Vyberte si dátum a čas
             </h3>
-            <CalendlyInlineWidget />
+            <BookioInlineWidget />
           </div>
         </section>
 
@@ -240,31 +240,16 @@ function ThankYou() {
   );
 }
 
-function CalendlyInlineWidget() {
+function BookioInlineWidget() {
   useEffect(() => {
-    if (document.getElementById("calendly-widget-script")) return;
-    const script = document.createElement("script");
-    script.id = "calendly-widget-script";
-    script.src = "https://assets.calendly.com/assets/external/widget.js";
-    script.async = true;
-    document.body.appendChild(script);
-  }, []);
-
-  useEffect(() => {
-    const isCalendlyEvent = (e: MessageEvent) =>
-      typeof e.data === "object" && e.data !== null && typeof (e.data as { event?: string }).event === "string" &&
-      (e.data as { event: string }).event.indexOf("calendly.") === 0;
-
     const onMessage = (e: MessageEvent) => {
-      if (!isCalendlyEvent(e)) return;
-      const ev = (e.data as { event: string }).event;
-      if (ev === "calendly.event_scheduled") {
-        track("calendly_booking_scheduled", { location: "thank_you" });
+      if (typeof e.origin !== "string" || !e.origin.includes("bookio.com")) return;
+      const data = e.data as { event?: string; type?: string } | string | undefined;
+      const ev = typeof data === "string" ? data : data?.event || data?.type;
+      if (!ev) return;
+      if (/reservation|booking|success|confirmed|created/i.test(String(ev))) {
+        track("bookio_booking_scheduled", { location: "thank_you" });
         trackStandard("Schedule", { content_name: "Y3S specialist call" });
-      } else if (ev === "calendly.date_and_time_selected") {
-        track("calendly_time_selected");
-      } else if (ev === "calendly.event_type_viewed") {
-        track("calendly_widget_viewed");
       }
     };
     window.addEventListener("message", onMessage);
@@ -272,10 +257,12 @@ function CalendlyInlineWidget() {
   }, []);
 
   return (
-    <div
-      className="calendly-inline-widget w-full"
-      data-url="https://calendly.com/y3s-info/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=ff5a00"
-      style={{ minWidth: 320, height: 700 }}
+    <iframe
+      title="Rezervácia hovoru"
+      src="https://services.bookio.com/y3s-trading/widget?lang=cs"
+      className="w-full rounded-xl border-0 bg-white"
+      style={{ minWidth: 320, height: 900 }}
+      allow="payment"
     />
   );
 }
